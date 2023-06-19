@@ -1,23 +1,26 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export const Login = ({ setUser }) => {
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    setUser({ id: 1, username: "John Doe" });
-    navigate("/dashboard");
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => alert(JSON.stringify(data));
 
   return (
-    <div>
-      <h1>Login</h1>
-      <button onClick={handleLogin}>Login</button>
-      <h1>Log Out</h1>
-      <button onClick={handleLogout}>Log Out</button>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label>Email</label>
+        <input type="text" {...register("email", { required: true })} />
+        {errors.email && <span>This field is required</span>}
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" {...register("password", { required: true })} />
+        {errors.password && <span>This field is required</span>}
+      </div>
+      <button type="submit">Login</button>
+    </form>
   );
 };
