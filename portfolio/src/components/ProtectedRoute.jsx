@@ -1,10 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-export const ProtectedRoute = ({
-  isAllowed,
-  redirectTo = "/login",
-  children,
-}) => {
+export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
+  const isAllowed = localStorage.getItem("token");
   // validate if is allowed, if is a user or not and if it has permission or not.
   if (!isAllowed) {
     return <Navigate to={redirectTo} />;

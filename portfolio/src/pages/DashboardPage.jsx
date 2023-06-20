@@ -1,10 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Navigation } from "../components/dashboard/Navigation";
+import { useNavigate } from "react-router-dom";
 
-export const Dashboard = ({ setUser }) => {
+export const Dashboard = () => {
+  const navigate = useNavigate();
   const handleLogout = () => {
-    setUser(null);
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (

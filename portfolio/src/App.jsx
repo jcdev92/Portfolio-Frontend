@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 import { Portfolio } from "./pages/PortfolioPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -15,15 +14,13 @@ import { Blog } from "./pages/BlogPage";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState(null);
-  console.log(user);
   return (
     <>
       <Routes>
         <Route path="/" element={<Portfolio />} />
-        <Route path="/login" element={<LoginPage setUser={setUser} />} />
-        <Route element={<ProtectedRoute isAllowed={!!user} />}>
-          <Route path="/dashboard/*" element={<Dashboard setUser={setUser}/>}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard/*" element={<Dashboard />}>
             <Route path="profile" element={<DashboardProfile />} />
             <Route path="skills" element={<DashboardSkills />} />
             <Route path="projects" element={<DashboardProjects />} />
@@ -32,6 +29,7 @@ function App() {
           </Route>
         </Route>
         <Route path="/blog" element={<Blog />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </>
   );
