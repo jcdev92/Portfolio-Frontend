@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Navigation } from "../components/dashboard/Navigation";
 import { useNavigate } from "react-router-dom";
+import { Profile } from "../components/dashboard/Profile";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -11,17 +12,24 @@ export const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div
+      className="
+      flex flex-col
+      bg-gradient-to-r
+      from-sky-800
+      to-indigo-950
+      text-white
+      font-mono
+    "
+    >
       <Navigation />
-      <h1>Dashboard</h1>
-      <button onClick={handleLogout}>Log Out</button>
       <Outlet />
     </div>
   );
 };
 
 export const DashboardProfile = () => {
-  return <div>Profile</div>;
+  return <Profile />;
 };
 
 export const DashboardSkills = () => {
