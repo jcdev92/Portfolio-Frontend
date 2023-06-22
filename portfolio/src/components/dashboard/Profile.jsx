@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Spinner,
   Card,
@@ -7,28 +7,28 @@ import {
   Textarea,
   Button,
 } from "flowbite-react";
-import axios from "axios";
+import useAxiosGet from "../../hooks/useAxiosGet";
+import useAxiosPost from "../../hooks/useAxiosPost";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  const [profile, setProfile] = useState({});
-  const [loading, setLoading] = useState(true);
+  const url = "http://localhost:9000/api/v1/user";
+  const { data, loading } = useAxiosGet(url);
+  const { handleSubmit, register } = useForm();
+  const id = data.id;
+  const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
 
-  useEffect(() => {
-    const url = "http://localhost:9000/api/v1/user";
-    const token = localStorage.getItem("token");
-    axios
-      .get(url, {
-        headers: {
-          Authorization: `jwt ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data.data[0]);
-        setProfile(res.data.data[0]);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const onSubmit = (data) => {
+    for (let key in data) {
+      if (data[key] === "") {
+        delete data[key];
+      }
+    }
+    useAxiosPost(patchUrl, data);
+    // refresh the page
+    window.location.reload();
+  };
 
   if (loading) {
     return (
@@ -41,95 +41,90 @@ export const Profile = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <Card className="lg:w-8/12 m-4">
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div id="info" className="lg:grid gap-4 grid-cols-2">
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="name" value="Your name" />
+                <Label value="Your name" />
               </div>
               <TextInput
-                id="name"
-                placeholder={profile.firstName}
-                required
+                id="firstNa"
+                placeholder={data.firstName}
                 type="text"
+                {...register("firstName")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="lastname" value="Your lastname" />
+                <Label value="Your lastname" />
               </div>
               <TextInput
-                id="lastname"
-                placeholder={profile.lastName}
-                required
+                id="lastName"
+                placeholder={data.lastName}
                 type="text"
+                {...register("lastName")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="email" value="Your email" />
+                <Label value="Your email" />
               </div>
               <TextInput
                 id="email"
-                placeholder={profile.email}
-                required
+                placeholder={data.email}
                 type="email"
+                {...register("email")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="phone" value="Your phone" />
+                <Label value="Your phone" />
               </div>
               <TextInput
                 id="phone"
-                placeholder={profile.phone}
-                required
+                placeholder={data.phone}
                 type="text"
+                {...register("phone")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="profileImg" value="Your profile image" />
+                <Label value="Your profile image" />
               </div>
               <TextInput
                 id="profileImg"
-                placeholder={profile.profileImg}
-                required
+                placeholder={data.profileImg}
                 type="text"
+                {...register("profileImg")}
               />
             </div>
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFot="jobTitle" value="Your job title" />
+              <Label value="Your job title" />
             </div>
             <TextInput
               id="jobTitle"
-              placeholder={profile.jobTitle}
-              required
+              placeholder={data.jobTitle}
               type="text"
+              {...register("jobTitle")}
             />
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="aboutMe" value="About me description" />
+              <Label value="About me description" />
             </div>
             <Textarea
               id="aboutMe"
-              placeholder={profile.aboutMe}
-              required
+              placeholder={data.aboutMe}
               rows={4}
+              {...register("aboutMe")}
             />
           </div>
-          <div className="flex flex-row justify-around">
+          <div className="flex flex-row justify-center">
             <div className="mb-2 block">
-              <Button gradientDuoTone="purpleToBlue" outline>
+              <Button gradientDuoTone="purpleToBlue" outline type="submit">
                 Update profile
-              </Button>
-            </div>
-            <div className="mb-2 block">
-              <Button gradientDuoTone="greenToBlue" outline>
-                Get profile
               </Button>
             </div>
           </div>
