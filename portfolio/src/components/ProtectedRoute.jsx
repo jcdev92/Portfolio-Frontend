@@ -1,25 +1,60 @@
 import { Navigate, Outlet } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   const token = localStorage.getItem("token");
-  const [notAllowed, setNotAllowed] = useState(false);
-  // check if the token is expired
-  axios
-    .get("http://localhost:9000/api/v1/user/me", {
-      headers: {
-        Authorization: `jwt ${token}`,
-      },
-    })
-    .then((res) => console.log(res))
-    .catch((err) => {
-      console.log(err);
-      setNotAllowed(true);
-    });
+  const [isAllowed, setIsAllowed] = useState(true);
 
-  // validate if is allowed, if is a user or not and if it has permission or not.
-  if (!token || notAllowed) {
+  // validate if the token is valid or not
+  useEffect(() => {
+    axios
+      .get("http://localhost:9000/api/v1/user/me", {
+        headers: {
+          Authorization: `jwt ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data) {
+          setIsAllowed(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.status);
+        if (err.response.status === 401) {
+          setIsAllowed(false);
+        }
+      });
+  }, [token]);
+
+  // check every 5 hours if the token is valid or not
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios
+        .get("http://localhost:9000/api/v1/user/me", {
+          headers: {
+            Authorization: `jwt ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            setIsAllowed(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.status);
+          if (err.response.status === 401) {
+            setIsAllowed(false);
+          }
+        });
+    }, 18000000);
+    return () => clearInterval(interval);
+  }, [token]);
+
+
+  // validate if the token is expired or not
+  if (!isAllowed) {
     return <Navigate to={redirectTo} />;
   }
 
