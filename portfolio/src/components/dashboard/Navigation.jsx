@@ -19,7 +19,7 @@ export const Navigation = () => {
         <img
           alt="Flowbite React Logo"
           className="mr-3 h-6 sm:h-9"
-          src="/src/assets/react.svg"
+          src="https://res.cloudinary.com/dwhztsc8v/image/upload/v1687547210/JC%20DEV/logo/jcdev_logo.webp"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold text-indigo-950 dark:text-white">
           Portfolio
@@ -35,7 +35,7 @@ export const Navigation = () => {
           <Dropdown.Header>
             <span className="block text-sm">Jesus Clemente</span>
             <span className="block truncate text-sm font-medium">
-              name@flowbite.com
+              {profile?.email}
             </span>
           </Dropdown.Header>
           <Dropdown.Item>
