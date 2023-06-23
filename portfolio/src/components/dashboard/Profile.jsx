@@ -9,21 +9,29 @@ import {
   Avatar,
 } from "flowbite-react";
 import useAxiosGet from "../../hooks/useAxiosGet";
-import useAxiosPost from "../../hooks/useAxiosPost";
+import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
 import useProfileStore from "../../hooks/profile";
 
 export const Profile = () => {
-
+  const { handleSubmit, register } = useForm();
   const url = "http://localhost:9000/api/v1/user";
 
-  // get the profile data
-  const { data, loading } = useAxiosGet(url);
-  const { handleSubmit, register } = useForm();
-  const id = data.id;
-  const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
-  
+  // get data from the api and loading state
+  const { data: responseData, loading } = useAxiosGet(url);
+
+  // get the first object in the array - in this case the jcdev user object data
+  const data = responseData?.data?.[0];
+
+  // listen for changes in the profile data
+  useEffect(() => {
+    // set the profile data in the store
+    useProfileStore.setState({ profile: data });
+  }, [data]);
+
   const profile = useProfileStore((state) => state.profile);
+  const id = profile?.id;
+  const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
 
   // update the profile data
   const onSubmit = (data) => {
@@ -32,15 +40,10 @@ export const Profile = () => {
         delete data[key];
       }
     }
-    useAxiosPost(patchUrl, data);
+    useAxiosPatch(patchUrl, data);
     // refresh the page
     window.location.reload();
   };
-
-  // listen to the data changes and update the profile data
-  useEffect(() => {
-    useProfileStore.setState({ profile: data });
-  }, [data]);
 
   if (loading) {
     return (
@@ -52,61 +55,66 @@ export const Profile = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <Card className="lg:w-8/12 m-4">
+      <Card className="lg:w-8/12 my-20">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <Avatar size="xl" img={profile.profileImg} className="mb-4" />
+          <Avatar
+            size="xl"
+            img={profile?.profileImg}
+            className="mb-4"
+            bordered
+          />
           <div id="info" className="lg:grid gap-4 grid-cols-2">
             <div>
               <div className="mb-2 block">
-                <Label value="Your name" />
+                <Label value="Name" />
               </div>
               <TextInput
                 id="firstNa"
-                placeholder={profile.firstName}
+                placeholder={profile?.firstName}
                 type="text"
                 {...register("firstName")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Your lastname" />
+                <Label value="Lastname" />
               </div>
               <TextInput
                 id="lastName"
-                placeholder={profile.lastName}
+                placeholder={profile?.lastName}
                 type="text"
                 {...register("lastName")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Your email" />
+                <Label value="Email" />
               </div>
               <TextInput
                 id="email"
-                placeholder={profile.email}
+                placeholder={profile?.email}
                 type="email"
                 {...register("email")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Your phone" />
+                <Label value="Phone" />
               </div>
               <TextInput
                 id="phone"
-                placeholder={profile.phone}
+                placeholder={profile?.phone}
                 type="text"
                 {...register("phone")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Your profile image" />
+                <Label value="Profile image" />
               </div>
               <TextInput
                 id="profileImg"
-                placeholder={profile.profileImg}
+                placeholder={profile?.profileImg}
                 type="text"
                 {...register("profileImg")}
               />
@@ -114,22 +122,22 @@ export const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label value="Your job title" />
+              <Label value="Job title" />
             </div>
             <TextInput
               id="jobTitle"
-              placeholder={profile.jobTitle}
+              placeholder={profile?.jobTitle}
               type="text"
               {...register("jobTitle")}
             />
           </div>
           <div>
             <div className="mb-2 block">
-              <Label value="About me description" />
+              <Label value="About me" />
             </div>
             <Textarea
               id="aboutMe"
-              placeholder={profile.aboutMe}
+              placeholder={profile?.aboutMe}
               rows={4}
               {...register("aboutMe")}
             />

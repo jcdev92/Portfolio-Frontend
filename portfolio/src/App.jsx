@@ -24,7 +24,7 @@ function App() {
             <Route path="" element={<DashboardProfile />} />
             <Route path="skills" element={<DashboardSkills />} />
             <Route path="projects" element={<DashboardProjects />} />
-            <Route path="socialMedia" element={<DashboardSocialMedia />} />
+            <Route path="social-media" element={<DashboardSocialMedia />} />
             <Route path="blog" element={<DashboardBlog />} />
           </Route>
         </Route>
