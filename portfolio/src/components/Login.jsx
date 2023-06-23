@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import axios from "axios";
+import { FaM } from "react-icons/fa6";
+import { AiFillLock } from "react-icons/ai";
 
 export const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -16,7 +18,7 @@ export const Login = () => {
       })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-        navigate("/dashboard/profile");
+        navigate("/dashboard");
       })
       .catch((err) => console.log(err));
   };
@@ -30,8 +32,8 @@ export const Login = () => {
     items-center
     h-screen
     bg-gradient-to-r
-    from-green-400
-    to-blue-500
+    from-blue-800
+    to-indigo-950
     text-white
     font-mono
     "
@@ -40,26 +42,25 @@ export const Login = () => {
         className="flex max-w-md flex-col gap-4 lg:w-96"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email1" value="Your email" />
-          </div>
+        <div className="flex flex-row items-center gap-2">
+          <FaM />
           <TextInput
             id="email1"
-            placeholder="name@flowbite.com"
+            placeholder="email"
             required
             type="email"
+            className="w-full"
             {...register("email", { required: true })}
           />
         </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="password1" value="Your password" />
-          </div>
+        <div className="flex flex-row items-center gap-2">
+          <AiFillLock />
           <TextInput
             id="password1"
             required
             type="password"
+            placeholder="Password"
+            className="w-full"
             {...register("password", { required: true })}
           />
         </div>
