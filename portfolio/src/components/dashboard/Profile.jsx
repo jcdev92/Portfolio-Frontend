@@ -55,7 +55,7 @@ export const Profile = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <Card className="lg:w-8/12 my-20">
+      <Card className="lg:w-8/12 my-20 backdrop-blur-sm bg-white/30">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <Avatar
             size="xl"

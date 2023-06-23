@@ -14,11 +14,11 @@ export const Navigation = () => {
 
   const profile = useProfileStore((state) => state.profile);
   return (
-    <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
+    <Navbar fluid rounded className="backdrop-blur-sm bg-white/30">
+      <Navbar.Brand href="/">
         <img
           alt="Flowbite React Logo"
-          className="mr-3 h-6 sm:h-9 rounded-full"
+          className="mr-3 h-8 sm:h-9 rounded-full border-4 border-indigo-950 border-double hover:scale-110 transition duration-500 ease-in-out"
           src="https://res.cloudinary.com/dwhztsc8v/image/upload/v1687547210/JC%20DEV/logo/jcdev_logo.webp"
         />
       </Navbar.Brand>
