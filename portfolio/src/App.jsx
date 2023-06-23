@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard/*" element={<Dashboard />}>
-            <Route path="profile" element={<DashboardProfile />} />
+            <Route path="" element={<DashboardProfile />} />
             <Route path="skills" element={<DashboardSkills />} />
             <Route path="projects" element={<DashboardProjects />} />
             <Route path="socialMedia" element={<DashboardSocialMedia />} />

@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
+import useProfileStore from "../../hooks/profile";
 
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ export const Navigation = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  const profile = useProfileStore((state) => state.profile);
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="/">
@@ -26,11 +29,7 @@ export const Navigation = () => {
         <Dropdown
           inline
           label={
-            <Avatar
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded
-            />
+            <Avatar alt="User settings" img={profile?.profileImg} rounded />
           }
         >
           <Dropdown.Header>
@@ -40,7 +39,7 @@ export const Navigation = () => {
             </span>
           </Dropdown.Header>
           <Dropdown.Item>
-            <Link to="/dashboard/profile">Profile</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>

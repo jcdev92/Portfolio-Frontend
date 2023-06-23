@@ -6,19 +6,26 @@ import {
   Label,
   Textarea,
   Button,
+  Avatar,
 } from "flowbite-react";
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useAxiosPost from "../../hooks/useAxiosPost";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import useProfileStore from "../../hooks/profile";
 
 export const Profile = () => {
+
   const url = "http://localhost:9000/api/v1/user";
+
+  // get the profile data
   const { data, loading } = useAxiosGet(url);
   const { handleSubmit, register } = useForm();
   const id = data.id;
   const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
+  
+  const profile = useProfileStore((state) => state.profile);
 
+  // update the profile data
   const onSubmit = (data) => {
     for (let key in data) {
       if (data[key] === "") {
@@ -29,6 +36,11 @@ export const Profile = () => {
     // refresh the page
     window.location.reload();
   };
+
+  // listen to the data changes and update the profile data
+  useEffect(() => {
+    useProfileStore.setState({ profile: data });
+  }, [data]);
 
   if (loading) {
     return (
@@ -42,6 +54,7 @@ export const Profile = () => {
     <div className="flex flex-col justify-center items-center">
       <Card className="lg:w-8/12 m-4">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <Avatar size="xl" img={profile.profileImg} className="mb-4" />
           <div id="info" className="lg:grid gap-4 grid-cols-2">
             <div>
               <div className="mb-2 block">
@@ -49,7 +62,7 @@ export const Profile = () => {
               </div>
               <TextInput
                 id="firstNa"
-                placeholder={data.firstName}
+                placeholder={profile.firstName}
                 type="text"
                 {...register("firstName")}
               />
@@ -60,7 +73,7 @@ export const Profile = () => {
               </div>
               <TextInput
                 id="lastName"
-                placeholder={data.lastName}
+                placeholder={profile.lastName}
                 type="text"
                 {...register("lastName")}
               />
@@ -71,7 +84,7 @@ export const Profile = () => {
               </div>
               <TextInput
                 id="email"
-                placeholder={data.email}
+                placeholder={profile.email}
                 type="email"
                 {...register("email")}
               />
@@ -82,7 +95,7 @@ export const Profile = () => {
               </div>
               <TextInput
                 id="phone"
-                placeholder={data.phone}
+                placeholder={profile.phone}
                 type="text"
                 {...register("phone")}
               />
@@ -93,7 +106,7 @@ export const Profile = () => {
               </div>
               <TextInput
                 id="profileImg"
-                placeholder={data.profileImg}
+                placeholder={profile.profileImg}
                 type="text"
                 {...register("profileImg")}
               />
@@ -105,7 +118,7 @@ export const Profile = () => {
             </div>
             <TextInput
               id="jobTitle"
-              placeholder={data.jobTitle}
+              placeholder={profile.jobTitle}
               type="text"
               {...register("jobTitle")}
             />
@@ -116,7 +129,7 @@ export const Profile = () => {
             </div>
             <Textarea
               id="aboutMe"
-              placeholder={data.aboutMe}
+              placeholder={profile.aboutMe}
               rows={4}
               {...register("aboutMe")}
             />
