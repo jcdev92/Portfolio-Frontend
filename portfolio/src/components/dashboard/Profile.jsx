@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  Spinner,
   Card,
   TextInput,
   Label,
@@ -12,6 +11,7 @@ import useAxiosGet from "../../hooks/useAxiosGet";
 import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
 import useProfileStore from "../../hooks/store/profile";
+import { Loading } from "../Loading";
 
 export const Profile = () => {
   const { handleSubmit, register } = useForm();
@@ -20,13 +20,18 @@ export const Profile = () => {
   // get data from the api and loading state
   const { data, loading } = useAxiosGet(url);
 
-  // listen for changes in the profile data
-  useEffect(() => {
-    // set the profile data in the store
-    useProfileStore.setState({ profile: data?.data?.[0] });
-  }, [data]);
+  // set the profile data to the store
+  const setProfile = useProfileStore((state) => state.setProfile);
 
+  // set the profile data to the store
+  useEffect(() => {
+    setProfile(data?.data?.[0]);
+  }, [data, setProfile]);
+
+  // get the profile data from the store
   const profile = useProfileStore((state) => state.profile);
+
+  // get the id from the profile data
   const id = profile?.id;
   const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
 
@@ -44,16 +49,9 @@ export const Profile = () => {
     window.location.reload();
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Spinner size="xl" color="info" />
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col justify-center items-center font-sans">
+      {loading && <Loading />}
       <Card className="lg:w-8/12 my-20 backdrop-blur-sm bg-white/30">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <Avatar

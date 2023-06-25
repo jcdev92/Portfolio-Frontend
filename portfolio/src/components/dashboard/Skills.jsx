@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useSkillsStore from "../../hooks/store/skills";
 import { Table } from "flowbite-react";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { Loading } from "../Loading";
 
 export const Skills = () => {
   const url = "http://localhost:9000/api/v1/skill";
@@ -32,7 +34,7 @@ export const Skills = () => {
       <div className="flex flex-col items-center gap-2 my-12">
         <h1 className="font-bebas text-4xl drop-shadow-lg ">Skills</h1>
       </div>
-      {loading && <h1>Loading...</h1>}
+      {loading && <Loading />}
       <Table className="w-8/12 mx-auto">
         <Table.Head>
           <Table.HeadCell>Skill</Table.HeadCell>
@@ -58,10 +60,10 @@ export const Skills = () => {
                   <img src={skill.icon} alt={skill.title} height={30} width={30}/>
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="btn btn-primary">Edit</button>
+                  <button className="btn btn-primary"> <AiFillEdit/> </button>
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="btn btn-primary"> - </button>
+                  <button className="btn btn-primary"> <AiFillDelete/> </button>
                 </Table.Cell>
               </Table.Row>
             ))}
