@@ -52,6 +52,7 @@ export const Profile = () => {
   return (
     <div className="flex flex-col justify-center items-center font-sans">
       {loading && <Loading />}
+      <h1 className="font-bebas text-4xl drop-shadow-lg mt-12">dashboard profile</h1>
       <Card className="lg:w-8/12 my-20 backdrop-blur-sm bg-white/30">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <Avatar

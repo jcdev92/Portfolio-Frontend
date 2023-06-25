@@ -16,8 +16,6 @@ export const Skills = () => {
     setSkills(skills);
   }, [skills, setSkills]);
 
-  console.log(skills);
-
   return (
     <div
       className="
@@ -57,13 +55,24 @@ export const Skills = () => {
                   {skill.title}
                 </Table.Cell>
                 <Table.Cell>
-                  <img src={skill.icon} alt={skill.title} height={30} width={30}/>
+                  <img
+                    src={skill.icon}
+                    alt={skill.title}
+                    height={30}
+                    width={30}
+                  />
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="btn btn-primary"> <AiFillEdit/> </button>
+                  <button className="btn btn-primary">
+                    {" "}
+                    <AiFillEdit />{" "}
+                  </button>
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="btn btn-primary"> <AiFillDelete/> </button>
+                  <button className="btn btn-primary">
+                    {" "}
+                    <AiFillDelete />{" "}
+                  </button>
                 </Table.Cell>
               </Table.Row>
             ))}
