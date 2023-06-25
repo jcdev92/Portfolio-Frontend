@@ -10,6 +10,7 @@ import {
   DashboardSocialMedia,
   DashboardBlog,
 } from "./pages/DashboardPage";
+import { NotFound } from "./components/NotFound.jsx";
 import { Blog } from "./pages/BlogPage";
 import "./App.css";
 
@@ -26,10 +27,11 @@ function App() {
             <Route path="projects" element={<DashboardProjects />} />
             <Route path="social-media" element={<DashboardSocialMedia />} />
             <Route path="blog" element={<DashboardBlog />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
         <Route path="/blog" element={<Blog />} />
-        <Route path="*" element={<h1>Not Found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
