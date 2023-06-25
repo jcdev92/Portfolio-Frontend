@@ -11,22 +11,19 @@ import {
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
-import useProfileStore from "../../hooks/profile";
+import useProfileStore from "../../hooks/store/profile";
 
 export const Profile = () => {
   const { handleSubmit, register } = useForm();
   const url = "http://localhost:9000/api/v1/user";
 
   // get data from the api and loading state
-  const { data: responseData, loading } = useAxiosGet(url);
-
-  // get the first object in the array - in this case the jcdev user object data
-  const data = responseData?.data?.[0];
+  const { data, loading } = useAxiosGet(url);
 
   // listen for changes in the profile data
   useEffect(() => {
     // set the profile data in the store
-    useProfileStore.setState({ profile: data });
+    useProfileStore.setState({ profile: data?.data?.[0] });
   }, [data]);
 
   const profile = useProfileStore((state) => state.profile);
@@ -35,11 +32,13 @@ export const Profile = () => {
 
   // update the profile data
   const onSubmit = (data) => {
+    // remove empty fields
     for (let key in data) {
       if (data[key] === "") {
         delete data[key];
       }
     }
+    // update the profile data
     useAxiosPatch(patchUrl, data);
     // refresh the page
     window.location.reload();
@@ -54,7 +53,7 @@ export const Profile = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center font-sans">
       <Card className="lg:w-8/12 my-20 backdrop-blur-sm bg-white/30">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <Avatar
@@ -66,7 +65,7 @@ export const Profile = () => {
           <div id="info" className="lg:grid gap-4 grid-cols-2">
             <div>
               <div className="mb-2 block">
-                <Label value="Name" />
+                <Label value="Name" className="text-white drop-shadow-md" />
               </div>
               <TextInput
                 id="firstNa"
@@ -77,7 +76,10 @@ export const Profile = () => {
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Lastname" />
+                <Label
+                  value="Last Name"
+                  className="text-white drop-shadow-md"
+                />
               </div>
               <TextInput
                 id="lastName"
@@ -88,7 +90,7 @@ export const Profile = () => {
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Email" />
+                <Label value="Email" className="text-white drop-shadow-md" />
               </div>
               <TextInput
                 id="email"
@@ -99,7 +101,7 @@ export const Profile = () => {
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Phone" />
+                <Label value="Phone" className="text-white drop-shadow-md" />
               </div>
               <TextInput
                 id="phone"
@@ -110,7 +112,10 @@ export const Profile = () => {
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Profile image" />
+                <Label
+                  value="Profile image"
+                  className="text-white drop-shadow-md"
+                />
               </div>
               <TextInput
                 id="profileImg"
@@ -122,7 +127,7 @@ export const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label value="Job title" />
+              <Label value="Job title" className="text-white drop-shadow-md" />
             </div>
             <TextInput
               id="jobTitle"
@@ -133,7 +138,7 @@ export const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label value="About me" />
+              <Label value="About me" className="text-white drop-shadow-md" />
             </div>
             <Textarea
               id="aboutMe"

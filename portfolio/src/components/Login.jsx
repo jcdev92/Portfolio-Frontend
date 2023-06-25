@@ -39,11 +39,11 @@ export const Login = () => {
     "
     >
       <div className="flex flex-col items-center gap-2 mb-8">
-      <h1 className="text-4xl font-bold drop-shadow-lg">JC DEV PANEL</h1>
-      <h1 className="text-4xl font-bold drop-shadow-lg">LOGIN</h1>
+      <h1 className="text-4xl font-bebas drop-shadow-lg">JC DEV PANEL</h1>
+      <h1 className="text-4xl font-bebas drop-shadow-lg">LOGIN</h1>
       </div>
       <form
-        className="flex max-w-md flex-col gap-4 lg:w-96"
+        className="flex max-w-md flex-col gap-4 lg:w-96 font-sans"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-row items-center gap-2">

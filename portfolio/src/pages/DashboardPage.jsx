@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Navigation } from "../components/dashboard/Navigation";
 import { useNavigate } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
+import { Skills } from "../components/dashboard/Skills";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export const DashboardProfile = () => {
 };
 
 export const DashboardSkills = () => {
-  return <div>Skills</div>;
+  return <Skills />;
 };
 
 export const DashboardProjects = () => {
