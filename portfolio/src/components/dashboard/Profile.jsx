@@ -61,7 +61,7 @@ export const Profile = () => {
     overflow-y-auto
     "
     >
-      {loading && <Loading />}
+      
       <Card
         className="
       backdrop-blur-sm
@@ -71,6 +71,7 @@ export const Profile = () => {
       m-8
       "
       >
+        {loading && <Loading />}
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div id="info" className="lg:grid gap-4 grid-cols-2">
             <Avatar size="xl" img={profile?.profileImg} bordered />

@@ -1,7 +1,21 @@
-import React from 'react'
+import React from "react";
 
 export const Blog = () => {
   return (
-    <div>Blog</div>
-  )
-}
+    <div
+      className="
+  flex
+  flex-col
+  w-full
+  bg-transparent
+  h-screen
+  items-center
+  justify-center
+  text-white
+  text-4xl
+"
+    >
+      <h1>Blog</h1>
+    </div>
+  );
+};

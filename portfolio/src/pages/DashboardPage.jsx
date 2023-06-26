@@ -6,6 +6,8 @@ import { Profile } from "../components/dashboard/Profile";
 import { Skills } from "../components/dashboard/Skills";
 import { SidebarComponent } from "../components/dashboard/SidebarComponent";
 import { Projects } from "../components/dashboard/Projects";
+import { SocialMedia } from "../components/dashboard/SocialMedia";
+import { Blog } from "../components/dashboard/Blog";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -50,9 +52,9 @@ export const DashboardProjects = () => {
 };
 
 export const DashboardSocialMedia = () => {
-  return <div>Social Media</div>;
+  return <SocialMedia />;
 };
 
 export const DashboardBlog = () => {
-  return <div>Blog</div>;
+  return <Blog />;
 };
