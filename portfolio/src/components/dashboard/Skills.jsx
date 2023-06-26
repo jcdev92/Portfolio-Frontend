@@ -22,18 +22,14 @@ export const Skills = () => {
     flex
     flex-col
     h-screen
-    bg-gradient-to-r
-    from-blue-800
-    to-indigo-950
+    w-full
+    bg-transparent
     text-white
     font-sans
     "
     >
-      <div className="flex flex-col items-center gap-2 my-12">
-        <h1 className="font-bebas text-4xl drop-shadow-lg ">Skills</h1>
-      </div>
       {loading && <Loading />}
-      <Table className="w-8/12 mx-auto">
+      <Table className="backdrop-blur-sm bg-white/30 rounded-xl p-8 m-8 w-5/10 h-8/10 overflow-y-auto">
         <Table.Head>
           <Table.HeadCell>Skill</Table.HeadCell>
           <Table.HeadCell>Icon</Table.HeadCell>

@@ -4,6 +4,8 @@ import { Navigation } from "../components/dashboard/Navigation";
 import { useNavigate } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
 import { Skills } from "../components/dashboard/Skills";
+import { SidebarComponent } from "../components/dashboard/SidebarComponent";
+import { Projects } from "../components/dashboard/Projects";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -15,15 +17,21 @@ export const Dashboard = () => {
   return (
     <div
       className="
-      flex flex-col
-      bg-gradient-to-r
-      from-sky-800
-      to-indigo-950
-      text-white
-      font-mono
+    flex
+    flex-col
+    md:flex-row
+    h-screen
+    w-full
+    items-center
+    justify-center
+    bg-gradient-to-r
+    from-blue-900
+    to-blue-800
+    dark:from-gray-800
+    dark:to-gray-900
     "
     >
-      <Navigation />
+      <SidebarComponent />
       <Outlet />
     </div>
   );
@@ -38,7 +46,7 @@ export const DashboardSkills = () => {
 };
 
 export const DashboardProjects = () => {
-  return <div>Projects</div>;
+  return <Projects />;
 };
 
 export const DashboardSocialMedia = () => {

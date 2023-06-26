@@ -50,19 +50,31 @@ export const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center font-sans">
+    <div
+      className="
+    flex
+    flex-col
+    w-full
+    bg-transparent
+    font-
+    h-screen
+    overflow-y-auto
+    "
+    >
       {loading && <Loading />}
-      <h1 className="font-bebas text-4xl drop-shadow-lg mt-12">dashboard profile</h1>
-      <Card className="lg:w-8/12 my-20 backdrop-blur-sm bg-white/30">
+      <Card
+        className="
+      backdrop-blur-sm
+      bg-white/30
+      rounded-xl
+      p-8
+      m-8
+      "
+      >
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <Avatar
-            size="xl"
-            img={profile?.profileImg}
-            className="mb-4"
-            bordered
-          />
           <div id="info" className="lg:grid gap-4 grid-cols-2">
-            <div>
+            <Avatar size="xl" img={profile?.profileImg} bordered />
+            <div className="flex flex-col gap-4">
               <div className="mb-2 block">
                 <Label value="Name" className="text-white drop-shadow-md" />
               </div>
@@ -72,8 +84,6 @@ export const Profile = () => {
                 type="text"
                 {...register("firstName")}
               />
-            </div>
-            <div>
               <div className="mb-2 block">
                 <Label
                   value="Last Name"
@@ -87,6 +97,7 @@ export const Profile = () => {
                 {...register("lastName")}
               />
             </div>
+
             <div>
               <div className="mb-2 block">
                 <Label value="Email" className="text-white drop-shadow-md" />
