@@ -61,7 +61,6 @@ export const Profile = () => {
     overflow-y-auto
     "
     >
-      
       <Card
         className="
       backdrop-blur-sm
@@ -69,6 +68,8 @@ export const Profile = () => {
       rounded-xl
       p-8
       m-8
+      w-8/12
+      mx-auto
       "
       >
         {loading && <Loading />}

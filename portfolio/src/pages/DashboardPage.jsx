@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Navigation } from "../components/dashboard/Navigation";
 import { useNavigate } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
 import { Skills } from "../components/dashboard/Skills";
@@ -23,9 +22,8 @@ export const Dashboard = () => {
     flex-col
     md:flex-row
     h-screen
-    w-full
+    w-screen
     items-center
-    justify-center
     bg-gradient-to-r
     from-blue-900
     to-blue-800
