@@ -76,7 +76,10 @@ export const Skills = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>
-                    <button className="btn btn-primary" onClick={() => handleEdit(skill)}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => handleEdit(skill)}
+                    >
                       <AiFillEdit />
                     </button>
                   </Table.Cell>
@@ -118,7 +121,7 @@ export const Skills = () => {
               id="skill-title"
               placeholder="title"
               required
-              value={editMode == "edit" ? rowCellData.title : ""}
+              value={editMode == "edit" ? rowCellData?.title : ""}
             />
           </div>
           <div>

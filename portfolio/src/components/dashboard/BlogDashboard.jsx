@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Blog = () => {
+export const BlogDashboard = () => {
   return (
     <div
       className="
