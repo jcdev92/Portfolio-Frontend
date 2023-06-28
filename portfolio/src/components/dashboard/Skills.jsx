@@ -1,20 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useSkillsStore from "../../hooks/store/skills";
-import { Table, Label, TextInput } from "flowbite-react";
+import { Table, Label, TextInput, Card, Button } from "flowbite-react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Loading } from "../Loading";
+import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
 
 export const Skills = () => {
   const url = "http://localhost:9000/api/v1/skill";
   const { data, loading } = useAxiosGet(url);
   const skills = data;
-
   const setSkills = useSkillsStore((state) => state.setSkills);
 
   useEffect(() => {
     setSkills(skills);
   }, [skills, setSkills]);
+
+  const [editMode, setEditMode] = useState("");
+
+  const handleEdit = () => {
+    setEditMode("edit");
+  };
+
+  // back to add mode
+  const handleAdd = () => {
+    setEditMode("add");
+  };
 
   return (
     <div
@@ -31,7 +42,7 @@ export const Skills = () => {
     "
     >
       {loading && <Loading />}
-      <div className="flex flex-row gap-4 h-5/6 w-10/12 backdrop-blur-sm bg-white/30">
+      <div className="flex flex-row gap-4 h-5/6 w-10/12 backdrop-blur-sm bg-white/30 rounded-md border">
         <Table className="rounded-xl p-8 m-8 w-4/12 h-8/10 overflow-y-auto">
           <Table.Head>
             <Table.HeadCell>Skill</Table.HeadCell>
@@ -62,45 +73,73 @@ export const Skills = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>
-                    <button className="btn btn-primary">
-                      {" "}
-                      <AiFillEdit />{" "}
+                    <button className="btn btn-primary" onClick={handleEdit}>
+                      <AiFillEdit />
                     </button>
                   </Table.Cell>
                   <Table.Cell>
                     <button className="btn btn-primary">
-                      {" "}
-                      <AiFillDelete />{" "}
+                      <AiFillDelete />
                     </button>
                   </Table.Cell>
                 </Table.Row>
               ))}
           </Table.Body>
         </Table>
-        <div className="flex max-w-md flex-col gap-4 w-6/12 h-3/6">
-          <div>
-            <div className="mb-2 block">
-              <Label color="gray" htmlFor="input-gray" value="Gray" />
+        <Card className="flex flex-col gap-4 w-6/12 m-8">
+          <h1 className="text-2xl font-bebas text-indigo-950">
+            {editMode == "edit" && "Edit Skill"}
+            {editMode == "add" && "Add Skill"}
+          </h1>
+          {editMode == "edit" && (
+            <div>
+              <div className="mb-2 block">
+                <Label color="info" htmlFor="input-info" value="ID" />
+              </div>
+              <TextInput
+                color="info"
+                id="skill-id"
+                placeholder="s3$jd55ef6ss56wi"
+                required
+              />
             </div>
-            <TextInput
-              color="gray"
-              id="input-gray"
-              placeholder="Input Gray"
-              required
-            />
-          </div>
+          )}
           <div>
             <div className="mb-2 block">
-              <Label color="info" htmlFor="input-info" value="Info" />
+              <Label color="info" htmlFor="input-info" value="Skill" />
             </div>
             <TextInput
               color="info"
-              id="input-info"
-              placeholder="Input Info"
+              id="skill-title"
+              placeholder="title"
               required
             />
           </div>
-        </div>
+          <div>
+            <div className="mb-2 block">
+              <Label color="info" htmlFor="input-info" value="Icon" />
+            </div>
+            <TextInput
+              color="info"
+              id="skill-icon"
+              placeholder="https://www.flaticon.com/svg/...."
+              required
+            />
+          </div>
+          {editMode == "edit" && (
+            <div className="flex flex-row w-full justify-around">
+              <Button gradientDuoTone="purpleToBlue">Update</Button>
+              <Button gradientDuoTone="pinkToOrange" onClick={handleAdd}>
+                Cancel
+              </Button>
+            </div>
+          )}
+          {editMode == "add" && (
+            <div className="flex flex-row w-full justify-around">
+              <Button gradientDuoTone="purpleToBlue">Add</Button>
+            </div>
+          )}
+        </Card>
       </div>
     </div>
   );
