@@ -4,7 +4,6 @@ import useSkillsStore from "../../hooks/store/skills";
 import { Table, Label, TextInput, Card, Button } from "flowbite-react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Loading } from "../Loading";
-import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
 
 export const Skills = () => {
   const url = "http://localhost:9000/api/v1/skill";
@@ -16,10 +15,14 @@ export const Skills = () => {
     setSkills(skills);
   }, [skills, setSkills]);
 
-  const [editMode, setEditMode] = useState("");
+  const [editMode, setEditMode] = useState("add");
+  const [rowCellData, setRowCellData] = useState({});
+  console.log(rowCellData);
 
-  const handleEdit = () => {
+  // edit mode
+  const handleEdit = (skill) => {
     setEditMode("edit");
+    setRowCellData(skill);
   };
 
   // back to add mode
@@ -73,7 +76,7 @@ export const Skills = () => {
                     />
                   </Table.Cell>
                   <Table.Cell>
-                    <button className="btn btn-primary" onClick={handleEdit}>
+                    <button className="btn btn-primary" onClick={() => handleEdit(skill)}>
                       <AiFillEdit />
                     </button>
                   </Table.Cell>
@@ -101,6 +104,8 @@ export const Skills = () => {
                 id="skill-id"
                 placeholder="s3$jd55ef6ss56wi"
                 required
+                value={editMode == "edit" && rowCellData.id}
+                disabled
               />
             </div>
           )}
@@ -113,6 +118,7 @@ export const Skills = () => {
               id="skill-title"
               placeholder="title"
               required
+              value={editMode == "edit" ? rowCellData.title : ""}
             />
           </div>
           <div>
@@ -124,6 +130,7 @@ export const Skills = () => {
               id="skill-icon"
               placeholder="https://www.flaticon.com/svg/...."
               required
+              value={editMode == "edit" ? rowCellData.icon : ""}
             />
           </div>
           {editMode == "edit" && (
@@ -135,9 +142,7 @@ export const Skills = () => {
             </div>
           )}
           {editMode == "add" && (
-            <div className="flex flex-row w-full justify-around">
-              <Button gradientDuoTone="purpleToBlue">Add</Button>
-            </div>
+            <Button gradientDuoTone="purpleToBlue">Add</Button>
           )}
         </Card>
       </div>
