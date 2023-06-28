@@ -89,7 +89,7 @@ export const Skills = () => {
               ))}
           </Table.Body>
         </Table>
-        <Card className="flex flex-col gap-4 w-6/12 m-8">
+        <Card className="flex flex-col gap-4 w-6/12 m-8 h-4/6">
           <h1 className="text-2xl font-bebas text-indigo-950">
             {editMode == "edit" && "Edit Skill"}
             {editMode == "add" && "Add Skill"}
