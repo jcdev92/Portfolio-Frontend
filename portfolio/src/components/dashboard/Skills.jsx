@@ -7,7 +7,7 @@ import { Loading } from "../Loading";
 import { useForm } from "react-hook-form";
 
 export const Skills = () => {
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
   const url = "http://localhost:9000/api/v1/skill";
   const { data, loading } = useAxiosGet(url);
   const setSkills = useSkillsStore((state) => state.setSkills);
@@ -21,13 +21,28 @@ export const Skills = () => {
 
   // edit mode
   const handleEdit = (skill) => {
-    setEditMode("edit");
     setRowCellData(skill);
+    reset({
+      id: skill.id,
+    });
+    setEditMode("edit");
   };
 
   // back to add mode
   const handleAdd = () => {
     setEditMode("add");
+    reset({
+      id: "",
+    });
+  };
+
+  const onSubmit = (data) => {
+    for (let key in data) {
+      if (data[key] === "") {
+        delete data[key];
+      }
+    }
+    console.log(data)
   };
 
   return (
@@ -97,20 +112,19 @@ export const Skills = () => {
             {editMode == "edit" && "Edit Skill"}
             {editMode == "add" && "Add Skill"}
           </h1>
-          <form onSubmit={handleSubmit((data) => console.log(data))}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {editMode == "edit" && (
               <div>
                 <div className="mb-2 block">
-                  <Label color="info" htmlFor="input-info" value="ID" />
+                  <Label color="info" htmlFor="input-info" value="Id" />
                 </div>
                 <TextInput
                   color="info"
-                  id="skill-id"
-                  placeholder="s3$jd55ef6ss56wi"
+                  id="id"
                   required
-                  value={editMode == "edit" && rowCellData.id}
+                  value={editMode == "edit" && rowCellData?.id}
                   disabled
-                  {...register("value")}
+                  {...register("id")}
                 />
               </div>
             )}
