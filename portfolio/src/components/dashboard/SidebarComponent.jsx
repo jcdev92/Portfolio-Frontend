@@ -30,15 +30,17 @@ export const SidebarComponent = () => {
         aria-label="Sidebar"
       >
         <div className="h-full ml-3 px-4 py-4 overflow-y-auto backdrop-blur-sm bg-white/30  dark:bg-gray-800 border-white border rounded-md">
-          <div class="flex flex-col justify-center items-center my-4">
+          <div className="flex flex-col justify-center items-center my-4">
             <img
-              class="w-10 h-10 rounded-full border-2 border-double"
+              className="w-10 h-10 rounded-full border-2 border-double"
               src={profile?.profileImg}
               alt=""
             />
-            <div class="font-bebas my-2 text-orange-300 text-center dark:text-white">
+            <div className="font-bebas my-2 text-orange-300 text-center dark:text-white">
               <div>{profile?.firstName}</div>
-              <div class="text-sm dark:text-gray-400">{profile?.jobTitle}</div>
+              <div className="text-sm dark:text-gray-400">
+                {profile?.jobTitle}
+              </div>
             </div>
           </div>
           <ul className="space-y-2 font-medium">

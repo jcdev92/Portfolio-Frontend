@@ -4,20 +4,20 @@ import useSkillsStore from "../../hooks/store/skills";
 import { Table, Label, TextInput, Card, Button } from "flowbite-react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Loading } from "../Loading";
+import { useForm } from "react-hook-form";
 
 export const Skills = () => {
+  const { handleSubmit, register } = useForm();
   const url = "http://localhost:9000/api/v1/skill";
   const { data, loading } = useAxiosGet(url);
-  const skills = data;
   const setSkills = useSkillsStore((state) => state.setSkills);
 
   useEffect(() => {
-    setSkills(skills);
-  }, [skills, setSkills]);
+    setSkills(data);
+  }, [data]);
 
   const [editMode, setEditMode] = useState("add");
   const [rowCellData, setRowCellData] = useState({});
-  console.log(rowCellData);
 
   // edit mode
   const handleEdit = (skill) => {
@@ -58,8 +58,8 @@ export const Skills = () => {
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
-            {skills &&
-              skills.map((skill) => (
+            {data &&
+              data.map((skill) => (
                 <Table.Row
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                   key={skill.id}
@@ -97,56 +97,67 @@ export const Skills = () => {
             {editMode == "edit" && "Edit Skill"}
             {editMode == "add" && "Add Skill"}
           </h1>
-          {editMode == "edit" && (
+          <form onSubmit={handleSubmit((data) => console.log(data))}>
+            {editMode == "edit" && (
+              <div>
+                <div className="mb-2 block">
+                  <Label color="info" htmlFor="input-info" value="ID" />
+                </div>
+                <TextInput
+                  color="info"
+                  id="skill-id"
+                  placeholder="s3$jd55ef6ss56wi"
+                  required
+                  value={editMode == "edit" && rowCellData.id}
+                  disabled
+                  {...register("value")}
+                />
+              </div>
+            )}
             <div>
               <div className="mb-2 block">
-                <Label color="info" htmlFor="input-info" value="ID" />
+                <Label color="info" htmlFor="input-info" value="Skill" />
               </div>
               <TextInput
                 color="info"
-                id="skill-id"
-                placeholder="s3$jd55ef6ss56wi"
+                id="title"
+                placeholder="title"
                 required
-                value={editMode == "edit" && rowCellData.id}
-                disabled
+                {...register("title")}
               />
             </div>
-          )}
-          <div>
-            <div className="mb-2 block">
-              <Label color="info" htmlFor="input-info" value="Skill" />
+            <div>
+              <div className="mb-2 block">
+                <Label color="info" htmlFor="input-info" value="Icon" />
+              </div>
+              <TextInput
+                color="info"
+                id="icon"
+                placeholder="https://www.flaticon.com/svg/...."
+                required
+                {...register("icon")}
+              />
             </div>
-            <TextInput
-              color="info"
-              id="skill-title"
-              placeholder="title"
-              required
-              value={editMode == "edit" ? rowCellData?.title : ""}
-            />
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label color="info" htmlFor="input-info" value="Icon" />
-            </div>
-            <TextInput
-              color="info"
-              id="skill-icon"
-              placeholder="https://www.flaticon.com/svg/...."
-              required
-              value={editMode == "edit" ? rowCellData.icon : ""}
-            />
-          </div>
-          {editMode == "edit" && (
-            <div className="flex flex-row w-full justify-around">
-              <Button gradientDuoTone="purpleToBlue">Update</Button>
-              <Button gradientDuoTone="pinkToOrange" onClick={handleAdd}>
-                Cancel
+            {editMode == "edit" && (
+              <div className="flex flex-row w-full justify-around my-6">
+                <Button gradientDuoTone="purpleToBlue" type="submit">
+                  Update
+                </Button>
+                <Button gradientDuoTone="pinkToOrange" onClick={handleAdd}>
+                  Cancel
+                </Button>
+              </div>
+            )}
+            {editMode == "add" && (
+              <Button
+                className="my-6"
+                gradientDuoTone="purpleToBlue"
+                type="submit"
+              >
+                Add
               </Button>
-            </div>
-          )}
-          {editMode == "add" && (
-            <Button gradientDuoTone="purpleToBlue">Add</Button>
-          )}
+            )}
+          </form>
         </Card>
       </div>
     </div>

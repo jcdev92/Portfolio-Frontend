@@ -26,7 +26,7 @@ export const Profile = () => {
   // set the profile data to the store
   useEffect(() => {
     setProfile(data?.data?.[0]);
-  }, [data, setProfile]);
+  }, [data]);
 
   // get the profile data from the store
   const profile = useProfileStore((state) => state.profile);
@@ -81,7 +81,7 @@ export const Profile = () => {
                 <Label value="Name" className="text-white drop-shadow-md" />
               </div>
               <TextInput
-                id="firstNa"
+                id="firstName"
                 placeholder={profile?.firstName}
                 type="text"
                 {...register("firstName")}
