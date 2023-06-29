@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
-import { Skills } from "../components/dashboard/Skills";
+import { Skills } from "../components/dashboard/Skills/Skills";
 import { SidebarComponent } from "../components/dashboard/SidebarComponent";
 import { Projects } from "../components/dashboard/Projects";
 import { SocialMedia } from "../components/dashboard/SocialMedia";
