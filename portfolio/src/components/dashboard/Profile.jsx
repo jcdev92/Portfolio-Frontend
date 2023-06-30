@@ -12,6 +12,7 @@ import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
 import useProfileStore from "../../hooks/store/profile";
 import { Loading } from "../Loading";
+import { clearEmptyFields } from "../../utils/utilFunctions";
 
 export const Profile = () => {
   const { handleSubmit, register } = useForm();
@@ -38,11 +39,7 @@ export const Profile = () => {
   // update the profile data
   const onSubmit = (data) => {
     // remove empty fields
-    for (let key in data) {
-      if (data[key] === "") {
-        delete data[key];
-      }
-    }
+    data = clearEmptyFields(data);
     // update the profile data
     useAxiosPatch(patchUrl, data);
     // refresh the page
@@ -50,28 +47,8 @@ export const Profile = () => {
   };
 
   return (
-    <div
-      className="
-    flex
-    flex-col
-    w-full
-    bg-transparent
-    font-
-    h-screen
-    overflow-y-auto
-    "
-    >
-      <Card
-        className="
-      backdrop-blur-sm
-      bg-white/30
-      rounded-xl
-      p-8
-      m-8
-      md:w-8/12
-      md:ml-32
-      "
-      >
+    <div className="flex flex-col w-full bg-transparent font-sans h-screen overflow-y-auto">
+      <Card className="backdrop-blur-sm bg-white/30 rounded-xl p-8 m-8 md:w-8/12 md:ml-32">
         {loading && <Loading />}
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div id="info" className="lg:grid gap-4 grid-cols-2">

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Label, TextInput, Card, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import useSkillsStore from "../../../hooks/store/skills";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
 
 export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const { handleSubmit, register, reset } = useForm();
@@ -15,7 +15,7 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
         icon: rowCellData?.icon,
       });
     }
-  }, [editMode]);
+  }, [editMode, rowCellData?.id]);
 
   // back to add mode
   const handleAdd = () => {
@@ -27,12 +27,9 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
     });
   };
 
+  // create or update skill
   const onSubmit = (data) => {
-    for (let key in data) {
-      if (data[key] === "") {
-        delete data[key];
-      }
-    }
+    data = clearEmptyFields(data);
     console.log(data);
   };
 
