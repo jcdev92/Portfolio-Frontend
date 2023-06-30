@@ -20,7 +20,7 @@ export const Skills = () => {
   return (
     <div className="flex flex-row h-screen w-full items-center justify-around bg-transparent text-white font-sans">
       {loading && <Loading />}
-      <div className="flex flex-row gap-4 h-5/6 w-10/12 backdrop-blur-sm bg-white/30 rounded-md border">
+      <div className="flex flex-row justify-center gap-4 h-5/6 w-10/12 backdrop-blur-sm bg-white/30 rounded-md border">
         <TableSkills
           setRowCellData={setRowCellData}
           setEditMode={setEditMode}

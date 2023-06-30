@@ -52,7 +52,6 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
     return () => clearInterval(interval);
   }, [token]);
 
-
   // validate if the token is expired or not
   if (!isAllowed) {
     return <Navigate to={redirectTo} />;

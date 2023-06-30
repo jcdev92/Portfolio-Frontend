@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
 import { Skills } from "../components/dashboard/Skills/Skills";
 import { SidebarComponent } from "../components/dashboard/SidebarComponent";
-import { Projects } from "../components/dashboard/Projects";
-import { SocialMedia } from "../components/dashboard/SocialMedia";
-import { BlogDashboard } from "../components/dashboard/BlogDashboard";
+import { Projects } from "../components/dashboard/Projects/Projects";
+import { SocialMedia } from "../components/dashboard/SocialMedia/SocialMedia";
+import { BlogDashboard } from "../components/dashboard/BlogDashboard/BlogDashboard";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
