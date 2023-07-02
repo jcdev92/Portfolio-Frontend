@@ -11,7 +11,7 @@ import {
   DashboardBlog,
 } from "./pages/DashboardPage";
 import { NotFound } from "./components/NotFound.jsx";
-import { Blog } from "./pages/BlogPage";
+import { BlogPage } from "./pages/BlogPage";
 import "./App.css";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

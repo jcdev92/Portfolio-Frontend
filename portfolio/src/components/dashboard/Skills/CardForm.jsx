@@ -2,9 +2,14 @@ import React, { useEffect } from "react";
 import { Label, TextInput, Card, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
+import useAxiosPost from "../../../hooks/useAxiosPost";
+import useAxiosPatch from "../../../hooks/useAxiosPatch";
 
 export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const { handleSubmit, register, reset } = useForm();
+  const createUrl = "http://localhost:9000/api/v1/skill";
+  const id = rowCellData?.id;
+  const updateUrl = `http://localhost:9000/api/v1/skill/${id}`;
 
   // edit mode
   useEffect(() => {
@@ -30,7 +35,9 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   // create or update skill
   const onSubmit = (data) => {
     data = clearEmptyFields(data);
-    console.log(data);
+    const url = editMode == "edit" ? updateUrl : createUrl;
+    editMode == "edit" ? useAxiosPatch(url, data) : useAxiosPost(url, data);
+    window.location.reload();
   };
 
   return (
