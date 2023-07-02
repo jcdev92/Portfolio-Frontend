@@ -3,6 +3,7 @@ import { Table } from "flowbite-react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import useSkillsStore from "../../../hooks/store/skills";
 import { useForm } from "react-hook-form";
+import useAxiosDelete from "../../../hooks/useAxiosDelete";
 
 const TableSkills = ({ setEditMode, setRowCellData }) => {
   const data = useSkillsStore((state) => state.skills);
@@ -15,6 +16,13 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
       id: skill.id,
     });
     setEditMode("edit");
+  };
+
+  const handleDelete = (id) => {
+    const url = `http://localhost:9000/api/v1/skill/${id}`;
+    useAxiosDelete(url);
+    // refresh page
+    window.location.reload();
   };
 
   return (
@@ -56,7 +64,10 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
                 </button>
               </Table.Cell>
               <Table.Cell>
-                <button className="btn btn-primary">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleDelete(skill.id)}
+                >
                   <AiFillDelete />
                 </button>
               </Table.Cell>
