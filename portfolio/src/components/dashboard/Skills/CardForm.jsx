@@ -41,7 +41,7 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   };
 
   return (
-    <Card className="flex flex-col gap-4 w-6/12 m-8 h-4/6">
+    <Card className="flex flex-col gap-4 lg:w-6/12 m-8 lg:h-4/6">
       <h1 className="text-2xl font-bebas text-indigo-950">
         {editMode == "edit" && "Edit Skill"}
         {editMode == "add" && "Add Skill"}
@@ -66,25 +66,43 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
           <div className="mb-2 block">
             <Label color="info" htmlFor="input-info" value="Skill" />
           </div>
-          <TextInput
-            color="info"
-            id="title"
-            placeholder="title"
-            required
-            {...register("title")}
-          />
+          {editMode == "edit" ? (
+            <TextInput
+              color="info"
+              id="title"
+              placeholder="title"
+              {...register("title")}
+            />
+          ) : (
+            <TextInput
+              color="info"
+              id="title"
+              placeholder="title"
+              required
+              {...register("title")}
+            />
+          )}
         </div>
         <div>
           <div className="mb-2 block">
             <Label color="info" htmlFor="input-info" value="Icon" />
           </div>
-          <TextInput
-            color="info"
-            id="icon"
-            placeholder="https://www.flaticon.com/svg/...."
-            required
-            {...register("icon")}
-          />
+          {editMode == "edit" ? (
+            <TextInput
+              color="info"
+              id="icon"
+              placeholder="https://www.flaticon.com/svg/...."
+              {...register("icon")}
+            />
+          ) : (
+            <TextInput
+              color="info"
+              id="icon"
+              placeholder="https://www.flaticon.com/svg/...."
+              required
+              {...register("icon")}
+            />
+          )}
         </div>
         {editMode == "edit" && (
           <div className="flex flex-row w-full justify-around my-6">

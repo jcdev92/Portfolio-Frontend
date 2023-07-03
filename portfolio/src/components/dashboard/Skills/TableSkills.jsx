@@ -26,55 +26,57 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
   };
 
   return (
-    <Table className="rounded-xl p-8 m-8 w-4/12 h-8/10 overflow-y-auto">
-      <Table.Head>
-        <Table.HeadCell>Skill</Table.HeadCell>
-        <Table.HeadCell>Icon</Table.HeadCell>
-        <Table.HeadCell>
-          <span className="sr-only">Edit</span>
-        </Table.HeadCell>
-        <Table.HeadCell>
-          <span className="sr-only">Delete</span>
-        </Table.HeadCell>
-      </Table.Head>
-      <Table.Body className="divide-y">
-        {data &&
-          data.map((skill) => (
-            <Table.Row
-              className="bg-white dark:border-gray-700 dark:bg-gray-800"
-              key={skill.id}
-            >
-              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                {skill.title}
-              </Table.Cell>
-              <Table.Cell>
-                <img
-                  src={skill.icon}
-                  alt={skill.title}
-                  height={30}
-                  width={30}
-                />
-              </Table.Cell>
-              <Table.Cell>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => handleEdit(skill)}
-                >
-                  <AiFillEdit />
-                </button>
-              </Table.Cell>
-              <Table.Cell>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => handleDelete(skill.id)}
-                >
-                  <AiFillDelete />
-                </button>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-      </Table.Body>
-    </Table>
+    <div className="flex flex-col p-8  w-6/12  overflow-y-auto">
+      <Table className="rounded-xl">
+        <Table.Head>
+          <Table.HeadCell>Skill</Table.HeadCell>
+          <Table.HeadCell>Icon</Table.HeadCell>
+          <Table.HeadCell>
+            <span className="sr-only">Edit</span>
+          </Table.HeadCell>
+          <Table.HeadCell>
+            <span className="sr-only">Delete</span>
+          </Table.HeadCell>
+        </Table.Head>
+        <Table.Body className="divide-y">
+          {data &&
+            data.map((skill) => (
+              <Table.Row
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                key={skill.id}
+              >
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                  {skill.title}
+                </Table.Cell>
+                <Table.Cell>
+                  <img
+                    src={skill.icon}
+                    alt={skill.title}
+                    height={30}
+                    width={30}
+                  />
+                </Table.Cell>
+                <Table.Cell>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleEdit(skill)}
+                  >
+                    <AiFillEdit />
+                  </button>
+                </Table.Cell>
+                <Table.Cell>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleDelete(skill.id)}
+                  >
+                    <AiFillDelete />
+                  </button>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+        </Table.Body>
+      </Table>
+    </div>
   );
 };
 
