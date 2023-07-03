@@ -35,9 +35,9 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   // create or update skill
   const onSubmit = (data) => {
     data = clearEmptyFields(data);
-    const url = editMode == "edit" ? updateUrl : createUrl;
-    editMode == "edit" ? useAxiosPatch(url, data) : useAxiosPost(url, data);
-    window.location.reload();
+    editMode == "edit"
+      ? useAxiosPatch(updateUrl, data)
+      : useAxiosPost(createUrl, data);
   };
 
   return (

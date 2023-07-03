@@ -7,10 +7,17 @@ const useAxiosPost = (url, data) => {
         Authorization: `jwt ${token}`,
       },
     })
-    .then((res) => console.log(res))
-    .catch(
-      (err) => console.log(err)
-    );
+    .then((res) => {
+      console.log(res);
+      window.location.reload();
+      alert("Skill added successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      err.response.data.message === "Skill already exists"
+        ? alert("Skill already exists, try with diferent title and icon url")
+        : alert("Something went wrong try again");
+    });
 };
 
 export default useAxiosPost;
