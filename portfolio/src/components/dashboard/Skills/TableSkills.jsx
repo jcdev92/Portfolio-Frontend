@@ -66,7 +66,7 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
                 <Table.Cell>
                   <PopUpModal
                     description="Are you sure you want to delete this skill?"
-                    skillId={skill.id}
+                    id={skill.id}
                     handleDelete={handleDelete}
                   />
                 </Table.Cell>
