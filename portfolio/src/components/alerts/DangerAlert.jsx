@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert } from "flowbite-react";
-import { HiInformationCircle } from "react-icons/hi";
+import { HiInformationCircle } from 'react-icons/hi';
 
 const DangerAlert = ({ message, setErr }) => {
   return (
@@ -11,16 +11,14 @@ const DangerAlert = ({ message, setErr }) => {
         setErr(null);
       }}
       withBorderAccent
+      icon={HiInformationCircle}
     >
-      <div className="flex flex-row gap-4">
-        <span className="text-2xl text-failure font-bold flex items-center justify-center w-10 h-10 rounded-full bg-failure/10">
-          <HiInformationCircle className="inline-block" />
-        </span>
+      <span>
         <p>
           <span className="font-medium">{message}</span>
           Try with other credentias and submit it again.
         </p>
-      </div>
+      </span>
     </Alert>
   );
 };
