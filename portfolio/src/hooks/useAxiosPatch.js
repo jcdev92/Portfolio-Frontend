@@ -7,8 +7,16 @@ const useAxiosPatch = (url, data) => {
         Authorization: `jwt ${token}`,
       },
     })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then((res) => {
+      console.log(res);
+      window.location.reload();
+      alert("Data Updated successfully");
+    })
+    .catch((err) => {
+      alert(
+        `data cannot be updated, error message: ${err.response.data.message}`
+      );
+    });
 };
 
 export default useAxiosPatch;

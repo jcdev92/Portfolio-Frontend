@@ -10,7 +10,7 @@ const useAxiosPost = (url, data) => {
     .then((res) => {
       console.log(res);
       window.location.reload();
-      alert("Skill added successfully");
+      alert("Data added successfully");
     })
     .catch((err) => {
       console.log(err);

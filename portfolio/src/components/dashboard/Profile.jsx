@@ -43,8 +43,6 @@ export const Profile = () => {
     // console.log(data);
     // update the profile data
     useAxiosPatch(patchUrl, data);
-    // refresh the page
-    window.location.reload();
   };
 
   return (
