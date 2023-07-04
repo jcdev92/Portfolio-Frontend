@@ -20,7 +20,15 @@ export const Login = () => {
         localStorage.setItem("token", res.data.token);
         navigate("/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // detail me the error
+        console.log(err.response.data);
+
+        // if (err.response.status === 401) {
+        //   console.log("Unauthorized");
+        // }
+
+      });
   };
 
   return (
@@ -39,8 +47,8 @@ export const Login = () => {
     "
     >
       <div className="flex flex-col items-center gap-2 mb-8">
-      <h1 className="text-4xl font-bebas drop-shadow-lg">JC DEV PANEL</h1>
-      <h1 className="text-4xl font-bebas drop-shadow-lg">LOGIN</h1>
+        <h1 className="text-4xl font-bebas drop-shadow-lg">JC DEV PANEL</h1>
+        <h1 className="text-4xl font-bebas drop-shadow-lg">LOGIN</h1>
       </div>
       <form
         className="flex max-w-md flex-col gap-4 lg:w-96 font-sans"
@@ -60,7 +68,7 @@ export const Login = () => {
         <div className="flex flex-row items-center gap-2">
           <AiFillLock />
           <TextInput
-            id="password1"
+            id="password"
             required
             type="password"
             placeholder="Password"

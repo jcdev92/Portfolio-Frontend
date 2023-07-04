@@ -40,6 +40,7 @@ export const Profile = () => {
   const onSubmit = (data) => {
     // remove empty fields
     data = clearEmptyFields(data);
+    // console.log(data);
     // update the profile data
     useAxiosPatch(patchUrl, data);
     // refresh the page
@@ -102,7 +103,7 @@ export const Profile = () => {
             <div>
               <div className="mb-2 block">
                 <Label
-                  value="Profile image"
+                  value="Profile Image"
                   className="text-white drop-shadow-md"
                 />
               </div>
@@ -113,10 +114,24 @@ export const Profile = () => {
                 {...register("profileImg")}
               />
             </div>
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  value="Bio Image"
+                  className="text-white drop-shadow-md"
+                />
+              </div>
+              <TextInput
+                id="bioImage"
+                placeholder={profile?.bioImage}
+                type="text"
+                {...register("bioImage")}
+              />
+            </div>
           </div>
           <div>
             <div className="mb-2 block">
-              <Label value="Job title" className="text-white drop-shadow-md" />
+              <Label value="Job Title" className="text-white drop-shadow-md" />
             </div>
             <TextInput
               id="jobTitle"
@@ -127,7 +142,7 @@ export const Profile = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label value="About me" className="text-white drop-shadow-md" />
+              <Label value="About Me" className="text-white drop-shadow-md" />
             </div>
             <Textarea
               id="aboutMe"
@@ -136,10 +151,21 @@ export const Profile = () => {
               {...register("aboutMe")}
             />
           </div>
+          <div>
+            <div className="mb-2 block">
+              <Label value="Biography" className="text-white drop-shadow-md" />
+            </div>
+            <Textarea
+              id="biography"
+              placeholder={profile?.biography}
+              rows={4}
+              {...register("biography")}
+            />
+          </div>
           <div className="flex flex-row justify-center">
             <div className="mb-2 block">
               <Button gradientDuoTone="purpleToBlue" outline type="submit">
-                Update profile
+                Update Profile
               </Button>
             </div>
           </div>
