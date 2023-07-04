@@ -7,7 +7,11 @@ const useAxiosDelete = (url) => {
         Authorization: `jwt ${token}`,
       },
     })
-    .then((res) => console.log(res))
+    .then((res) => {
+      console.log(res);
+      // refresh page
+      window.location.reload();
+    })
     .catch((err) => console.log(err));
 };
 
