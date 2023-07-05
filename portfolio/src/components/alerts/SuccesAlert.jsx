@@ -1,8 +1,26 @@
+'use client';
 import React from 'react'
 
-const SuccesAlert = () => {
+import { Alert } from 'flowbite-react';
+import { HiInformationCircle } from 'react-icons/hi';
+
+const SuccesAlert = ({message}) => {
   return (
-    <div>SuccesAlert</div>
+    <Alert
+    color="success"
+    withBorderAccent
+    icon={HiInformationCircle}
+    className='mt-4'
+  >
+    <span>
+      <p>
+        <span className="font-medium">
+          Success!
+        </span>
+        {message}
+      </p>
+    </span>
+  </Alert>
   )
 }
 

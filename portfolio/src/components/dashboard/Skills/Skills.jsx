@@ -8,6 +8,7 @@ import TableSkills from "./TableSkills";
 export const Skills = () => {
   const url = "http://localhost:9000/api/v1/skill";
   const { data, loading } = useAxiosGet(url);
+  const [status, setStatus] = useState(null);
   const setSkills = useSkillsStore((state) => state.setSkills);
 
   useEffect(() => {
@@ -24,11 +25,14 @@ export const Skills = () => {
         <TableSkills
           setRowCellData={setRowCellData}
           setEditMode={setEditMode}
+          setStatus={setStatus}
         />
         <CardForm
           editMode={editMode}
           setEditMode={setEditMode}
           rowCellData={rowCellData}
+          status={status}
+          setStatus={setStatus}
         />
       </div>
     </div>

@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import useSkillsStore from "../../../hooks/store/skills";
 import useAxiosDelete from "../../../hooks/useAxiosDelete";
 import { PopUpModal } from "../../alerts/PopUpModal";
-import { Table } from "flowbite-react";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { Table, Button } from "flowbite-react";
+import { AiFillEdit } from "react-icons/ai";
+import { HiRefresh } from "react-icons/hi";
 
-const TableSkills = ({ setEditMode, setRowCellData }) => {
+const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
   const data = useSkillsStore((state) => state.skills);
   const { reset } = useForm();
 
@@ -17,6 +18,7 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
       id: skill.id,
     });
     setEditMode("edit");
+    setStatus(null);
   };
 
   const handleDelete = (id) => {
@@ -26,6 +28,13 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
 
   return (
     <div className="flex flex-col p-8  w-6/12  overflow-y-auto">
+      <Button
+        className="self-start mb-4"
+        gradientDuoTone="greenToBlue"
+        onClick={() => window.location.reload()}
+      >
+        <HiRefresh />
+      </Button>
       <Table className="rounded-xl">
         <Table.Head>
           <Table.HeadCell>Skill</Table.HeadCell>
@@ -57,7 +66,7 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
                 </Table.Cell>
                 <Table.Cell>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary hover:bg-green-500 hover:text-white hover:rounded-full hover:scale-150 transition-all duration-300 ease-in-out"
                     onClick={() => handleEdit(skill)}
                   >
                     <AiFillEdit />

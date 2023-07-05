@@ -4,12 +4,24 @@ import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import useAxiosPost from "../../../hooks/useAxiosPost";
 import useAxiosPatch from "../../../hooks/useAxiosPatch";
+import SuccesAlert from "../../alerts/SuccesAlert";
+import { AiOutlineUpload } from "react-icons/ai";
+import { FaPlus } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
-export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
+export const CardForm = ({
+  editMode,
+  setEditMode,
+  rowCellData,
+  status,
+  setStatus,
+}) => {
   const { handleSubmit, register, reset } = useForm();
   const createUrl = "http://localhost:9000/api/v1/skill";
   const id = rowCellData?.id;
   const updateUrl = `http://localhost:9000/api/v1/skill/${id}`;
+
+  console.log(status);
 
   // edit mode
   useEffect(() => {
@@ -36,8 +48,8 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const onSubmit = (data) => {
     data = clearEmptyFields(data);
     editMode == "edit"
-      ? useAxiosPatch(updateUrl, data)
-      : useAxiosPost(createUrl, data);
+      ? useAxiosPatch(updateUrl, data, setStatus)
+      : useAxiosPost(createUrl, data, setStatus);
   };
 
   return (
@@ -103,20 +115,34 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
               {...register("icon")}
             />
           )}
+          {status == 201 && editMode == "add" && (
+            <SuccesAlert message=" Skill created successfully" />
+          )}
+          {status == 200 && editMode == "edit" && (
+            <SuccesAlert
+              message={` Skill with id ${rowCellData?.id} updated successfully`}
+            />
+          )}
         </div>
         {editMode == "edit" && (
           <div className="flex flex-row w-full justify-around my-6">
             <Button gradientDuoTone="purpleToBlue" type="submit">
-              Update
+              <AiOutlineUpload />
             </Button>
-            <Button gradientDuoTone="pinkToOrange" onClick={handleAdd}>
-              Cancel
+            <Button
+              gradientDuoTone="pinkToOrange"
+              onClick={() => {
+                handleAdd();
+                setStatus(null);
+              }}
+            >
+              <FaTimes />
             </Button>
           </div>
         )}
         {editMode == "add" && (
           <Button className="my-6" gradientDuoTone="purpleToBlue" type="submit">
-            Add
+            <FaPlus />
           </Button>
         )}
       </form>

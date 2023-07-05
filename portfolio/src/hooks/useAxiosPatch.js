@@ -1,5 +1,5 @@
 import axios from "axios";
-const useAxiosPatch = (url, data) => {
+const useAxiosPatch = (url, data, setStatus) => {
   const token = localStorage.getItem("token");
   axios
     .patch(url, data, {
@@ -9,8 +9,7 @@ const useAxiosPatch = (url, data) => {
     })
     .then((res) => {
       console.log(res);
-      window.location.reload();
-      alert("Data Updated successfully");
+      setStatus(res.status);
     })
     .catch((err) => {
       alert(

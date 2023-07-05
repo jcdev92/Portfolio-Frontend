@@ -1,5 +1,5 @@
 import axios from "axios";
-const useAxiosPost = (url, data) => {
+const useAxiosPost = (url, data, setStatus) => {
   const token = localStorage.getItem("token");
   axios
     .post(url, data, {
@@ -9,8 +9,7 @@ const useAxiosPost = (url, data) => {
     })
     .then((res) => {
       console.log(res);
-      window.location.reload();
-      alert("Data added successfully");
+      setStatus(res.status);
     })
     .catch((err) => {
       console.log(err);
