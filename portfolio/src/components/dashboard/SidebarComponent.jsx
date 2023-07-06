@@ -9,7 +9,7 @@ import {
 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import useProfileStore from "../../hooks/store/profile";
+import useProfileStore from "../../hooks/store/useProfileStore";
 
 export const SidebarComponent = () => {
   const navigate = useNavigate();

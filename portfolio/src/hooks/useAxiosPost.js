@@ -14,8 +14,10 @@ const useAxiosPost = (url, data, setStatus) => {
     .catch((err) => {
       console.log(err);
       err.response.data.message === "Skill already exists"
-        ? alert("Skill already exists, try with diferent title and icon url")
-        : alert("Something went wrong try again");
+        ? setStatus(
+            "Skill already exists, try with diferent title and/or icon url"
+          )
+        : setStatus("Something went wrong try again");
     });
 };
 

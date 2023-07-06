@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import useSkillsStore from "../../../hooks/store/skills";
+import useSkillsStore from "../../../hooks/store/useSkillsStore";
 import useAxiosDelete from "../../../hooks/useAxiosDelete";
 import { PopUpModal } from "../../alerts/PopUpModal";
 import { Table, Button } from "flowbite-react";
@@ -8,7 +8,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { HiRefresh } from "react-icons/hi";
 
 const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
-  const data = useSkillsStore((state) => state.skills);
+  const skills = useSkillsStore((state) => state.skills);
   const { reset } = useForm();
 
   // edit mode
@@ -28,13 +28,6 @@ const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
 
   return (
     <div className="flex flex-col p-8  w-6/12  overflow-y-auto">
-      <Button
-        className="self-start mb-4"
-        gradientDuoTone="greenToBlue"
-        onClick={() => window.location.reload()}
-      >
-        <HiRefresh />
-      </Button>
       <Table className="rounded-xl">
         <Table.Head>
           <Table.HeadCell>Skill</Table.HeadCell>
@@ -47,8 +40,8 @@ const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {data &&
-            data.map((skill) => (
+          {skills &&
+            skills.map((skill) => (
               <Table.Row
                 className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 key={skill.id}

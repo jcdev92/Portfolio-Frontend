@@ -10,25 +10,14 @@ import {
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
-import useProfileStore from "../../hooks/store/profile";
+import useProfileStore from "../../hooks/store/useProfileStore";
 import { Loading } from "../Loading";
 import { clearEmptyFields } from "../../utils/utilFunctions";
 
 export const Profile = () => {
   const { handleSubmit, register } = useForm();
   const url = "http://localhost:9000/api/v1/user";
-
-  // get data from the api and loading state
-  const { data, loading } = useAxiosGet(url);
-
-  // set the profile data to the store
-  const setProfile = useProfileStore((state) => state.setProfile);
-
-  // set the profile data to the store
-  useEffect(() => {
-    setProfile(data?.data?.[0]);
-  }, [data]);
-
+  useAxiosGet(url);
   // get the profile data from the store
   const profile = useProfileStore((state) => state.profile);
 
@@ -48,7 +37,7 @@ export const Profile = () => {
   return (
     <div className="flex flex-col w-full bg-transparent font-sans h-screen overflow-y-auto">
       <Card className="backdrop-blur-sm bg-white/30 rounded-xl p-8 m-8 md:w-8/12 md:ml-32">
-        {loading && <Loading />}
+    
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div id="info" className="lg:grid gap-4 grid-cols-2">
             <Avatar size="xl" img={profile?.profileImg} bordered />

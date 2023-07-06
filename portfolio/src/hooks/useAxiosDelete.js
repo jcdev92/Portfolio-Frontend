@@ -9,8 +9,6 @@ const useAxiosDelete = (url) => {
     })
     .then((res) => {
       console.log(res);
-      // refresh page
-      window.location.reload();
     })
     .catch((err) => console.log(err));
 };

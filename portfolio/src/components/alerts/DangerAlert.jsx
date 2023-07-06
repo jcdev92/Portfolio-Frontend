@@ -1,7 +1,7 @@
 "use client";
 
 import { Alert } from "flowbite-react";
-import { HiInformationCircle } from 'react-icons/hi';
+import { HiInformationCircle } from "react-icons/hi";
 
 const DangerAlert = ({ message, setErr }) => {
   return (
@@ -12,11 +12,11 @@ const DangerAlert = ({ message, setErr }) => {
       }}
       withBorderAccent
       icon={HiInformationCircle}
+      className="mt-4"
     >
       <span>
         <p>
-          <span className="font-medium">{message}</span>
-          Try with other credentias and submit it again.
+          <span className="font-medium">{` ${message} `}</span>
         </p>
       </span>
     </Alert>

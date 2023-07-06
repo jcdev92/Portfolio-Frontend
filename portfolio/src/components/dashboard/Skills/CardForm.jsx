@@ -8,6 +8,7 @@ import SuccesAlert from "../../alerts/SuccesAlert";
 import { AiOutlineUpload } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import DangerAlert from "../../alerts/DangerAlert";
 
 export const CardForm = ({
   editMode,
@@ -20,8 +21,6 @@ export const CardForm = ({
   const createUrl = "http://localhost:9000/api/v1/skill";
   const id = rowCellData?.id;
   const updateUrl = `http://localhost:9000/api/v1/skill/${id}`;
-
-  console.log(status);
 
   // edit mode
   useEffect(() => {
@@ -53,7 +52,7 @@ export const CardForm = ({
   };
 
   return (
-    <Card className="flex flex-col gap-4 lg:w-6/12 m-8 lg:h-4/6">
+    <Card className="flex flex-col gap-4 lg:w-6/12 m-8 h-auto">
       <h1 className="text-2xl font-bebas text-indigo-950">
         {editMode == "edit" && "Edit Skill"}
         {editMode == "add" && "Add Skill"}
@@ -122,6 +121,10 @@ export const CardForm = ({
             <SuccesAlert
               message={` Skill with id ${rowCellData?.id} updated successfully`}
             />
+          )}
+          {status ==
+            "Skill already exists, try with diferent title and/or icon url" && (
+            <DangerAlert message={status} />
           )}
         </div>
         {editMode == "edit" && (
