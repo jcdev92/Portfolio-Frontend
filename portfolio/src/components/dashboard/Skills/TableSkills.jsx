@@ -11,9 +11,7 @@ import useStatusStore from "../../../hooks/store/useStatusStore";
 const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
   const skills = useSkillsStore((state) => state.skills);
   const loading = useStatusStore((state) => state.loading);
-  const { reset } = useForm();
-  console.log(skills);
-  
+  const { reset } = useForm();  
 
   // edit mode
   const handleEdit = (skill) => {

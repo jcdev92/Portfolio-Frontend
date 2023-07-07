@@ -133,8 +133,8 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
               gradientDuoTone="pinkToOrange"
               onClick={() => {
                 handleAdd();
-                success(null);
-                error(null);
+                useStatusStore.getState().setSuccess(null);
+                useStatusStore.getState().setError(null);
               }}
             >
               <FaTimes />

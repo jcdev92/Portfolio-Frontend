@@ -1,7 +1,9 @@
 import axios from "axios";
 import useStatusStore from "./store/useStatusStore";
+import useSkillsStore from "./store/useSkillsStore";
 
 const useAxiosPost = (url, data) => {
+  const skills = useSkillsStore.getState().skills;
   const token = localStorage.getItem("token");
   axios
     .post(url, data, {
@@ -11,9 +13,10 @@ const useAxiosPost = (url, data) => {
     })
     .then((res) => {
       useStatusStore.getState().setSuccess(res.data.message);
+      useSkillsStore.getState().setSkills([...skills, res.data.data]);
     })
     .catch((err) => {
-      console.log(err.response.data.message);
+      console.log(err.response?.data?.message);
       err.response.data.message === "Skill already exists"
         ? useStatusStore
             .getState()
