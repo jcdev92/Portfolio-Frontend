@@ -1,5 +1,7 @@
 import axios from "axios";
-const useAxiosPatch = (url, data, setStatus) => {
+import useStatusStore from "./store/useStatusStore";
+
+const useAxiosPatch = (url, data) => {
   const token = localStorage.getItem("token");
   axios
     .patch(url, data, {
@@ -8,13 +10,14 @@ const useAxiosPatch = (url, data, setStatus) => {
       },
     })
     .then((res) => {
-      console.log(res);
-      setStatus(res.status);
+      useStatusStore.getState().setSuccess(res.status);
     })
     .catch((err) => {
-      alert(
-        `data cannot be updated, error message: ${err.response.data.message}`
-      );
+      useStatusStore
+        .getState()
+        .setError(
+          `data cannot be updated, error message: ${err.response.data.message}`
+        );
     });
 };
 

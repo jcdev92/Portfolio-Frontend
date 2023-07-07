@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Label, TextInput, Card, Button } from "flowbite-react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import useAxiosPost from "../../../hooks/useAxiosPost";
 import useAxiosPatch from "../../../hooks/useAxiosPatch";
@@ -9,18 +9,15 @@ import { AiOutlineUpload } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import DangerAlert from "../../alerts/DangerAlert";
+import useStatusStore from "../../../hooks/store/useStatusStore";
 
-export const CardForm = ({
-  editMode,
-  setEditMode,
-  rowCellData,
-  status,
-  setStatus,
-}) => {
+export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const { handleSubmit, register, reset } = useForm();
   const createUrl = "http://localhost:9000/api/v1/skill";
   const id = rowCellData?.id;
   const updateUrl = `http://localhost:9000/api/v1/skill/${id}`;
+  const error = useStatusStore((state) => state.error);
+  const success = useStatusStore((state) => state.success);
 
   // edit mode
   useEffect(() => {
@@ -47,8 +44,8 @@ export const CardForm = ({
   const onSubmit = (data) => {
     data = clearEmptyFields(data);
     editMode == "edit"
-      ? useAxiosPatch(updateUrl, data, setStatus)
-      : useAxiosPost(createUrl, data, setStatus);
+      ? useAxiosPatch(updateUrl, data)
+      : useAxiosPost(createUrl, data);
   };
 
   return (
@@ -114,17 +111,17 @@ export const CardForm = ({
               {...register("icon")}
             />
           )}
-          {status == 201 && editMode == "add" && (
+          {success == 201 && editMode == "add" && (
             <SuccesAlert message=" Skill created successfully" />
           )}
-          {status == 200 && editMode == "edit" && (
+          {success == 200 && editMode == "edit" && (
             <SuccesAlert
               message={` Skill with id ${rowCellData?.id} updated successfully`}
             />
           )}
-          {status ==
+          {error ==
             "Skill already exists, try with diferent title and/or icon url" && (
-            <DangerAlert message={status} />
+            <DangerAlert message={error} />
           )}
         </div>
         {editMode == "edit" && (
@@ -136,7 +133,8 @@ export const CardForm = ({
               gradientDuoTone="pinkToOrange"
               onClick={() => {
                 handleAdd();
-                setStatus(null);
+                success(null);
+                error(null);
               }}
             >
               <FaTimes />

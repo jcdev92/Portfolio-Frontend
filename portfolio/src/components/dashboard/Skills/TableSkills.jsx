@@ -3,13 +3,17 @@ import { useForm } from "react-hook-form";
 import useSkillsStore from "../../../hooks/store/useSkillsStore";
 import useAxiosDelete from "../../../hooks/useAxiosDelete";
 import { PopUpModal } from "../../alerts/PopUpModal";
-import { Table, Button } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { AiFillEdit } from "react-icons/ai";
-import { HiRefresh } from "react-icons/hi";
+import { Loading } from "../../Loading";
+import useStatusStore from "../../../hooks/store/useStatusStore";
 
 const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
   const skills = useSkillsStore((state) => state.skills);
+  const loading = useStatusStore((state) => state.loading);
   const { reset } = useForm();
+  console.log(skills);
+  
 
   // edit mode
   const handleEdit = (skill) => {
@@ -18,7 +22,8 @@ const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
       id: skill.id,
     });
     setEditMode("edit");
-    setStatus(null);
+    useStatusStore.getState().setSuccess(null);
+    useStatusStore.getState().setError(null);
   };
 
   const handleDelete = (id) => {
@@ -28,54 +33,58 @@ const TableSkills = ({ setEditMode, setRowCellData, setStatus }) => {
 
   return (
     <div className="flex flex-col p-8  w-6/12  overflow-y-auto">
-      <Table className="rounded-xl">
-        <Table.Head>
-          <Table.HeadCell>Skill</Table.HeadCell>
-          <Table.HeadCell>Icon</Table.HeadCell>
-          <Table.HeadCell>
-            <span className="sr-only">Edit</span>
-          </Table.HeadCell>
-          <Table.HeadCell>
-            <span className="sr-only">Delete</span>
-          </Table.HeadCell>
-        </Table.Head>
-        <Table.Body className="divide-y">
-          {skills &&
-            skills.map((skill) => (
-              <Table.Row
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                key={skill.id}
-              >
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {skill.title}
-                </Table.Cell>
-                <Table.Cell>
-                  <img
-                    src={skill.icon}
-                    alt={skill.title}
-                    height={30}
-                    width={30}
-                  />
-                </Table.Cell>
-                <Table.Cell>
-                  <button
-                    className="btn btn-primary hover:bg-green-500 hover:text-white hover:rounded-full hover:scale-150 transition-all duration-300 ease-in-out"
-                    onClick={() => handleEdit(skill)}
-                  >
-                    <AiFillEdit />
-                  </button>
-                </Table.Cell>
-                <Table.Cell>
-                  <PopUpModal
-                    description="Are you sure you want to delete this skill?"
-                    id={skill.id}
-                    handleDelete={handleDelete}
-                  />
-                </Table.Cell>
-              </Table.Row>
-            ))}
-        </Table.Body>
-      </Table>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Table className="rounded-xl">
+          <Table.Head>
+            <Table.HeadCell>Skill</Table.HeadCell>
+            <Table.HeadCell>Icon</Table.HeadCell>
+            <Table.HeadCell>
+              <span className="sr-only">Edit</span>
+            </Table.HeadCell>
+            <Table.HeadCell>
+              <span className="sr-only">Delete</span>
+            </Table.HeadCell>
+          </Table.Head>
+          <Table.Body className="divide-y">
+            {skills &&
+              skills.map((skill) => (
+                <Table.Row
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                  key={skill.id}
+                >
+                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    {skill.title}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <img
+                      src={skill.icon}
+                      alt={skill.title}
+                      height={30}
+                      width={30}
+                    />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <button
+                      className="btn btn-primary hover:bg-green-500 hover:text-white hover:rounded-full hover:scale-150 transition-all duration-300 ease-in-out"
+                      onClick={() => handleEdit(skill)}
+                    >
+                      <AiFillEdit />
+                    </button>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <PopUpModal
+                      description="Are you sure you want to delete this skill?"
+                      id={skill.id}
+                      handleDelete={handleDelete}
+                    />
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+          </Table.Body>
+        </Table>
+      )}
     </div>
   );
 };

@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useAxiosGet from "../../../hooks/useAxiosGet";
-import useSkillsStore from "../../../hooks/store/useSkillsStore";
-import { Loading } from "../../Loading";
 import { CardForm } from "./CardForm";
 import TableSkills from "./TableSkills";
 
 export const Skills = () => {
   const url = "http://localhost:9000/api/v1/skill";
   useAxiosGet(url);
-  const [status, setStatus] = useState(null);
 
   const [editMode, setEditMode] = useState("add");
   const [rowCellData, setRowCellData] = useState({});
@@ -19,14 +16,11 @@ export const Skills = () => {
         <TableSkills
           setRowCellData={setRowCellData}
           setEditMode={setEditMode}
-          setStatus={setStatus}
         />
         <CardForm
           editMode={editMode}
           setEditMode={setEditMode}
           rowCellData={rowCellData}
-          status={status}
-          setStatus={setStatus}
         />
       </div>
     </div>

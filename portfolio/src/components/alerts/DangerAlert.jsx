@@ -2,13 +2,14 @@
 
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
+import useStatusStore from "../../hooks/store/useStatusStore";
 
-const DangerAlert = ({ message, setErr }) => {
+const DangerAlert = ({ message }) => {
   return (
     <Alert
       color="failure"
       onDismiss={() => {
-        setErr(null);
+        useStatusStore.getState().setError(null);
       }}
       withBorderAccent
       icon={HiInformationCircle}

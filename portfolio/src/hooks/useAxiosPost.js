@@ -1,5 +1,7 @@
 import axios from "axios";
-const useAxiosPost = (url, data, setStatus) => {
+import useStatusStore from "./store/useStatusStore";
+
+const useAxiosPost = (url, data) => {
   const token = localStorage.getItem("token");
   axios
     .post(url, data, {
@@ -8,16 +10,17 @@ const useAxiosPost = (url, data, setStatus) => {
       },
     })
     .then((res) => {
-      console.log(res);
-      setStatus(res.status);
+      useStatusStore.getState().setSuccess(res.data.message);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.response.data.message);
       err.response.data.message === "Skill already exists"
-        ? setStatus(
-            "Skill already exists, try with diferent title and/or icon url"
-          )
-        : setStatus("Something went wrong try again");
+        ? useStatusStore
+            .getState()
+            .setError(
+              "Skill already exists, try with diferent title and/or icon url"
+            )
+        : useStatusStore.getState().setError("Something went wrong try again");
     });
 };
 
