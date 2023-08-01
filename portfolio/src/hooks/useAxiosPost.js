@@ -3,7 +3,7 @@ import useStatusStore from "./store/useStatusStore";
 import useSkillsStore from "./store/useSkillsStore";
 
 const useAxiosPost = () => {
-  const postData = async (url, data) => {
+  const postData = (url, data) => {
     const skills = useSkillsStore.getState().skills;
     const token = localStorage.getItem("token");
     axios

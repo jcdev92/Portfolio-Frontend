@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 "use client";
 
 import { Alert } from "flowbite-react";
@@ -13,7 +14,7 @@ const DangerAlert = ({ message }) => {
       }}
       withBorderAccent
       icon={HiInformationCircle}
-      className="mt-4"
+      className="mt-4 text-xs"
     >
       <span>
         <p>

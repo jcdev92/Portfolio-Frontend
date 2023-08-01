@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 'use client';
-import React from 'react'
 
 import { Alert } from 'flowbite-react';
 import { HiInformationCircle } from 'react-icons/hi';
@@ -10,7 +10,7 @@ const SuccesAlert = ({message}) => {
     color="success"
     withBorderAccent
     icon={HiInformationCircle}
-    className='mt-4'
+    className='mt-4 text-xs'
   >
     <span>
       <p>

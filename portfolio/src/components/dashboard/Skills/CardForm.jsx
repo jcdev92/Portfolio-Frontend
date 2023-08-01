@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Label, TextInput, Card, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
@@ -51,12 +53,12 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   };
 
   return (
-    <Card className="flex flex-col gap-4 lg:w-6/12 m-8 h-auto">
+    <Card className="flex flex-col gap-4 lg:w-5/12 h-5/6 self-center overflow-y-auto">
       <h1 className="text-2xl font-bebas text-indigo-950">
         {editMode == "edit" && "Edit Skill"}
         {editMode == "add" && "Add Skill"}
       </h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="h-4/6">
         {editMode == "edit" && (
           <div>
             <div className="mb-2 block">
@@ -127,7 +129,7 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
           )}
         </div>
         {editMode == "edit" && (
-          <div className="flex flex-row w-full justify-around my-6">
+          <div className="flex flex-row h-2/6 w-full justify-around my-6">
             <Button gradientDuoTone="purpleToBlue" type="submit">
               <AiOutlineUpload />
             </Button>
