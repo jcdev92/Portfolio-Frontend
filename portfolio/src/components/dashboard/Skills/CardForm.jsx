@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Label, TextInput, Card, Button } from "flowbite-react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import useAxiosPost from "../../../hooks/useAxiosPost";
 import useAxiosPatch from "../../../hooks/useAxiosPatch";
@@ -18,6 +18,8 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const updateUrl = `http://localhost:9000/api/v1/skill/${id}`;
   const error = useStatusStore((state) => state.error);
   const success = useStatusStore((state) => state.success);
+  const {patchData} = useAxiosPatch();
+  const {postData} = useAxiosPost();
 
   // edit mode
   useEffect(() => {
@@ -41,11 +43,11 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   };
 
   // create or update skill
-  const onSubmit = (data) => {
-    data = clearEmptyFields(data);
+  const onSubmit = (formData) => {
+    const data = clearEmptyFields(formData);
     editMode == "edit"
-      ? useAxiosPatch(updateUrl, data)
-      : useAxiosPost(createUrl, data);
+      ? patchData(updateUrl, data)
+      : postData(createUrl, data);
   };
 
   return (

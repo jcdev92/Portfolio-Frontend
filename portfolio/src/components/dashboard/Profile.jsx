@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import {
   Card,
   TextInput,
@@ -11,7 +10,6 @@ import useAxiosGet from "../../hooks/useAxiosGet";
 import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
 import useProfileStore from "../../hooks/store/useProfileStore";
-import { Loading } from "../Loading";
 import { clearEmptyFields } from "../../utils/utilFunctions";
 
 export const Profile = () => {
@@ -23,15 +21,17 @@ export const Profile = () => {
 
   // get the id from the profile data
   const id = profile?.id;
+  console.log(id)
   const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
+  const { patchData } = useAxiosPatch();
 
   // update the profile data
-  const onSubmit = (data) => {
+  const onSubmit = (formData) => {
     // remove empty fields
-    data = clearEmptyFields(data);
+    const data = clearEmptyFields(formData);
     // console.log(data);
     // update the profile data
-    useAxiosPatch(patchUrl, data);
+    patchData(patchUrl,data);
   };
 
   return (

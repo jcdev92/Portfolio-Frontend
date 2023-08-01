@@ -1,5 +1,5 @@
 // axios fetching hook
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import useProfileStore from "./store/useProfileStore";
 import useSkillsStore from "./store/useSkillsStore";
@@ -26,7 +26,7 @@ const useAxiosGet = (url) => {
         useStatusStore.getState().setError(err.response.data.message);
         useStatusStore.getState().setLoading(false);
       });
-  }, []);
+  }, [url]);
 };
 
 export default useAxiosGet;
