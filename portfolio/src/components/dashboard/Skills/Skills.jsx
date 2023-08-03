@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import useAxiosGet from "../../../hooks/useAxiosGet";
+import { useState } from "react";
 import { CardForm } from "./CardForm";
 import TableSkills from "./TableSkills";
+import useSkills from "../../../hooks/useSkills";
+import useStatusStore from "../../../store/useStatusStore";
 
 export const Skills = () => {
+  useStatusStore.getState().setSuccess(null);
+  useStatusStore.getState().setError(null);
   const url = "http://localhost:9000/api/v1/skill";
-  useAxiosGet(url);
+  const { useGetSkills } = useSkills();
+  useGetSkills(url);
 
   const [editMode, setEditMode] = useState("add");
   const [rowCellData, setRowCellData] = useState({});

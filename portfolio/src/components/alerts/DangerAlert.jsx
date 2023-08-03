@@ -3,7 +3,7 @@
 
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
-import useStatusStore from "../../hooks/store/useStatusStore";
+import useStatusStore from "../../store/useStatusStore";
 
 const DangerAlert = ({ message }) => {
   return (

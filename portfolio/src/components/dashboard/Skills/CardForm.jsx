@@ -4,14 +4,13 @@ import { useEffect } from "react";
 import { Label, TextInput, Card, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
-import useAxiosPost from "../../../hooks/useAxiosPost";
-import useAxiosPatch from "../../../hooks/useAxiosPatch";
+import useSkills from "../../../hooks/useSkills";
 import SuccesAlert from "../../alerts/SuccesAlert";
 import { AiOutlineUpload } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import DangerAlert from "../../alerts/DangerAlert";
-import useStatusStore from "../../../hooks/store/useStatusStore";
+import useStatusStore from "../../../store/useStatusStore";
 
 export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const { handleSubmit, register, reset } = useForm();
@@ -20,8 +19,7 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const updateUrl = `http://localhost:9000/api/v1/skill/${id}`;
   const error = useStatusStore((state) => state.error);
   const success = useStatusStore((state) => state.success);
-  const {patchData} = useAxiosPatch();
-  const {postData} = useAxiosPost();
+  const { postSkill, patchSkill } = useSkills();
 
   // edit mode
   useEffect(() => {
@@ -35,7 +33,7 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   }, [editMode, rowCellData?.id]);
 
   // back to add mode
-  const handleAdd = () => {
+  const handleBackAdd = () => {
     setEditMode("add");
     reset({
       id: "",
@@ -47,10 +45,18 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   // create or update skill
   const onSubmit = (formData) => {
     const data = clearEmptyFields(formData);
-    editMode == "edit"
-      ? patchData(updateUrl, data)
-      : postData(createUrl, data);
+    if (editMode == "edit") {
+      patchSkill(updateUrl, data)
+    } else if (editMode == "add") {
+      postSkill(createUrl, data)
+      reset({
+        id: "",
+        title: "",
+        icon: ""
+      })
+    }
   };
+
 
   return (
     <Card className="flex flex-col gap-4 lg:w-5/12 h-5/6 self-center overflow-y-auto">
@@ -115,18 +121,13 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
               {...register("icon")}
             />
           )}
-          {success == 201 && editMode == "add" && (
+          {success && editMode == "add" && !error && (
             <SuccesAlert message=" Skill created successfully" />
           )}
-          {success == 200 && editMode == "edit" && (
-            <SuccesAlert
-              message={` Skill with id ${rowCellData?.id} updated successfully`}
-            />
+          {success && editMode == "edit" && !error && (
+            <SuccesAlert message={` Skill with id ${rowCellData?.id} updated successfully`}/>
           )}
-          {error ==
-            "Skill already exists, try with diferent title and/or icon url" && (
-            <DangerAlert message={error} />
-          )}
+          {error && <DangerAlert message={error} />}
         </div>
         {editMode == "edit" && (
           <div className="flex flex-row h-2/6 w-full justify-around my-6">
@@ -136,7 +137,7 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
             <Button
               gradientDuoTone="pinkToOrange"
               onClick={() => {
-                handleAdd();
+                handleBackAdd();
                 useStatusStore.getState().setSuccess(null);
                 useStatusStore.getState().setError(null);
               }}

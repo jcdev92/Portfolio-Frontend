@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { AiFillDelete } from "react-icons/ai";
@@ -38,7 +39,7 @@ export const PopUpModal = ({ description, id, handleDelete }) => {
                   props.setOpenModal(undefined);
                 }}
               >
-                Yes, I'm sure
+                Yes, Im sure
               </Button>
               <Button
                 color="gray"

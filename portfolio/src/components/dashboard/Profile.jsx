@@ -6,24 +6,28 @@ import {
   Button,
   Avatar,
 } from "flowbite-react";
-import useAxiosGet from "../../hooks/useAxiosGet";
-import useAxiosPatch from "../../hooks/useAxiosPatch";
 import { useForm } from "react-hook-form";
-import useProfileStore from "../../hooks/store/useProfileStore";
+import useProfileStore from "../../store/useProfileStore";
 import { clearEmptyFields } from "../../utils/utilFunctions";
+import useProfile from "../../hooks/useProfile";
+import useStatusStore from "../../store/useStatusStore";
+import { Loading } from "../Loading";
 
 export const Profile = () => {
+  useStatusStore.getState().setSuccess(null);
+  useStatusStore.getState().setError(null);
   const { handleSubmit, register } = useForm();
   const url = "http://localhost:9000/api/v1/user";
-  useAxiosGet(url);
+  const { useGetProfile, patchProfile } = useProfile();
+  useGetProfile(url);
+
   // get the profile data from the store
   const profile = useProfileStore((state) => state.profile);
 
+  const isLoading = useStatusStore((state) => state.loading);
   // get the id from the profile data
   const id = profile?.id;
-  console.log(id)
   const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
-  const { patchData } = useAxiosPatch();
 
   // update the profile data
   const onSubmit = (formData) => {
@@ -31,132 +35,144 @@ export const Profile = () => {
     const data = clearEmptyFields(formData);
     // console.log(data);
     // update the profile data
-    patchData(patchUrl,data);
+    patchProfile(patchUrl, data);
   };
 
   return (
     <div className="flex flex-col w-full bg-transparent font-sans h-screen overflow-y-auto">
       <Card className="backdrop-blur-sm bg-white/30 rounded-xl p-8 m-8 md:w-8/12 md:ml-32">
-    
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <div id="info" className="lg:grid gap-4 grid-cols-2">
-            <Avatar size="xl" img={profile?.profileImg} bordered />
-            <div className="flex flex-col gap-4">
-              <div className="mb-2 block">
-                <Label value="Name" className="text-white drop-shadow-md" />
-              </div>
-              <TextInput
-                id="firstName"
-                placeholder={profile?.firstName}
-                type="text"
-                {...register("firstName")}
-              />
-              <div className="mb-2 block">
-                <Label
-                  value="Last Name"
-                  className="text-white drop-shadow-md"
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div id="info" className="lg:grid gap-4 grid-cols-2">
+              <Avatar size="xl" img={profile?.profileImg} bordered />
+              <div className="flex flex-col gap-4">
+                <div className="mb-2 block">
+                  <Label value="Name" className="text-white drop-shadow-md" />
+                </div>
+                <TextInput
+                  id="firstName"
+                  placeholder={profile?.firstName}
+                  type="text"
+                  {...register("firstName")}
+                />
+                <div className="mb-2 block">
+                  <Label
+                    value="Last Name"
+                    className="text-white drop-shadow-md"
+                  />
+                </div>
+                <TextInput
+                  id="lastName"
+                  placeholder={profile?.lastName}
+                  type="text"
+                  {...register("lastName")}
                 />
               </div>
-              <TextInput
-                id="lastName"
-                placeholder={profile?.lastName}
-                type="text"
-                {...register("lastName")}
-              />
-            </div>
 
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Email" className="text-white drop-shadow-md" />
+                </div>
+                <TextInput
+                  id="email"
+                  placeholder={profile?.email}
+                  type="email"
+                  {...register("email")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Phone" className="text-white drop-shadow-md" />
+                </div>
+                <TextInput
+                  id="phone"
+                  placeholder={profile?.phone}
+                  type="text"
+                  {...register("phone")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label
+                    value="Profile Image"
+                    className="text-white drop-shadow-md"
+                  />
+                </div>
+                <TextInput
+                  id="profileImg"
+                  placeholder={profile?.profileImg}
+                  type="text"
+                  {...register("profileImg")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label
+                    value="Bio Image"
+                    className="text-white drop-shadow-md"
+                  />
+                </div>
+                <TextInput
+                  id="bioImage"
+                  placeholder={profile?.bioImage}
+                  type="text"
+                  {...register("bioImage")}
+                />
+              </div>
+            </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Email" className="text-white drop-shadow-md" />
+                <Label
+                  value="Job Title"
+                  className="text-white drop-shadow-md"
+                />
               </div>
               <TextInput
-                id="email"
-                placeholder={profile?.email}
-                type="email"
-                {...register("email")}
+                id="jobTitle"
+                placeholder={profile?.jobTitle}
+                type="text"
+                {...register("jobTitle")}
               />
             </div>
             <div>
               <div className="mb-2 block">
-                <Label value="Phone" className="text-white drop-shadow-md" />
+                <Label value="About Me" className="text-white drop-shadow-md" />
               </div>
-              <TextInput
-                id="phone"
-                placeholder={profile?.phone}
-                type="text"
-                {...register("phone")}
+              <Textarea
+                id="aboutMe"
+                placeholder={profile?.aboutMe}
+                rows={4}
+                {...register("aboutMe")}
               />
             </div>
             <div>
               <div className="mb-2 block">
                 <Label
-                  value="Profile Image"
+                  value="Biography"
                   className="text-white drop-shadow-md"
                 />
               </div>
-              <TextInput
-                id="profileImg"
-                placeholder={profile?.profileImg}
-                type="text"
-                {...register("profileImg")}
+              <Textarea
+                id="biography"
+                placeholder={profile?.biography}
+                rows={4}
+                {...register("biography")}
               />
             </div>
-            <div>
+            <div className="flex flex-row justify-center">
               <div className="mb-2 block">
-                <Label
-                  value="Bio Image"
-                  className="text-white drop-shadow-md"
-                />
+                <Button gradientDuoTone="purpleToBlue" outline type="submit">
+                  Update Profile
+                </Button>
               </div>
-              <TextInput
-                id="bioImage"
-                placeholder={profile?.bioImage}
-                type="text"
-                {...register("bioImage")}
-              />
             </div>
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label value="Job Title" className="text-white drop-shadow-md" />
-            </div>
-            <TextInput
-              id="jobTitle"
-              placeholder={profile?.jobTitle}
-              type="text"
-              {...register("jobTitle")}
-            />
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label value="About Me" className="text-white drop-shadow-md" />
-            </div>
-            <Textarea
-              id="aboutMe"
-              placeholder={profile?.aboutMe}
-              rows={4}
-              {...register("aboutMe")}
-            />
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label value="Biography" className="text-white drop-shadow-md" />
-            </div>
-            <Textarea
-              id="biography"
-              placeholder={profile?.biography}
-              rows={4}
-              {...register("biography")}
-            />
-          </div>
-          <div className="flex flex-row justify-center">
-            <div className="mb-2 block">
-              <Button gradientDuoTone="purpleToBlue" outline type="submit">
-                Update Profile
-              </Button>
-            </div>
-          </div>
-        </form>
+          </form>
+        )}
       </Card>
     </div>
   );

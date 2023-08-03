@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
+import useStatusStore from "../../../store/useStatusStore";
+import useSkillsStore from "../../../store/useSkillsStore";
 import { useForm } from "react-hook-form";
-import useSkillsStore from "../../../hooks/store/useSkillsStore";
-import useAxiosDelete from "../../../hooks/useAxiosDelete";
 import { PopUpModal } from "../../alerts/PopUpModal";
 import { Table } from "flowbite-react";
 import { AiFillEdit } from "react-icons/ai";
 import { Loading } from "../../Loading";
-import useStatusStore from "../../../hooks/store/useStatusStore";
+import useSkills from "../../../hooks/useSkills";
 
 const TableSkills = ({ setEditMode, setRowCellData }) => {
   const skills = useSkillsStore((state) => state.skills);
   const loading = useStatusStore((state) => state.loading);
-  const { reset } = useForm();  
-  const { deleteData } = useAxiosDelete();
+  const { reset } = useForm();
+  const { deleteSkill } = useSkills();
 
   // edit mode
   const handleEdit = (skill) => {
@@ -26,8 +26,15 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
   };
 
   const handleDelete = (id) => {
+    useStatusStore.getState().setSuccess(null);
+    useStatusStore.getState().setError(null);
     const url = `http://localhost:9000/api/v1/skill/${id}`;
-    deleteData(url);
+    deleteSkill(url);
+    reset({
+      id: "",
+      title: "",
+      icon: "",
+    });
   };
 
   return (

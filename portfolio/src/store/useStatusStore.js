@@ -7,6 +7,8 @@ const useStatusStore = create((set) => ({
   setError: (error) => set({ error }),
   success: null,
   setSuccess: (success) => set({ success }),
-}));
+  clearSatus: () => set({ loading: false, error: null, success: null }),
+
+}))
 
 export default useStatusStore;

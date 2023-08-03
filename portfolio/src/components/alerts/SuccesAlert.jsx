@@ -3,6 +3,7 @@
 
 import { Alert } from 'flowbite-react';
 import { HiInformationCircle } from 'react-icons/hi';
+import useStatusStore from '../../store/useStatusStore';
 
 const SuccesAlert = ({message}) => {
   return (
@@ -10,6 +11,9 @@ const SuccesAlert = ({message}) => {
     color="success"
     withBorderAccent
     icon={HiInformationCircle}
+    onDismiss={() => {
+      useStatusStore.getState().setSuccess(null);
+    }}
     className='mt-4 text-xs'
   >
     <span>

@@ -1,6 +1,8 @@
-import React from "react";
+import useStatusStore from "../../../store/useStatusStore";
 
 export const SocialMedia = () => {
+  useStatusStore.getState().setSuccess(null);
+  useStatusStore.getState().setError(null);
   return <div className="
     flex
     flex-col
