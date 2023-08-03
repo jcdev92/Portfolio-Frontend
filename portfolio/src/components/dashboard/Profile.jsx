@@ -33,8 +33,7 @@ export const Profile = () => {
   const onSubmit = (formData) => {
     // remove empty fields
     const data = clearEmptyFields(formData);
-    // console.log(data);
-    // update the profile data
+    
     patchProfile(patchUrl, data);
     reset()
   };

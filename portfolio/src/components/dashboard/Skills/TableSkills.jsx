@@ -2,7 +2,7 @@
 import useStatusStore from "../../../store/useStatusStore";
 import useSkillsStore from "../../../store/useSkillsStore";
 import { useForm } from "react-hook-form";
-import { PopUpModal } from "../../alerts/PopUpModal";
+import { PopUpModal } from "./alerts/PopUpModal";
 import { Table } from "flowbite-react";
 import { AiFillEdit } from "react-icons/ai";
 import { Loading } from "../../Loading";

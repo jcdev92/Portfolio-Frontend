@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button, TextInput } from "flowbite-react";
 import axios from "axios";
-import DangerAlert from "./alerts/DangerAlert";
+import DangerAlert from "./dashboard/Skills/alerts/DangerAlert";
 import { FaM } from "react-icons/fa6";
 import { AiFillLock } from "react-icons/ai";
 

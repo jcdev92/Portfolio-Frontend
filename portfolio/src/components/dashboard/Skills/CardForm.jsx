@@ -5,11 +5,11 @@ import { Label, TextInput, Card, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import useSkills from "../../../hooks/useSkills";
-import SuccesAlert from "../../alerts/SuccesAlert";
 import { AiOutlineUpload } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import DangerAlert from "../../alerts/DangerAlert";
+import SuccesAlert from "./alerts/SuccesAlert";
+import DangerAlert from "./alerts/DangerAlert";
 import useStatusStore from "../../../store/useStatusStore";
 
 export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
