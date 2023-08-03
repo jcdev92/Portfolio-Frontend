@@ -16,7 +16,7 @@ import { Loading } from "../Loading";
 export const Profile = () => {
   useStatusStore.getState().setSuccess(null);
   useStatusStore.getState().setError(null);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
   const url = "http://localhost:9000/api/v1/user";
   const { useGetProfile, patchProfile } = useProfile();
   useGetProfile(url);
@@ -36,6 +36,7 @@ export const Profile = () => {
     // console.log(data);
     // update the profile data
     patchProfile(patchUrl, data);
+    reset()
   };
 
   return (

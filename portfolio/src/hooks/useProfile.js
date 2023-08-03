@@ -39,7 +39,8 @@ const useProfile = () => {
       })
       .then((res) => {
         useStatusStore.getState().setSuccess(res.data.message);
-        useProfileStore.getState().setProfile(profile);
+        useProfileStore.getState().setProfile({...profile, ...data});
+        useStatusStore.getState().setLoading(false);
       })
       .catch((err) => {
         console.log(err.response?.data?.message);

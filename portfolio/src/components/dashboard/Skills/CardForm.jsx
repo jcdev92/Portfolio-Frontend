@@ -46,16 +46,22 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
   const onSubmit = (formData) => {
     const data = clearEmptyFields(formData);
     if (editMode == "edit") {
-      patchSkill(updateUrl, data)
+      patchSkill(updateUrl, data);
     } else if (editMode == "add") {
-      postSkill(createUrl, data)
+      postSkill(createUrl, data);
       reset({
         id: "",
         title: "",
-        icon: ""
-      })
+        icon: "",
+      });
+    }
+    if (success !== null) {
+      useStatusStore.getState().setError(null);
+    } else if (error !== null) {
+      useStatusStore.getState().setSuccess(null);
     }
   };
+
 
 
   return (
@@ -125,7 +131,9 @@ export const CardForm = ({ editMode, setEditMode, rowCellData }) => {
             <SuccesAlert message=" Skill created successfully" />
           )}
           {success && editMode == "edit" && !error && (
-            <SuccesAlert message={` Skill with id ${rowCellData?.id} updated successfully`}/>
+            <SuccesAlert
+              message={` Skill with id ${rowCellData?.id} updated successfully`}
+            />
           )}
           {error && <DangerAlert message={error} />}
         </div>
