@@ -30,11 +30,6 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
     useStatusStore.getState().setError(null);
     const url = `http://localhost:9000/api/v1/skill/${id}`;
     deleteSkill(url);
-    reset({
-      id: "",
-      title: "",
-      icon: "",
-    });
   };
 
   return (
@@ -84,6 +79,7 @@ const TableSkills = ({ setEditMode, setRowCellData }) => {
                       description="Are you sure you want to delete this skill?"
                       id={skill.id}
                       handleDelete={handleDelete}
+                      setEditMode={setEditMode}
                     />
                   </Table.Cell>
                 </Table.Row>

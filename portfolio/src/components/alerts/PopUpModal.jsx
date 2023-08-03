@@ -5,7 +5,7 @@ import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { AiFillDelete } from "react-icons/ai";
 
-export const PopUpModal = ({ description, id, handleDelete }) => {
+export const PopUpModal = ({ description, id, handleDelete, setEditMode }) => {
   const [openModal, setOpenModal] = useState();
   const props = { openModal, setOpenModal };
 
@@ -36,6 +36,7 @@ export const PopUpModal = ({ description, id, handleDelete }) => {
                 color="failure"
                 onClick={() => {
                   handleDelete(id);
+                  setEditMode("add");
                   props.setOpenModal(undefined);
                 }}
               >
