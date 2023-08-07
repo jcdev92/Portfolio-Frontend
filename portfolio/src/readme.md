@@ -9,5 +9,5 @@ En el dashboard ya llevo hecho el profile y el skills manager, dichos se uso com
 PD: React Flowbite y algunas veces flowbite puro (tailwind flowbite) se han usado como pre maquetas de tablas y de cards.
 
 #### PROJECTS
-Ahora vamos con projects, el cual alberga el administrador CRUD de los proyectos del portafolio, a partir de aqui el manejo del estado del servidor sera manejado con react query, mientras que el local seguira siendo manejado con zustand. Seguire usando tailwid y para tablas y cards estoy evaluando otras opciones ademas de flowbite.
+Ahora vamos con projects, el cual alberga el administrador CRUD de los proyectos del portafolio, a partir de aqui el manejo del estado del servidor sera manejado con react query, mientras que el local seguira siendo manejado con zustand. Seguire usando tailwid, para tablas y cards estoy evaluando otras opciones ademas de flowbite (por ejemplo mui components).
 
