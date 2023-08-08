@@ -1,6 +1,44 @@
+import { AiOutlinePlus } from "react-icons/ai";
+
 export const ProjectsTable = () => {
   return (
     <div className="w-5/6 h-5/6">
+      <div className="flex justify-between">
+        <div className="pb-4 bg-transparent dark:bg-gray-900">
+          <label htmlFor="table-search" className="sr-only">
+            Search Project
+          </label>
+          <div className="relative mt-1">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="table-search"
+              className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Search Project"
+            />
+          </div>
+        </div>
+        <button className="rounded-full h-1/5 backdrop-blur-sm bg-white/30 hover:bg-white hover:text-sky-800 hover:scale-110 transition-all ease-in-out delay-100">
+          <AiOutlinePlus className="text-md" />
+        </button>
+      </div>
+
       <div className="relative overflow-auto backdrop-blur-sm bg-white/30 w-full h-5/6 rounded-md shadow-md">
         <table className="w-full sm:rounded-lg text-sm text-left text-white dark:text-gray-400">
           <thead className="border-b text-xs text-white uppercase  dark:bg-gray-700 dark:text-gray-400">
