@@ -18,16 +18,16 @@ export const ProjectsTable = () => {
                 </div>
               </th>
               <th scope="col" className="px-6 py-3">
-                Product name
+                title
               </th>
               <th scope="col" className="px-6 py-3">
-                Color
+                description
               </th>
               <th scope="col" className="px-6 py-3">
-                Category
+                url
               </th>
               <th scope="col" className="px-6 py-3">
-                Price
+                github
               </th>
               <th scope="col" className="px-6 py-3">
                 Action
