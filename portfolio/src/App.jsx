@@ -12,28 +12,32 @@ import {
 } from "./pages/DashboardPage";
 import { NotFound } from "./components/NotFound.jsx";
 import { BlogPage } from "./pages/BlogPage";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Portfolio />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard/*" element={<Dashboard />}>
-            <Route path="" element={<DashboardProfile />} />
-            <Route path="skills" element={<DashboardSkills />} />
-            <Route path="projects" element={<DashboardProjects />} />
-            <Route path="social-media" element={<DashboardSocialMedia />} />
-            <Route path="blog" element={<DashboardBlog />} />
-            <Route path="*" element={<NotFound />} />
+    <QueryClientProvider client={queryClient}>
+      <>
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard/*" element={<Dashboard />}>
+              <Route path="" element={<DashboardProfile />} />
+              <Route path="skills" element={<DashboardSkills />} />
+              <Route path="projects" element={<DashboardProjects />} />
+              <Route path="social-media" element={<DashboardSocialMedia />} />
+              <Route path="blog" element={<DashboardBlog />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
           </Route>
-        </Route>
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </>
+    </QueryClientProvider>
   );
 }
 
