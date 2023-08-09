@@ -6,16 +6,25 @@ import { Loading } from "../../../components/Loading";
 import { useState } from "react";
 import { EditProject } from "./EditProject";
 import { AddProject } from "./AddProject";
+import useProjectsStore from "../../../store/useProjectsStore";
 
 export const ProjectsTable = () => {
-  const {
-    data: projects,
-    error,
-    isLoading,
-    isError,
-  } = useQuery({ queryKey: ["projects"], queryFn: getProjects });
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["projects"],
+    queryFn: getProjects,
+  });
+
+  // set local state of projects
+  const setProjects = useProjectsStore((state) => state.setProjects);
+  setProjects(data);
+  const projects = useProjectsStore((state) => state.projects);
 
   const [editMode, setEditMode] = useState("table");
+  const [selectedId, setSelectedId] = useState("")
+
+  const handleId = (id) => {
+    setSelectedId(id)
+  }
 
   return editMode === "table" ? (
     <div className="w-5/6 h-5/6">
@@ -119,7 +128,10 @@ export const ProjectsTable = () => {
                   <td className="px-6 py-4">
                     <button
                       className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
-                      onClick={setEditMode("edit")}
+                      onClick={() => {
+                        handleId(id)
+                        setEditMode("edit")
+                      }}
                     >
                       <AiFillEdit />
                     </button>
@@ -206,7 +218,7 @@ export const ProjectsTable = () => {
       </nav>
     </div>
   ) : editMode === "edit" ? (
-    <EditProject />
+    <EditProject setEditMode={setEditMode} selectedId={selectedId} />
   ) : editMode === "add" ? (
     <AddProject />
   ) : editMode === "table" && isLoading ? (
