@@ -1,7 +1,12 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { RiUploadCloud2Line } from "react-icons/ri";
+import { useForm } from "react-hook-form";
+
 // eslint-disable-next-line react/prop-types
 export const AddProject = ({ setEditMode }) => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 rounded-md shadow-md overflow-y-auto">
       <div className="flex w-full justify-between mb-8">
@@ -13,18 +18,20 @@ export const AddProject = ({ setEditMode }) => {
           <AiOutlineClose className="h-full w-full" />
         </button>
       </div>
-      <form className="pr-2">
+      <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="title"
+            id="title"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder=" "
             required
+            autoComplete="off"
+            {...register("title")}
           />
           <label
-            htmlFor="floating_text"
+            htmlFor="title"
             className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             Title
@@ -33,14 +40,16 @@ export const AddProject = ({ setEditMode }) => {
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="url"
+            id="url"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder=" "
             required
+            autoComplete="off"
+            {...register("url")}
           />
           <label
-            htmlFor="floating_text"
+            htmlFor="url"
             className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             URL
@@ -49,14 +58,16 @@ export const AddProject = ({ setEditMode }) => {
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="github"
+            id="github"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder=" "
             required
+            autoComplete="off"
+            {...register("github")}
           />
           <label
-            htmlFor="floating_text"
+            htmlFor="github"
             className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             Github
@@ -65,30 +76,34 @@ export const AddProject = ({ setEditMode }) => {
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="image"
+            id="image"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder=" "
             required
+            autoComplete="off"
+            {...register("image")}
           />
           <label
-            htmlFor="floating_text"
+            htmlFor="image"
             className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
             Image
           </label>
         </div>
         <label
-          htmlFor="message"
+          htmlFor="description"
           className="block mb-2 text-sm font-medium text-white dark:text-white"
         >
           Description
         </label>
         <textarea
-          id="message"
+          id="description"
           rows="4"
           className="block p-2.5 w-full text-sm text-white bg-transparent rounded-lg border border-gray-300 placeholder-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="description of the project..."
+          autoComplete="off"
+          {...register("description")}
         ></textarea>
         <div className="flex justify-center w-full">
           <button

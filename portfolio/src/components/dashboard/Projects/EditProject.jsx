@@ -9,15 +9,8 @@ export const EditProject = ({ setEditMode, selectedId }) => {
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { isDirty, isValid },
-  } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   const onSubmit = (data) => console.log(data);
-
-  console.log(watch("title").length); // watch input value by passing the name of it
 
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto rounded-md shadow-md">
@@ -38,9 +31,10 @@ export const EditProject = ({ setEditMode, selectedId }) => {
             type="text"
             name="title"
             id="title"
-            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
+            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-slate-300 text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={title}
             {...register("title")}
+            autoComplete="off"
           />
           <label
             htmlFor="floating_text"
@@ -54,9 +48,10 @@ export const EditProject = ({ setEditMode, selectedId }) => {
             type="text"
             name="url"
             id="url"
-            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
+            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-slate-300 text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={url}
             {...register("url")}
+            autoComplete="off"
           />
           <label
             htmlFor="floating_text"
@@ -70,9 +65,10 @@ export const EditProject = ({ setEditMode, selectedId }) => {
             type="text"
             name="github"
             id="github"
-            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
+            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-slate-300 text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={github}
             {...register("github")}
+            autoComplete="off"
           />
           <label
             htmlFor="floating_text"
@@ -87,9 +83,10 @@ export const EditProject = ({ setEditMode, selectedId }) => {
             type="text"
             name="image"
             id="image"
-            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
+            className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-slate-300 text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={image}
             {...register("image")}
+            autoComplete="off"
           />
           <label
             htmlFor="floating_text"
@@ -107,9 +104,10 @@ export const EditProject = ({ setEditMode, selectedId }) => {
         <textarea
           id="description"
           rows="4"
-          className="block p-2.5 w-full text-sm text-white bg-transparent rounded-lg border border-gray-300 placeholder-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block p-2.5 w-full text-sm text-white bg-transparent rounded-lg border border-gray-300 placeholder-slate-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={description}
           {...register("description")}
+          autoComplete="off"
         ></textarea>
         <div className="flex justify-center w-full">
           <button
