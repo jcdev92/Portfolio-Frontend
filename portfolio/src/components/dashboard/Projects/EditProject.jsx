@@ -1,12 +1,23 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { RxUpdate } from "react-icons/rx";
 import useProjectsStore from "../../../store/useProjectsStore";
+import { useForm } from "react-hook-form";
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId }) => {
   const projects = useProjectsStore((state) => state.projects);
 
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isDirty, isValid },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  console.log(watch("title").length); // watch input value by passing the name of it
 
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto rounded-md shadow-md">
@@ -21,15 +32,15 @@ export const EditProject = ({ setEditMode, selectedId }) => {
           <AiOutlineClose className="w-full h-full" />
         </button>
       </div>
-      <form className="pr-2">
+      <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="title"
+            id="title"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={title}
-            required
+            {...register("title")}
           />
           <label
             htmlFor="floating_text"
@@ -41,11 +52,11 @@ export const EditProject = ({ setEditMode, selectedId }) => {
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="url"
+            id="url"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={url}
-            required
+            {...register("url")}
           />
           <label
             htmlFor="floating_text"
@@ -57,11 +68,11 @@ export const EditProject = ({ setEditMode, selectedId }) => {
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="github"
+            id="github"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={github}
-            required
+            {...register("github")}
           />
           <label
             htmlFor="floating_text"
@@ -74,11 +85,11 @@ export const EditProject = ({ setEditMode, selectedId }) => {
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
-            name="floating_text"
-            id="floating_text"
+            name="image"
+            id="image"
             className="block py-2.5 px-0 w-full text-sm placeholder-transparent focus:placeholder-white text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-yellow-300 peer"
             placeholder={image}
-            required
+            {...register("image")}
           />
           <label
             htmlFor="floating_text"
@@ -94,15 +105,31 @@ export const EditProject = ({ setEditMode, selectedId }) => {
           Description
         </label>
         <textarea
-          id="message"
+          id="description"
           rows="4"
           className="block p-2.5 w-full text-sm text-white bg-transparent rounded-lg border border-gray-300 placeholder-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={description}
+          {...register("description")}
         ></textarea>
         <div className="flex justify-center w-full">
           <button
             type="submit"
-            className="text-white bg-transparent text-5xl mt-8 rounded-full hover:rotate-180 hover:scale-125 hover:text-yellow-300 transition-all ease-in-out duration-200 sm:w-auto text-center"
+            className={
+              watch("title").length === 0 &&
+              watch("url").length === 0 &&
+              watch("github").length === 0 &&
+              watch("image").length === 0 &&
+              watch("description").length === 0
+                ? "text-gray-400 bg-transparent text-5xl mt-8 rounded-full scale-75"
+                : "text-white bg-transparent text-5xl mt-8 rounded-full hover:text-yellow-300 hover:rotate-180 hover:scale-125  transition-all ease-in-out duration-200 sm:w-auto text-center"
+            }
+            disabled={
+              watch("title").length === 0 &&
+              watch("url").length === 0 &&
+              watch("github").length === 0 &&
+              watch("image").length === 0 &&
+              watch("description").length === 0
+            }
           >
             <RxUpdate className="w-full" />
           </button>
