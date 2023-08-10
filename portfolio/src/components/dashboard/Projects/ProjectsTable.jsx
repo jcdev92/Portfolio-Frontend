@@ -1,9 +1,9 @@
-import { AiOutlinePlus } from "react-icons/ai";
-import { AiFillEdit } from "react-icons/ai";
+import { TbDatabaseEdit } from "react-icons/tb";
+import { BsDatabaseFillAdd } from "react-icons/bs"
 import { useQuery } from "@tanstack/react-query";
 import { getProjects } from "../../../hooks/useProjects";
 import { Loading } from "../../../components/Loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditProject } from "./EditProject";
 import { AddProject } from "./AddProject";
 import useProjectsStore from "../../../store/useProjectsStore";
@@ -14,17 +14,24 @@ export const ProjectsTable = () => {
     queryFn: getProjects,
   });
 
-  // set local state of projects
+  // defining the projects state setter
   const setProjects = useProjectsStore((state) => state.setProjects);
-  setProjects(data);
+
+  // listening changes on data
+  useEffect(() => {
+    // setting the data on projects
+    setProjects(data);
+  }, [data, setProjects]);
+
+  // projects array
   const projects = useProjectsStore((state) => state.projects);
 
   const [editMode, setEditMode] = useState("table");
-  const [selectedId, setSelectedId] = useState("")
+  const [selectedId, setSelectedId] = useState("");
 
   const handleId = (id) => {
-    setSelectedId(id)
-  }
+    setSelectedId(id);
+  };
 
   return editMode === "table" ? (
     <div className="w-5/6 h-5/6">
@@ -59,8 +66,11 @@ export const ProjectsTable = () => {
             />
           </div>
         </div>
-        <button className="rounded-full h-1/5 backdrop-blur-sm bg-white/30 hover:bg-white hover:text-sky-800 hover:scale-110 transition-all ease-in-out delay-100">
-          <AiOutlinePlus className="text-md" />
+        <button
+          className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
+          onClick={() => setEditMode("add")}
+        >
+          <BsDatabaseFillAdd/>
         </button>
       </div>
       <div className="relative overflow-auto backdrop-blur-sm bg-white/30 w-full h-5/6 rounded-md shadow-md">
@@ -129,11 +139,11 @@ export const ProjectsTable = () => {
                     <button
                       className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
                       onClick={() => {
-                        handleId(id)
-                        setEditMode("edit")
+                        handleId(id);
+                        setEditMode("edit");
                       }}
                     >
-                      <AiFillEdit />
+                      <TbDatabaseEdit />
                     </button>
                   </td>
                 </tr>
@@ -220,7 +230,7 @@ export const ProjectsTable = () => {
   ) : editMode === "edit" ? (
     <EditProject setEditMode={setEditMode} selectedId={selectedId} />
   ) : editMode === "add" ? (
-    <AddProject />
+    <AddProject setEditMode={setEditMode} />
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (
