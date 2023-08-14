@@ -1,11 +1,16 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { RiUploadCloud2Line } from "react-icons/ri";
 import { useForm } from "react-hook-form";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
 
 // eslint-disable-next-line react/prop-types
 export const AddProject = ({ setEditMode }) => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    const cleanedData = clearEmptyFields(data);
+    console.log(cleanedData);
+    reset();
+  };
 
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 rounded-md shadow-md overflow-y-auto">
