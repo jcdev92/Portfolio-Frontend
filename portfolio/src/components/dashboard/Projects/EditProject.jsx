@@ -2,6 +2,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RxUpdate } from "react-icons/rx";
 import useProjectsStore from "../../../store/useProjectsStore";
 import { useForm } from "react-hook-form";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId }) => {
   const projects = useProjectsStore((state) => state.projects);
@@ -9,8 +10,38 @@ export const EditProject = ({ setEditMode, selectedId }) => {
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
 
-  const { register, handleSubmit, watch } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isDirty },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const dataCleaned = clearEmptyFields(data);
+    console.log(dataCleaned);
+    reset();
+  };
+
+  // watch all the form inputs
+  let { watchTitle, watchUrl, watchGithub, watchImage, watchDescription } =
+    watchingInputs({
+      watchTitle: watch("title"),
+      watchUrl: watch("url"),
+      watchGithub: watch("github"),
+      watchImage: watch("image"),
+      watchDescription: watch("description"),
+    });
+
+  // is the input empty or not?
+  const isCleanOrEmptyInput =
+    !isDirty ||
+    (watchTitle.length === 0 &&
+      watchUrl.length === 0 &&
+      watchGithub.length === 0 &&
+      watchImage.length === 0 &&
+      watchDescription.length === 0);
 
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto rounded-md shadow-md">
@@ -113,21 +144,11 @@ export const EditProject = ({ setEditMode, selectedId }) => {
           <button
             type="submit"
             className={
-              watch("title").length === 0 &&
-              watch("url").length === 0 &&
-              watch("github").length === 0 &&
-              watch("image").length === 0 &&
-              watch("description").length === 0
+              isCleanOrEmptyInput
                 ? "text-gray-400 bg-transparent text-5xl mt-8 rounded-full scale-75"
                 : "text-white bg-transparent text-5xl mt-8 rounded-full hover:text-yellow-300 hover:rotate-180 hover:scale-125  transition-all ease-in-out duration-200 sm:w-auto text-center"
             }
-            disabled={
-              watch("title").length === 0 &&
-              watch("url").length === 0 &&
-              watch("github").length === 0 &&
-              watch("image").length === 0 &&
-              watch("description").length === 0
-            }
+            disabled={isCleanOrEmptyInput}
           >
             <RxUpdate className="w-full" />
           </button>
@@ -135,4 +156,13 @@ export const EditProject = ({ setEditMode, selectedId }) => {
       </form>
     </div>
   );
+
+  function watchingInputs() {
+    let watchTitle = watch("title");
+    let watchUrl = watch("url");
+    let watchGithub = watch("github");
+    let watchImage = watch("image");
+    let watchDescription = watch("description");
+    return { watchTitle, watchUrl, watchGithub, watchImage, watchDescription };
+  }
 };

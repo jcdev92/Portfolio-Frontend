@@ -16,13 +16,13 @@ import { Loading } from "../Loading";
 export const Profile = () => {
   useStatusStore.getState().setSuccess(null);
   useStatusStore.getState().setError(null);
-  const { handleSubmit, register, reset } = useForm();
   const url = "http://localhost:9000/api/v1/user";
   const { useGetProfile, patchProfile } = useProfile();
   useGetProfile(url);
 
   // get the profile data from the store
   const profile = useProfileStore((state) => state.profile);
+  const { handleSubmit, register, reset } = useForm();
 
   const isLoading = useStatusStore((state) => state.loading);
   // get the id from the profile data
@@ -33,9 +33,9 @@ export const Profile = () => {
   const onSubmit = (formData) => {
     // remove empty fields
     const data = clearEmptyFields(formData);
-    
+
     patchProfile(patchUrl, data);
-    reset()
+    reset();
   };
 
   return (
