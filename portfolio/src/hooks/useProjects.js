@@ -33,10 +33,10 @@ export const addProject = async (project) => {
 
 // update projects with the axios configuration
 
-export const updateProject = async (id, project) => {
-  const res = await axios.put(`${url}/${id}`, project);
+export const updateProject = async ({id, ...project}) => {
+  const res = await axios.patch(`${url}/${id}`, project);
   return res.data;
-};
+}
 
 // delete projects with the axios configuration
 

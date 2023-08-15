@@ -3,12 +3,24 @@ import { RxUpdate } from "react-icons/rx";
 import useProjectsStore from "../../../store/useProjectsStore";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateProject } from "../../../hooks/useProjects";
+import { ErrorAlert } from "../Alerts/ErrorAlert";
+import { SuccessAlert } from "../Alerts/SuccessAlert";
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId }) => {
   const projects = useProjectsStore((state) => state.projects);
-
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: updateProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries("projects");
+    },
+  });
+
+  const { mutate, isError, isSuccess, error, status } = mutation;
 
   const {
     register,
@@ -18,9 +30,14 @@ export const EditProject = ({ setEditMode, selectedId }) => {
     reset,
   } = useForm();
 
+  // submiting the data to the server
   const onSubmit = (data) => {
     const dataCleaned = clearEmptyFields(data);
-    console.log(dataCleaned);
+    const newData = {
+      id: selectedId,
+      ...dataCleaned,
+    };
+    mutate(newData);
     reset();
   };
 
@@ -56,6 +73,11 @@ export const EditProject = ({ setEditMode, selectedId }) => {
           <AiOutlineClose className="w-full h-full" />
         </button>
       </div>
+      {isError ? (
+        <ErrorAlert error={error.response.data.message} />
+      ) : isSuccess ? (
+        <SuccessAlert status={status} />
+      ) : null}
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input
