@@ -4,7 +4,7 @@ export const SuccessAlert = ({ status }) => {
   return (
     <div
       id="alert-3"
-      className="flex items-center p-4 mb-4 text-green-600 backdrop-blur-sm bg-green/30 rounded-lg"
+      className="flex items-center p-4 my-4 text-green-600 backdrop-blur-sm bg-green/30 rounded-lg"
       role="alert"
     >
       <svg
