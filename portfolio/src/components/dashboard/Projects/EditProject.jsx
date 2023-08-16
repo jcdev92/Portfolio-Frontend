@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProject } from "../../../hooks/useProjects";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
+
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId }) => {
   const projects = useProjectsStore((state) => state.projects);
@@ -30,7 +31,7 @@ export const EditProject = ({ setEditMode, selectedId }) => {
     reset,
   } = useForm();
 
-  // submiting the data to the server
+  // submiting the data to the server and update de cached data
   const onSubmit = (data) => {
     const dataCleaned = clearEmptyFields(data);
     const newData = {

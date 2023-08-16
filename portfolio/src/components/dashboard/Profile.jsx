@@ -17,7 +17,7 @@ export const Profile = () => {
   useStatusStore.getState().setSuccess(null);
   useStatusStore.getState().setError(null);
   const url = "http://localhost:9000/api/v1/user";
-  const { useGetProfile, patchProfile } = useProfile();
+  const { useGetProfile, usePatchProfile } = useProfile();
   useGetProfile(url);
 
   // get the profile data from the store
@@ -30,11 +30,12 @@ export const Profile = () => {
   const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
 
   // update the profile data
-  const onSubmit = (formData) => {
+  const useOnSubmit = (formData) => {
     // remove empty fields
     const data = clearEmptyFields(formData);
 
-    patchProfile(patchUrl, data);
+    // update the profile data
+    usePatchProfile(patchUrl, data);
     reset();
   };
 
@@ -46,7 +47,7 @@ export const Profile = () => {
         ) : (
           <form
             className="flex flex-col gap-4"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(useOnSubmit)}
           >
             <div id="info" className="lg:grid gap-4 grid-cols-2">
               <Avatar size="xl" img={profile?.profileImg} bordered />

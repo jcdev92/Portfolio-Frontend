@@ -2,13 +2,26 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiUploadCloud2Line } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addProject } from "../../../hooks/useProjects";
+import { ErrorAlert } from "../Alerts/ErrorAlert";
+import { SuccessAlert } from "../Alerts/SuccessAlert";
 
 // eslint-disable-next-line react/prop-types
 export const AddProject = ({ setEditMode }) => {
   const { register, handleSubmit, reset } = useForm();
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: addProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries("projects");
+    },
+  });
+
+  const { mutate, isError, isSuccess, error, status } = mutation;
   const onSubmit = (data) => {
     const cleanedData = clearEmptyFields(data);
-    console.log(cleanedData);
+    mutate(cleanedData);
     reset();
   };
 
@@ -23,6 +36,11 @@ export const AddProject = ({ setEditMode }) => {
           <AiOutlineClose className="h-full w-full" />
         </button>
       </div>
+      {isError ? (
+        <ErrorAlert error={error.response.data.message} />
+      ) : isSuccess ? (
+        <SuccessAlert status={status} />
+      ) : null}
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input

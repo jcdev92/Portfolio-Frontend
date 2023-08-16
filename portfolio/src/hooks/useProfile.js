@@ -6,7 +6,7 @@ import axios from "axios";
 const useProfile = () => {
   
   const token = localStorage.getItem("token");
-  const profile = useProfileStore.getState().profile;
+  const profile = useProfileStore((state) => state.profile);
 
   const useGetProfile = (url) => {
     useEffect(
@@ -30,7 +30,7 @@ const useProfile = () => {
     );
   };
 
-  const patchProfile = (url, data) => {
+  const usePatchProfile = (url, data) => {
     axios
       .patch(url, data, {
         headers: {
@@ -47,7 +47,7 @@ const useProfile = () => {
       });
   };
 
-  return { useGetProfile, patchProfile };
+  return { useGetProfile, usePatchProfile };
 };
 
 export default useProfile;

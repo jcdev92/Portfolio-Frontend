@@ -23,6 +23,9 @@ export const SuccessAlert = ({ status }) => {
         className="ml-auto -mx-1.5 -my-1.5 bg-transparent text-green-500 rounded-lg p-1.5 hover:scale-50 transition-all ease-out duration-300 hover:text-green-300 inline-flex items-center justify-center h-8 w-8 0"
         data-dismiss-target="#alert-3"
         aria-label="Close"
+        onClick={() => {
+          document.getElementById("alert-3").style.display = "none";
+        }}
       >
         <span className="sr-only">Close</span>
         <svg
