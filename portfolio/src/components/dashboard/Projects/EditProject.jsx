@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProject } from "../../../hooks/useProjects";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
+import { Loading } from "../../Loading";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId }) => {
@@ -21,7 +22,7 @@ export const EditProject = ({ setEditMode, selectedId }) => {
     },
   });
 
-  const { mutate, isError, isSuccess, error, status } = mutation;
+  const { mutate, isError, isSuccess, error, status, isLoading } = mutation;
 
   const {
     register,
@@ -74,7 +75,9 @@ export const EditProject = ({ setEditMode, selectedId }) => {
           <AiOutlineClose className="w-full h-full" />
         </button>
       </div>
-      {isError ? (
+      {isLoading ? (
+        <Loading />
+      ) : isError ? (
         <ErrorAlert error={error.response.data.message} />
       ) : isSuccess ? (
         <SuccessAlert status={status} />
@@ -177,6 +180,7 @@ export const EditProject = ({ setEditMode, selectedId }) => {
           </button>
         </div>
       </form>
+
     </div>
   );
 

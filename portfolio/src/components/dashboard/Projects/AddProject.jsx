@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addProject } from "../../../hooks/useProjects";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
+import { Loading } from "../../Loading";
 
 // eslint-disable-next-line react/prop-types
 export const AddProject = ({ setEditMode }) => {
@@ -18,7 +19,7 @@ export const AddProject = ({ setEditMode }) => {
     },
   });
 
-  const { mutate, isError, isSuccess, error, status } = mutation;
+  const { mutate, isError, isSuccess, error, status, isLoading } = mutation;
   const onSubmit = (data) => {
     const cleanedData = clearEmptyFields(data);
     mutate(cleanedData);
@@ -36,7 +37,9 @@ export const AddProject = ({ setEditMode }) => {
           <AiOutlineClose className="h-full w-full" />
         </button>
       </div>
-      {isError ? (
+      {isLoading ? (
+        <Loading />
+      ) : isError ? (
         <ErrorAlert error={error.response.data.message} />
       ) : isSuccess ? (
         <SuccessAlert status={status} />

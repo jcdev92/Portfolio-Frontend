@@ -145,6 +145,7 @@ export const Profile = () => {
                 <Label value="About Me" className="text-white drop-shadow-md" />
               </div>
               <Textarea
+              className="overflow-y-auto"
                 id="aboutMe"
                 placeholder={profile?.aboutMe}
                 rows={4}
