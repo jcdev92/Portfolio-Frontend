@@ -9,33 +9,45 @@ import {
 import { useForm } from "react-hook-form";
 import useProfileStore from "../../store/useProfileStore";
 import { clearEmptyFields } from "../../utils/utilFunctions";
-import useProfile from "../../hooks/useProfile";
-import useStatusStore from "../../store/useStatusStore";
+import { getProfile, updateProfile } from "../../hooks/useProfile";
 import { Loading } from "../Loading";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 
 export const Profile = () => {
-  useStatusStore.getState().setSuccess(null);
-  useStatusStore.getState().setError(null);
-  const url = "http://localhost:9000/api/v1/user";
-  const { useGetProfile, usePatchProfile } = useProfile();
-  useGetProfile(url);
-
-  // get the profile data from the store
-  const profile = useProfileStore((state) => state.profile);
   const { handleSubmit, register, reset } = useForm();
 
-  const isLoading = useStatusStore((state) => state.loading);
-  // get the id from the profile data
-  const id = profile?.id;
-  const patchUrl = `http://localhost:9000/api/v1/user/${id}/`;
+  const { data, isLoading } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getProfile,
+    onSuccess: (data) => {
+      useProfileStore.getState().setProfile(data);
+    },
+  });
+
+  // mutation to update the profile
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: updateProfile,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["profile"]);
+    },
+  });
+
+  // mutate function destructuring
+  const { mutate } = mutation;
 
   // update the profile data
-  const useOnSubmit = (formData) => {
+  const onSubmit = (formData) => {
     // remove empty fields
-    const data = clearEmptyFields(formData);
-
-    // update the profile data
-    usePatchProfile(patchUrl, data);
+    const dataCleaned = clearEmptyFields(formData);
+    // data to send to the server
+    const newData = {
+      id: data?.id,
+      ...dataCleaned,
+    };
+    // mutate the data
+    mutate(newData);
+    // clear the form
     reset();
   };
 
@@ -47,17 +59,17 @@ export const Profile = () => {
         ) : (
           <form
             className="flex flex-col gap-4"
-            onSubmit={handleSubmit(useOnSubmit)}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <div id="info" className="lg:grid gap-4 grid-cols-2">
-              <Avatar size="xl" img={profile?.profileImg} bordered />
+              <Avatar size="xl" img={data?.profileImg} bordered />
               <div className="flex flex-col gap-4">
                 <div className="mb-2 block">
                   <Label value="Name" className="text-white drop-shadow-md" />
                 </div>
                 <TextInput
                   id="firstName"
-                  placeholder={profile?.firstName}
+                  placeholder={data?.firstName}
                   type="text"
                   {...register("firstName")}
                 />
@@ -69,7 +81,7 @@ export const Profile = () => {
                 </div>
                 <TextInput
                   id="lastName"
-                  placeholder={profile?.lastName}
+                  placeholder={data?.lastName}
                   type="text"
                   {...register("lastName")}
                 />
@@ -81,7 +93,7 @@ export const Profile = () => {
                 </div>
                 <TextInput
                   id="email"
-                  placeholder={profile?.email}
+                  placeholder={data?.email}
                   type="email"
                   {...register("email")}
                 />
@@ -92,7 +104,7 @@ export const Profile = () => {
                 </div>
                 <TextInput
                   id="phone"
-                  placeholder={profile?.phone}
+                  placeholder={data?.phone}
                   type="text"
                   {...register("phone")}
                 />
@@ -106,7 +118,7 @@ export const Profile = () => {
                 </div>
                 <TextInput
                   id="profileImg"
-                  placeholder={profile?.profileImg}
+                  placeholder={data?.profileImg}
                   type="text"
                   {...register("profileImg")}
                 />
@@ -120,7 +132,7 @@ export const Profile = () => {
                 </div>
                 <TextInput
                   id="bioImage"
-                  placeholder={profile?.bioImage}
+                  placeholder={data?.bioImage}
                   type="text"
                   {...register("bioImage")}
                 />
@@ -135,7 +147,7 @@ export const Profile = () => {
               </div>
               <TextInput
                 id="jobTitle"
-                placeholder={profile?.jobTitle}
+                placeholder={data?.jobTitle}
                 type="text"
                 {...register("jobTitle")}
               />
@@ -145,9 +157,9 @@ export const Profile = () => {
                 <Label value="About Me" className="text-white drop-shadow-md" />
               </div>
               <Textarea
-              className="overflow-y-auto"
+                className="overflow-y-auto"
                 id="aboutMe"
-                placeholder={profile?.aboutMe}
+                placeholder={data?.aboutMe}
                 rows={4}
                 {...register("aboutMe")}
               />
@@ -161,7 +173,7 @@ export const Profile = () => {
               </div>
               <Textarea
                 id="biography"
-                placeholder={profile?.biography}
+                placeholder={data?.biography}
                 rows={4}
                 {...register("biography")}
               />

@@ -1,6 +1,4 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
 import { Skills } from "../components/dashboard/Skills/Skills";
 import { SidebarComponent } from "../components/dashboard/SidebarComponent";
@@ -9,12 +7,6 @@ import { SocialMedia } from "../components/dashboard/SocialMedia/SocialMedia";
 import { BlogDashboard } from "../components/dashboard/BlogDashboard/BlogDashboard";
 
 export const Dashboard = () => {
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   return (
     <div
       className="

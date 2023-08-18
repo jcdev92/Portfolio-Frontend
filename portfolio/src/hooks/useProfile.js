@@ -1,53 +1,35 @@
-import { useEffect } from "react";
-import useProfileStore from "../store/useProfileStore";
-import useStatusStore from "../store/useStatusStore";
 import axios from "axios";
 
-const useProfile = () => {
-  
-  const token = localStorage.getItem("token");
-  const profile = useProfileStore((state) => state.profile);
+const url = "http://localhost:9000/api/v1/user";
+const token = localStorage.getItem("token");
 
-  const useGetProfile = (url) => {
-    useEffect(
-      () => {
-        axios
-          .get(url, {
-            headers: {
-              Authorization: `jwt ${token}`,
-            },
-          })
-          .then((res) => {
-            useProfileStore.getState().setProfile(res.data.data[0]);
-            useStatusStore.getState().setLoading(false);
-          })
-          .catch((err) => {
-            useStatusStore.getState().setError(err.response.data.message);
-            useStatusStore.getState().setLoading(false);
-          });
-      },
-      [url]
-    );
-  };
+// axios configuration
 
-  const usePatchProfile = (url, data) => {
-    axios
-      .patch(url, data, {
-        headers: {
-          Authorization: `jwt ${token}`,
-        },
-      })
-      .then((res) => {
-        useStatusStore.getState().setSuccess(res.data.message);
-        useProfileStore.getState().setProfile({...profile, ...data});
-        useStatusStore.getState().setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err.response?.data?.message);
-      });
-  };
+axios.defaults.baseURL = url;
 
-  return { useGetProfile, usePatchProfile };
-};
+axios.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = `jwt ${token}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-export default useProfile;
+// get profile with the axios configuration
+
+export const getProfile = async () => {
+  const res = await axios.get(url);
+  return res.data.data[0];
+}
+
+
+// update profile with the axios configuration
+
+export const updateProfile = async ({id, ...profile}) => {
+  const res = await axios.patch(`${url}/${id}`, profile);
+  return res.data;
+}
+
+

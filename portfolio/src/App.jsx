@@ -13,6 +13,7 @@ import {
 import { NotFound } from "./components/NotFound.jsx";
 import { BlogPage } from "./pages/BlogPage";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient();
 import "./App.css";
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
