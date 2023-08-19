@@ -10,7 +10,7 @@ import { Loading } from "../../Loading";
 import useSkillsStore from "../../../store/useSkillsStore";
 
 // eslint-disable-next-line react/prop-types
-export const EditSkill = ({ setEditMode, selectedId }) => {
+export const EditSkill = ({ setEditMode, selectedId, keyword }) => {
   const skills = useSkillsStore((state) => state.skills);
   const skill = skills.find((skill) => skill.id === selectedId);
   const { title, icon } = skill;
@@ -18,7 +18,7 @@ export const EditSkill = ({ setEditMode, selectedId }) => {
   const mutation = useMutation({
     mutationFn: updateSkill,
     onSuccess: () => {
-      queryClient.invalidateQueries("skills");
+      queryClient.invalidateQueries(keyword);
     },
   });
 

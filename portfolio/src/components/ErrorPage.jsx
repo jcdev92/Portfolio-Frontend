@@ -1,6 +1,5 @@
-import React from "react";
-
-export const NotFound = () => {
+/* eslint-disable react/prop-types */
+export const ErrorPage = ({error}) => {
   return (
     <div
       className="
@@ -12,7 +11,7 @@ export const NotFound = () => {
     bg-gray-900
     "
     >
-      <h1 className="text-4xl text-red-700 font-bebas">404 Not Found</h1>
+      <h1 className="text-4xl text-red-700 font-bebas">{error}</h1>
     </div>
   );
 };

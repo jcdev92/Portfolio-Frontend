@@ -10,7 +10,7 @@ import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
 
 // eslint-disable-next-line react/prop-types
-export const EditProject = ({ setEditMode, selectedId }) => {
+export const EditProject = ({ setEditMode, selectedId, keyword }) => {
   const projects = useProjectsStore((state) => state.projects);
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
@@ -18,7 +18,7 @@ export const EditProject = ({ setEditMode, selectedId }) => {
   const mutation = useMutation({
     mutationFn: updateProject,
     onSuccess: () => {
-      queryClient.invalidateQueries("projects");
+      queryClient.invalidateQueries(keyword);
     },
   });
 

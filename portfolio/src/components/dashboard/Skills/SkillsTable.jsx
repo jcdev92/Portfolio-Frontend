@@ -7,11 +7,13 @@ import { EditSkill } from "./EditSkill";
 import { AddSkill } from "./AddSkill";
 import useSkillsStore from "../../../store/useSkillsStore";
 import { DeleteAlert } from "../Alerts/DeleteAlert";
-import { getSkills } from "../../../hooks/useSkills";
+import { deleteSkill, getSkills } from "../../../hooks/useSkills";
+import { ErrorPage } from "../../ErrorPage";
 
 export const SkillsTable = () => {
+  const keyword = "skills";
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ["skills"],
+    queryKey: [keyword],
     queryFn: getSkills,
     onSuccess: (data) => {
       useSkillsStore.getState().setSkills(data);
@@ -228,10 +230,15 @@ export const SkillsTable = () => {
   ) : editMode === "add" ? (
     <AddSkill setEditMode={setEditMode} />
   ) : editMode === "delete" ? (
-    <DeleteAlert setEditMode={setEditMode} selectedId={selectedId} />
+    <DeleteAlert
+      setEditMode={setEditMode}
+      selectedId={selectedId}
+      deleteFn={deleteSkill}
+      keyword={keyword}
+    />
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (
-    <h1>Error</h1>
+    <ErrorPage error={error} />
   );
 };
