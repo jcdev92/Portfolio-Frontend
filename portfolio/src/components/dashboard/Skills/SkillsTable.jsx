@@ -1,20 +1,20 @@
 import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
-import { getProjects } from "../../../hooks/useProjects";
-import { Loading } from "../../../components/Loading";
+import { Loading } from "../../Loading";
 import { useState } from "react";
-import { EditProject } from "./EditProject";
-import { AddProject } from "./AddProject";
-import useProjectsStore from "../../../store/useProjectsStore";
+import { EditSkill } from "./EditSkill";
+import { AddSkill } from "./AddSkill";
+import useSkillsStore from "../../../store/useSkillsStore";
 import { DeleteAlert } from "../Alerts/DeleteAlert";
+import { getSkills } from "../../../hooks/useSkills";
 
-export const ProjectsTable = () => {
+export const SkillsTable = () => {
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ["projects"],
-    queryFn: getProjects,
+    queryKey: ["skills"],
+    queryFn: getSkills,
     onSuccess: (data) => {
-      useProjectsStore.getState().setProjects(data);
+      useSkillsStore.getState().setSkills(data);
     },
   });
 
@@ -30,7 +30,7 @@ export const ProjectsTable = () => {
       <div className="flex justify-between">
         <div className="pb-4 bg-transparent dark:bg-gray-900">
           <label htmlFor="table-search" className="sr-only">
-            Search Project
+            Search Skill
           </label>
           <div className="relative mt-1">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -54,7 +54,7 @@ export const ProjectsTable = () => {
               type="text"
               id="table-search"
               className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search Project"
+              placeholder="Search Skill"
             />
           </div>
         </div>
@@ -85,10 +85,7 @@ export const ProjectsTable = () => {
                 <h1 className="font-bebas font-light text-lg">title</h1>
               </th>
               <th scope="col" className="px-6 py-3">
-                <h1 className="font-bebas font-light text-lg">description</h1>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <h1 className="font-bebas font-light text-lg">url</h1>
+                <h1 className="font-bebas font-light text-lg">icon</h1>
               </th>
               <th scope="col" className="px-6 py-3">
                 <h1 className="font-bebas font-light text-lg">action</h1>
@@ -99,7 +96,7 @@ export const ProjectsTable = () => {
             {isError ? (
               <h1>{error}</h1>
             ) : (
-              data?.map(({ id, title, description, url }) => (
+              data?.map(({ id, title, icon }) => (
                 <tr key={id} className="w-auto h-auto">
                   <td className="w-4 p-4">
                     <div className="flex items-center">
@@ -123,12 +120,7 @@ export const ProjectsTable = () => {
                     {title}
                   </th>
                   <td className="px-6 py-4">
-                    <p className="truncate overflow-ellipsis w-40">
-                      {description}
-                    </p>
-                  </td>
-                  <td className="px-6 py-4">
-                    <p className="truncate overflow-ellipsis w-40">{url}</p>
+                    <img src={icon} alt={title} height={30} width={30} />
                   </td>
                   <td className="flex px-6 py-4 gap-5">
                     <button
@@ -232,9 +224,9 @@ export const ProjectsTable = () => {
       </nav>
     </div>
   ) : editMode === "edit" ? (
-    <EditProject setEditMode={setEditMode} selectedId={selectedId} />
+    <EditSkill setEditMode={setEditMode} selectedId={selectedId} />
   ) : editMode === "add" ? (
-    <AddProject setEditMode={setEditMode} />
+    <AddSkill setEditMode={setEditMode} />
   ) : editMode === "delete" ? (
     <DeleteAlert setEditMode={setEditMode} selectedId={selectedId} />
   ) : editMode === "table" && isLoading ? (

@@ -7,10 +7,12 @@ export const SocialMedia = () => {
   useStatusStore.getState().setError(null);
 
   // working data importation from api deactivated while finishing other components
-  const { data, isLoading, isError, error } = useQuery({"key": "socialMedia", "queryFn": getSocialMedia});
+  const { data } = useQuery({ key: "socialMedia", queryFn: getSocialMedia });
   console.log(data);
 
-  return <div className="
+  return (
+    <div
+      className="
     flex
     flex-col
     w-full
@@ -20,7 +22,9 @@ export const SocialMedia = () => {
     justify-center
     text-white
     text-4xl
-  ">
-    <h1>Social Media</h1>
-  </div>;
+  "
+    >
+      <h1>Social Media</h1>
+    </div>
+  );
 };

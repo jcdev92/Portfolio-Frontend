@@ -1,17 +1,11 @@
-import {
-  Card,
-  TextInput,
-  Label,
-  Textarea,
-  Button,
-  Avatar,
-} from "flowbite-react";
+import { Card, TextInput, Label, Textarea, Avatar } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import useProfileStore from "../../store/useProfileStore";
 import { clearEmptyFields } from "../../utils/utilFunctions";
 import { getProfile, updateProfile } from "../../hooks/useProfile";
 import { Loading } from "../Loading";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { RxUpdate } from "react-icons/rx";
 
 export const Profile = () => {
   const { handleSubmit, register, reset } = useForm();
@@ -180,9 +174,14 @@ export const Profile = () => {
             </div>
             <div className="flex flex-row justify-center">
               <div className="mb-2 block">
-                <Button gradientDuoTone="purpleToBlue" outline type="submit">
-                  Update Profile
-                </Button>
+                <button
+                  type="submit"
+                  className={
+                    "text-white bg-transparent text-5xl mt-8 rounded-full hover:text-yellow-300 hover:rotate-180 hover:scale-125  transition-all ease-in-out duration-200 sm:w-auto text-center"
+                  }
+                >
+                  <RxUpdate className="w-full" />
+                </button>
               </div>
             </div>
           </form>

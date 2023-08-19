@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button, TextInput } from "flowbite-react";
 import axios from "axios";
-import DangerAlert from "./dashboard/Skills/alerts/DangerAlert";
+import { ErrorAlert } from "./dashboard/Alerts/ErrorAlert";
 import { FaM } from "react-icons/fa6";
 import { AiFillLock } from "react-icons/ai";
 
@@ -78,7 +78,7 @@ export const Login = () => {
           />
         </div>
         <Button type="submit">Login</Button>
-        {err && <DangerAlert message="Invalid credentials! " setErr={setErr} />}
+        {err && <ErrorAlert error={err} />}
       </form>
     </div>
   );
