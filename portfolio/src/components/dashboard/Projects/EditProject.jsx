@@ -8,6 +8,7 @@ import { updateProject } from "../../../hooks/useProjects";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
+import { DropdownSkills } from "./DropdownSkills";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId, keyword }) => {
@@ -76,6 +77,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
       ) : isSuccess ? (
         <SuccessAlert status={status} />
       ) : null}
+        <DropdownSkills />
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -160,6 +162,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
           {...register("description")}
           autoComplete="off"
         ></textarea>
+        
         <div className="flex justify-center w-full">
           <button
             type="submit"

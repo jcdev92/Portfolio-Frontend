@@ -9,6 +9,8 @@ import useSkillsStore from "../../../store/useSkillsStore";
 import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { deleteSkill, getSkills } from "../../../hooks/useSkills";
 import { ErrorPage } from "../../ErrorPage";
+import { SearchBar } from "../SearchBar/SearchBar";
+import Pagination from "../Pagination/Pagination";
 
 export const SkillsTable = () => {
   const keyword = "skills";
@@ -30,36 +32,7 @@ export const SkillsTable = () => {
   return editMode === "table" ? (
     <div className="w-5/6 h-5/6">
       <div className="flex justify-between">
-        <div className="pb-4 bg-transparent dark:bg-gray-900">
-          <label htmlFor="table-search" className="sr-only">
-            Search Skill
-          </label>
-          <div className="relative mt-1">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="table-search"
-              className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search Skill"
-            />
-          </div>
-        </div>
+        <SearchBar />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => setEditMode("add")}
@@ -150,80 +123,7 @@ export const SkillsTable = () => {
           </tbody>
         </table>
       </div>
-      <nav
-        className="flex items-center justify-between pt-4 "
-        aria-label="Table navigation"
-      >
-        <span className="text-sm font-normal text-gray-200 dark:text-gray-400">
-          Showing{" "}
-          <span className="font-semibold text-yellow-400 dark:text-white">
-            1-10
-          </span>{" "}
-          of{" "}
-          <span className="font-semibold text-yellow-400 dark:text-white">
-            1000
-          </span>
-        </span>
-        <ul className="inline-flex -space-x-px text-sm h-8 backdrop-blur-sm bg-white/30">
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-white  border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              Previous
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              1
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              2
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-current="page"
-              className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-            >
-              3
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              4
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              5
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-3 h-8 leading-tight text-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <Pagination />
     </div>
   ) : editMode === "edit" ? (
     <EditSkill setEditMode={setEditMode} selectedId={selectedId} />

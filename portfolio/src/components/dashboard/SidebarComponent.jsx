@@ -26,7 +26,7 @@ export const SidebarComponent = () => {
     <>
       <aside
         id="default-sidebar"
-        className="hidden md:block h-5/6 w-2/12 bg-transparent w-2/10 dark:bg-gray-800"
+        className="hidden md:block h-5/6 bg-transparent w-1/5 dark:bg-gray-800"
         aria-label="Sidebar"
       >
         <div className="h-full ml-3 px-4 py-4 overflow-y-auto backdrop-blur-sm bg-white/30  dark:bg-gray-800 rounded-md">
