@@ -40,9 +40,9 @@ export const DropdownSkills = ({ project, mutateSkills }) => {
         className="backdrop-blur-sm bg-white/30"
       >
         {skills?.map(({ id, title, icon }) => (
-          <div
+          <Dropdown.Item
             key={id}
-            className="flex w-full h-full my-4 px-8 hover:text-white hover:scale-125 transition-all ease-in-out duration-150"
+            className="flex bg-transparent hover:text-yellow-300 hover:scale-90 hover:bg-transparent transition-all ease-in-out duration-150"
           >
             <button
               className="flex w-full justify-around gap-4"
@@ -51,7 +51,7 @@ export const DropdownSkills = ({ project, mutateSkills }) => {
               {title}
               <img src={icon} alt={title} height={20} width={20} />
             </button>
-          </div>
+          </Dropdown.Item>
         ))}
       </Dropdown>
     </div>
