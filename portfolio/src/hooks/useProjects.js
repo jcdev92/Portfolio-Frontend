@@ -44,3 +44,17 @@ export const deleteProject = async (id) => {
   const res = await axios.delete(`${url}/${id}`);
   return res.data;
 };
+
+
+// asociate skill to project
+export const skillToProject = async ({id, ...data}) => {
+  const res = await axios.post(`${url}/${id}/skills`, data);
+  return res.data;
+}
+
+// delete asociation 
+export const DeleteSkillToProject = async ({id, ...data}) => {
+  const res = await axios.delete(`${url}/${id}/skills`, data);
+  return res.data;
+}
+

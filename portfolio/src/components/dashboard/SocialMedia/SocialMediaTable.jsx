@@ -13,7 +13,6 @@ import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { ErrorPage } from "../../ErrorPage";
 import useSocialStore from "../../../store/useSocialStore";
 import { SearchBar } from "../SearchBar/SearchBar";
-import Pagination from "../Pagination/Pagination";
 
 export const SocialMediaTable = () => {
   const keyword = "social";
@@ -132,7 +131,6 @@ export const SocialMediaTable = () => {
           </tbody>
         </table>
       </div>
-      <Pagination />
     </div>
   ) : editMode === "edit" ? (
     <EditSocialMedia

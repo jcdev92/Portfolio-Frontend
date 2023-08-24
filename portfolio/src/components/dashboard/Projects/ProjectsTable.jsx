@@ -10,7 +10,6 @@ import useProjectsStore from "../../../store/useProjectsStore";
 import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { ErrorPage } from "../../ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
-import Pagination from "../Pagination/Pagination";
 
 export const ProjectsTable = () => {
   const keyword = "projects";
@@ -131,7 +130,6 @@ export const ProjectsTable = () => {
           </tbody>
         </table>
       </div>
-      <Pagination />
     </div>
   ) : editMode === "edit" ? (
     <EditProject

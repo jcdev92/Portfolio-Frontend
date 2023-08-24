@@ -10,7 +10,6 @@ import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { deleteSkill, getSkills } from "../../../hooks/useSkills";
 import { ErrorPage } from "../../ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
-import Pagination from "../Pagination/Pagination";
 
 export const SkillsTable = () => {
   const keyword = "skills";
@@ -123,7 +122,6 @@ export const SkillsTable = () => {
           </tbody>
         </table>
       </div>
-      <Pagination />
     </div>
   ) : editMode === "edit" ? (
     <EditSkill setEditMode={setEditMode} selectedId={selectedId} />

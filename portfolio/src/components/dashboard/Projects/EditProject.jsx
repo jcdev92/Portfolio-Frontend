@@ -9,6 +9,7 @@ import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
 import { DropdownSkills } from "./DropdownSkills";
+import SkillsContainer from "./SkillsContainer";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId, keyword }) => {
@@ -77,8 +78,9 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
       ) : isSuccess ? (
         <SuccessAlert status={status} />
       ) : null}
-        <DropdownSkills />
+        <DropdownSkills project={project} keyword={keyword}/>
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
+        <SkillsContainer project={project} />
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
