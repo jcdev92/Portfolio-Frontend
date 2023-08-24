@@ -2,7 +2,7 @@
 
 const SkillsContainer = ({ project }) => {
   const { ProjectsSkills } = project;
-  console.log(ProjectsSkills);
+  
   return (
     <div className="relative z-0 w-full mb-6 group">
       <div className="border overflow-y-auto rounded-md w-full flex justify-around py-4">

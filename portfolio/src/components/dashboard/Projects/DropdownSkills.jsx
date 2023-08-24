@@ -2,21 +2,23 @@
 "use client";
 import useSkillsStore from "../../../store/useSkillsStore";
 import { Dropdown } from "flowbite-react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { skillToProject } from "../../../hooks/useProjects";
+import { getSkills } from "../../../hooks/useSkills";
+import { useQuery } from "@tanstack/react-query";
 
-export const DropdownSkills = ({ project, keyword }) => {
-  const skills = useSkillsStore.getState().skills;
-  const queryClient = useQueryClient();
-  const mutation = useMutation({
-    mutationFn: skillToProject,
-    onSuccess: () => {
-      queryClient.invalidateQueries(keyword);
-    },
+export const DropdownSkills = ({ project, mutateSkills }) => {
+  // if the skills are not in the store yet, get them from the api
+  const { data } = useQuery({
+    queryFn: getSkills,
+    queryKey: ["skills"],
   });
 
-  const { mutate } = mutation;
+  let skills;
 
+  useSkillsStore.getState().skills !== null
+    ? (skills = useSkillsStore.getState().skills)
+    : (skills = data);
+
+  // handling the data to update de skills
   const handleData = (id) => {
     const data = {
       //object id, it could be any, its just for the parameter query
@@ -26,7 +28,7 @@ export const DropdownSkills = ({ project, keyword }) => {
       // skill id, it needs to be the id of the skill to join to the project
       skillId: id,
     };
-    mutate(data);
+    mutateSkills(data);
   };
 
   return (
@@ -37,7 +39,7 @@ export const DropdownSkills = ({ project, keyword }) => {
         placement="right-start"
         className="backdrop-blur-sm bg-white/30"
       >
-        {skills.map(({ id, title, icon }) => (
+        {skills?.map(({ id, title, icon }) => (
           <div
             key={id}
             className="flex w-full h-full my-4 px-8 hover:text-white hover:scale-125 transition-all ease-in-out duration-150"

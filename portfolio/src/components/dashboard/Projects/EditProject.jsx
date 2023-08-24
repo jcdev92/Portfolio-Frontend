@@ -10,6 +10,7 @@ import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
 import { DropdownSkills } from "./DropdownSkills";
 import SkillsContainer from "./SkillsContainer";
+import { skillToProject } from "../../../hooks/useProjects";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId, keyword }) => {
@@ -17,14 +18,23 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
   const queryClient = useQueryClient();
-  const mutation = useMutation({
+
+  // update the data of the selected project
+  const mutationForm = useMutation({
     mutationFn: updateProject,
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },
   });
 
-  const { mutate, isError, isSuccess, error, status, isLoading } = mutation;
+  const {
+    mutate: mutateForm,
+    isError,
+    error,
+    status,
+    isLoading,
+    isSuccess,
+  } = mutationForm;
 
   const {
     register,
@@ -36,20 +46,37 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
 
   // submiting the data to the server and update de cached data
   const onSubmit = (data) => {
+    //cleaning empty form fields
     const dataCleaned = clearEmptyFields(data);
+    // this is the data to update, the id of the selected project to update plus the data from the form cleaned
     const newData = {
       id: selectedId,
       ...dataCleaned,
     };
-    mutate(newData);
+    // updating the data of the selected project
+    mutateForm(newData);
     reset();
   };
+
+  // add a skill to a project and mutate the old stored data
+  const mutationSkillsProject = useMutation({
+    mutationFn: skillToProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries(keyword);
+    },
+  });
+
+  const {
+    mutate: mutateSkills,
+    isError: isErrorSkills,
+    error: errorSkills,
+  } = mutationSkillsProject;
 
   // watch all the form inputs
   let { watchTitle, watchUrl, watchGithub, watchImage, watchDescription } =
     watchingInputs();
 
-  // is the input empty or not?
+  // is the input empty or not? this condition prevent to send forms whit completly data empty
   const isCleanOrEmptyInput =
     !isDirty ||
     (watchTitle.length === 0 &&
@@ -75,10 +102,12 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
         <Loading />
       ) : isError ? (
         <ErrorAlert error={error.response.data.message} />
+      ) : isErrorSkills ? (
+        <ErrorAlert error={errorSkills.response.data.message} />
       ) : isSuccess ? (
         <SuccessAlert status={status} />
       ) : null}
-        <DropdownSkills project={project} keyword={keyword}/>
+      <DropdownSkills project={project} mutateSkills={mutateSkills} />
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <SkillsContainer project={project} />
         <div className="relative z-0 w-full mb-6 group">
@@ -164,7 +193,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
           {...register("description")}
           autoComplete="off"
         ></textarea>
-        
+
         <div className="flex justify-center w-full">
           <button
             type="submit"
@@ -182,6 +211,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
     </div>
   );
 
+  // This function is used to watch the inputs and return the values of the inputs
   function watchingInputs() {
     let watchTitle = watch("title");
     let watchUrl = watch("url");
