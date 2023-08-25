@@ -20,7 +20,7 @@ const SkillsContainer = ({ project, mutateDeleteSkill }) => {
   return (
     <div className="relative z-0 w-full mb-6 group">
       <h5 className="font-bebas pt-4 text-2xl">Project Skills</h5>
-      <div className="rounded-md w-full flex justify-around p-4 flex-wrap gap-4">
+      <div className="rounded-md w-full flex justify-around items-center p-4 flex-wrap gap-4">
         {ProjectsSkills.map(({ Skill }) => (
           <div
             key={Skill.id}

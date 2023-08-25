@@ -9,7 +9,7 @@ import {
   DashboardProjects,
   DashboardSocialMedia,
   DashboardBlog,
-} from "./pages/DashboardPage";
+} from "./pages/DashboardPage.jsx";
 import { ErrorPage } from "./components/ErrorPage.jsx";
 import { BlogPage } from "./pages/BlogPage";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
