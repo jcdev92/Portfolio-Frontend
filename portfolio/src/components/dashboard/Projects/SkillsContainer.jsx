@@ -19,7 +19,7 @@ const SkillsContainer = ({ project, mutateDeleteSkill }) => {
 
   return (
     <div className="relative z-0 w-full mb-6 group">
-      <h5 className="font-bebas p-4">Project Skills</h5>
+      <h5 className="font-bebas pt-4 text-2xl">Project Skills</h5>
       <div className="rounded-md w-full flex justify-around p-4 flex-wrap gap-4">
         {ProjectsSkills.map(({ Skill }) => (
           <div
@@ -31,6 +31,7 @@ const SkillsContainer = ({ project, mutateDeleteSkill }) => {
               <img src={Skill.icon} alt={Skill.title} height={20} width={20} />
             </div>
             <button
+              type="button"
               className="text-white text-sm hover:scale-75 hover:text-yellow-300 transition-all ease-in-out duration-100"
               onClick={() => handleDeleteData(Skill.id)}
             >

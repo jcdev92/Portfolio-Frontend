@@ -127,10 +127,11 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
         <SuccessAlert status={status} />
       ) : null}
       <DropdownSkills project={project} mutateSkills={mutateSkills} />
-        <SkillsContainer
-          project={project}
-          mutateDeleteSkill={mutateDeleteSkill}
-        />
+      <SkillsContainer
+        project={project}
+        mutateDeleteSkill={mutateDeleteSkill}
+      />
+      <h6 className="text-2xl py-4 uppercase">{title} update data form</h6>
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input
