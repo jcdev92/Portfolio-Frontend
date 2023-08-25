@@ -52,9 +52,16 @@ export const skillToProject = async ({id, ...data}) => {
   return res.data;
 }
 
-// delete asociation 
-export const DeleteSkillToProject = async ({id, ...data}) => {
-  const res = await axios.delete(`${url}/${id}/skills`, data);
-  return res.data;
-}
 
+// delete asociation without axios
+export const deleteSkillToProject = async ({id, ...data}) => {
+  const res = await fetch(`${url}/${id}/skills`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": `jwt ${token}`
+    },
+    body: JSON.stringify(data)
+  });
+  return res.json();
+}

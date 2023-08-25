@@ -18,7 +18,7 @@ export const DropdownSkills = ({ project, mutateSkills }) => {
     ? (skills = useSkillsStore.getState().skills)
     : (skills = data);
 
-  // handling the data to update de skills
+  // handling the data to update the skills on the project
   const handleData = (id) => {
     const data = {
       //object id, it could be any, its just for the parameter query

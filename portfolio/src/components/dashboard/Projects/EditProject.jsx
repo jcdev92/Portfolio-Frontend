@@ -4,13 +4,16 @@ import useProjectsStore from "../../../store/useProjectsStore";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateProject } from "../../../hooks/useProjects";
+import {
+  updateProject,
+  skillToProject,
+  deleteSkillToProject,
+} from "../../../hooks/useProjects";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
 import { DropdownSkills } from "./DropdownSkills";
 import SkillsContainer from "./SkillsContainer";
-import { skillToProject } from "../../../hooks/useProjects";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId, keyword }) => {
@@ -72,6 +75,20 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
     error: errorSkills,
   } = mutationSkillsProject;
 
+  // delete a skill from the selected project and mutate the old stored data
+  const mutationDeleteSkillProject = useMutation({
+    mutationFn: deleteSkillToProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries(keyword);
+    },
+  });
+
+  const {
+    mutate: mutateDeleteSkill,
+    isError: isErrorDeleteSkill,
+    error: errorDeleteSkill,
+  } = mutationDeleteSkillProject;
+
   // watch all the form inputs
   let { watchTitle, watchUrl, watchGithub, watchImage, watchDescription } =
     watchingInputs();
@@ -104,12 +121,17 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
         <ErrorAlert error={error.response.data.message} />
       ) : isErrorSkills ? (
         <ErrorAlert error={errorSkills.response.data.message} />
+      ) : isErrorDeleteSkill ? (
+        <ErrorAlert error={errorDeleteSkill.response.data.message} />
       ) : isSuccess ? (
         <SuccessAlert status={status} />
       ) : null}
       <DropdownSkills project={project} mutateSkills={mutateSkills} />
+        <SkillsContainer
+          project={project}
+          mutateDeleteSkill={mutateDeleteSkill}
+        />
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
-        <SkillsContainer project={project} />
         <div className="relative z-0 w-full mb-6 group">
           <input
             type="text"
