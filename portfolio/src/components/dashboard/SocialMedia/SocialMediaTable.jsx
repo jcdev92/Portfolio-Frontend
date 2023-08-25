@@ -34,7 +34,7 @@ export const SocialMediaTable = () => {
   return editMode === "table" ? (
     <div className="w-5/6 h-5/6">
       <div className="flex justify-between">
-        <SearchBar />
+        <SearchBar title={"social media"} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => setEditMode("add")}

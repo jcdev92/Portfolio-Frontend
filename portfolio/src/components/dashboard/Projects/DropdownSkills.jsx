@@ -45,6 +45,7 @@ export const DropdownSkills = ({ project, mutateSkills }) => {
             className="flex bg-transparent hover:text-yellow-300 hover:scale-90 hover:bg-transparent transition-all ease-in-out duration-150"
           >
             <button
+              type="button"
               className="flex w-full justify-around gap-4"
               onClick={() => handleData(id)}
             >
