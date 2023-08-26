@@ -16,7 +16,7 @@ export const Login = () => {
   const onSubmit = (data) => {
     const { email, password } = data;
     axios
-      .post("http://localhost:9000/api/v1/auth/login", {
+      .post("https://portfolio-backend-3jrx-dev.fl0.io/api/v1/auth/login", {
         email,
         password,
       })
