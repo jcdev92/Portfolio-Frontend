@@ -1,10 +1,10 @@
 import axios from "axios";
 
 // devlopment url
-// const url = "http://localhost:9000/api/v1/project";
+// const url = "http://localhost:9000/api/v1/skill";
 
 // production url
-const url = "https://portfolio-backend-3jrx-dev.fl0.io"
+const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1/skill"
 
 const token = localStorage.getItem("token");
 
