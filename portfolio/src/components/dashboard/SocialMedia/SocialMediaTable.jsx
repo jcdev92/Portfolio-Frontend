@@ -13,10 +13,11 @@ import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { ErrorPage } from "../../ErrorPage";
 import useSocialStore from "../../../store/useSocialStore";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { Spinner } from "flowbite-react";
 
 export const SocialMediaTable = () => {
   const keyword = "social";
-  const { data, error, isLoading, isError } = useQuery({
+  const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
     queryFn: getSocialMedia,
     onSuccess: (data) => {
@@ -43,28 +44,36 @@ export const SocialMediaTable = () => {
         </button>
       </div>
       <div className="relative overflow-auto backdrop-blur-sm bg-white/30 w-full h-5/6 rounded-md shadow-md">
-        <table className="w-full sm:rounded-lg text-sm text-left text-white">
-          <thead className="text-xs text-white uppercase">
-            <tr className="sticky z-10 top-0 backdrop-blur-sm bg-white/10">
-              <th scope="col" className="px-6 py-3">
-                <h1 className="font-bebas font-light text-lg">title</h1>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <h1 className="font-bebas font-light text-lg">icon</h1>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <h1 className="font-bebas font-light text-lg">url</h1>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <h1 className="font-bebas font-light text-lg">action</h1>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {isError ? (
-              <h1>{error}</h1>
-            ) : (
-              data?.map(({ id, title, icon, url }) => (
+        {isFetching ? (
+          <div className="w-full h-full flex justify-center items-center">
+            <Spinner size="xl" />
+          </div>
+        ) : isError ? (
+          <div className="w-full h-full flex justify-center items-center">
+            <h1 className="font-bebas font-light text-lg text-white bg-red-500 rounded-md shadow-md p-4">
+              {error.message}
+            </h1>
+          </div>
+        ) : (
+          <table className="w-full sm:rounded-lg text-sm text-left text-white">
+            <thead className="text-xs text-white uppercase">
+              <tr className="sticky z-10 top-0 backdrop-blur-sm bg-white/10">
+                <th scope="col" className="px-6 py-3">
+                  <h1 className="font-bebas font-light text-lg">title</h1>
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  <h1 className="font-bebas font-light text-lg">icon</h1>
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  <h1 className="font-bebas font-light text-lg">url</h1>
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  <h1 className="font-bebas font-light text-lg">action</h1>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="w-full h-full">
+              {data?.map(({ id, title, icon, url }) => (
                 <tr key={id} className="w-auto h-auto">
                   <th
                     scope="row"
@@ -99,10 +108,10 @@ export const SocialMediaTable = () => {
                     </button>
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   ) : editMode === "edit" ? (

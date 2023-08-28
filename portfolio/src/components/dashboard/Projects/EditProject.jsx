@@ -73,6 +73,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
     mutate: mutateSkills,
     isError: isErrorSkills,
     error: errorSkills,
+    isLoading: isLoadingSkills
   } = mutationSkillsProject;
 
   // delete a skill from the selected project and mutate the old stored data
@@ -130,6 +131,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
       <SkillsContainer
         project={project}
         mutateDeleteSkill={mutateDeleteSkill}
+        isLoadingSkills={isLoadingSkills}
       />
       <h6 className="text-2xl py-4 uppercase">{title} update data form</h6>
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
