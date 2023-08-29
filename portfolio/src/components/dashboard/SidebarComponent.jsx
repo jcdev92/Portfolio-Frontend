@@ -100,7 +100,7 @@ export const SidebarComponent = () => {
             </li>
             <li>
               <Link
-                to="/dashboard/blog"
+                to="/dashboard/blog-dashboard"
                 className={
                   window.location.pathname === "/dashboard/blog"
                     ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg dark:text-white dark:hover:bg-gray-700"
