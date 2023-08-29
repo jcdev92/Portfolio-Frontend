@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   // validate if the token is valid or not
   useEffect(() => {
     axios
-      .get("http://localhost:9000/api/v1/user/me", {
+      .get("https://portfolio-backend-3jrx-dev.fl0.io/api/v1/user/me", {
         headers: {
           Authorization: `jwt ${token}`,
         },
@@ -32,7 +32,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get("http://localhost:9000/api/v1/user/me", {
+        .get("https://portfolio-backend-3jrx-dev.fl0.io/api/v1/user/me", {
           headers: {
             Authorization: `jwt ${token}`,
           },
