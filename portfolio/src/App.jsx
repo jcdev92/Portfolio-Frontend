@@ -11,7 +11,7 @@ import {
   DashboardBlog,
 } from "./pages/DashboardPage.jsx";
 import { ErrorPage } from "./components/ErrorPage.jsx";
-import { BlogPage } from "./pages/BlogPage";
+import { BlogPage } from "./pages/BlogPage.jsx";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient();
@@ -30,7 +30,7 @@ function App() {
               <Route path="skills" element={<DashboardSkills />} />
               <Route path="projects" element={<DashboardProjects />} />
               <Route path="social-media" element={<DashboardSocialMedia />} />
-              <Route path="blog" element={<DashboardBlog />} />
+              <Route path="blog-dashboard" element={<DashboardBlog />} />
               <Route
                 path="*"
                 element={<ErrorPage error="404 - Page Not Found" />}
