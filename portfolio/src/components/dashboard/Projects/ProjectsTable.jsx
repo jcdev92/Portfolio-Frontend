@@ -20,6 +20,7 @@ export const ProjectsTable = () => {
     onSuccess: (data) => {
       useProjectsStore.getState().setProjects(data);
     },
+    staleTime: 60000,
   });
 
   const [editMode, setEditMode] = useState("table");

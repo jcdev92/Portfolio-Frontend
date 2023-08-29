@@ -20,6 +20,7 @@ export const SkillsTable = () => {
     onSuccess: (data) => {
       useSkillsStore.getState().setSkills(data);
     },
+    staleTime: 60000,
   });
 
   const [editMode, setEditMode] = useState("table");

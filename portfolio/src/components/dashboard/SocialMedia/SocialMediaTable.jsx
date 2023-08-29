@@ -23,6 +23,7 @@ export const SocialMediaTable = () => {
     onSuccess: (data) => {
       useSocialStore.getState().setSocials(data);
     },
+    staleTime: 60000,
   });
 
   const [editMode, setEditMode] = useState("table");
