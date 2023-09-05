@@ -21,6 +21,8 @@ export const SkillsTable = () => {
       useSkillsStore.getState().setSkills(data);
     },
     staleTime: 60000,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 
   const [editMode, setEditMode] = useState("table");

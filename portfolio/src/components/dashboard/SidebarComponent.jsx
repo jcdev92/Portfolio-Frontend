@@ -26,11 +26,11 @@ export const SidebarComponent = () => {
     <>
       <aside
         id="default-sidebar"
-        className="hidden md:block h-5/6 bg-transparent w-1/5 dark:bg-gray-800"
+        className="lg:h-5/6 xl:h-4/6 bg-transparent w-1/5 dark:bg-gray-800"
         aria-label="Sidebar"
       >
         <div className="h-full ml-3 px-4 py-4 overflow-y-auto backdrop-blur-sm bg-white/30  dark:bg-gray-800 rounded-md">
-          <div className="flex flex-col justify-center items-center my-4">
+          <div className="flex flex-col justify-center items-center my-4 lg:p-2 xl:p-4 border-b-2">
             <img
               className="w-10 h-10 rounded-full border-2 border-double"
               src={profile?.profileImg}
@@ -111,7 +111,7 @@ export const SidebarComponent = () => {
                 <span className="flex-1 ml-3 whitespace-nowrap">Blog</span>
               </Link>
             </li>
-            <li>
+            <li className="border-t-2 xl:py-4">
               <Link
                 to="/login"
                 className={

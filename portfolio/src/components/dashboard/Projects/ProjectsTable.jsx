@@ -21,6 +21,8 @@ export const ProjectsTable = () => {
       useProjectsStore.getState().setProjects(data);
     },
     staleTime: 60000,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 
   const [editMode, setEditMode] = useState("table");

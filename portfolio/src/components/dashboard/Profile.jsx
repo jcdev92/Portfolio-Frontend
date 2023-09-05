@@ -10,12 +10,15 @@ import { RxUpdate } from "react-icons/rx";
 export const Profile = () => {
   const { handleSubmit, register, reset } = useForm();
 
-  const { data, isLoading } = useQuery({
+  const { data, isFetching, isLoading } = useQuery({
     queryKey: ["profile"],
     queryFn: getProfile,
     onSuccess: (data) => {
       useProfileStore.getState().setProfile(data);
     },
+    staleTime: 60000,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 
   // mutation to update the profile
@@ -48,7 +51,7 @@ export const Profile = () => {
   return (
     <div className="flex flex-col w-full bg-transparent font-sans h-screen overflow-y-auto">
       <Card className="backdrop-blur-sm bg-white/30 rounded-xl p-8 m-8 md:w-8/12 md:ml-32">
-        {isLoading ? (
+        {isFetching || isLoading ? (
           <Loading />
         ) : (
           <form
