@@ -2,7 +2,12 @@
 import { Spinner } from "flowbite-react";
 import { AiOutlineClose } from "react-icons/ai";
 
-const SkillsContainer = ({ project, mutateDeleteSkill, isLoadingSkills }) => {
+const SkillsContainer = ({
+  project,
+  mutateDeleteSkill,
+  isLoadingSkills,
+  isLoadingDeleteSkillFromProject,
+}) => {
   const { ProjectsSkills } = project;
 
   // handling the data to delete a skill from the project
@@ -18,7 +23,7 @@ const SkillsContainer = ({ project, mutateDeleteSkill, isLoadingSkills }) => {
     mutateDeleteSkill(data);
   };
 
-  return isLoadingSkills ? (
+  return isLoadingSkills || isLoadingDeleteSkillFromProject ? (
     <div className="w-full mb-6 flex items-center justify-center">
       <Spinner size="xl" />
     </div>

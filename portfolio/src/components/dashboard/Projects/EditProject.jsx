@@ -88,6 +88,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
     mutate: mutateDeleteSkill,
     isError: isErrorDeleteSkill,
     error: errorDeleteSkill,
+    isLoading: isLoadingDeleteSkillFromProject
   } = mutationDeleteSkillProject;
 
   // watch all the form inputs
@@ -132,6 +133,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
         project={project}
         mutateDeleteSkill={mutateDeleteSkill}
         isLoadingSkills={isLoadingSkills}
+        isLoadingDeleteSkillFromProject={isLoadingDeleteSkillFromProject}
       />
       <h6 className="text-2xl py-4 uppercase">{title} update data form</h6>
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
