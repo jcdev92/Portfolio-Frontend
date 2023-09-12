@@ -4,48 +4,48 @@ import axios from "axios";
 // const url = "http://localhost:9000/api/v1/skill";
 
 // production url
-const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1/skill"
+const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1"
 
-const token = localStorage.getItem("token");
+// axios configuration 
+const instance = axios.create({
+  baseURL: url,
+});
 
-// axios configuration
-
-axios.defaults.baseURL = url;
-
-axios.interceptors.request.use(
-  (config) => {
-    config.headers.Authorization = `jwt ${token}`;
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+// Añadir un interceptor de petición que añada el token en los headers
+instance.interceptors.request.use(config => {
+  // Obtener el token del localStorage o donde se guarde
+  const token = localStorage.getItem('token');
+  // Si hay token, añadirlo al header de autorización
+  if (token) {
+    config.headers['Authorization'] = 'jwt ' + token;
   }
-);
+  // Devolver la configuración modificada
+  return config;
+});
 
 // get projects with the axios configuration
-
 export const getSkills = async () => {
-  const res = await axios.get(url);
+  const res = await instance.get(`/skill`);
   return res.data;
 };
 
 // add projects with the axios configuration
 
 export const addSkill = async (project) => {
-  const res = await axios.post(url, project);
+  const res = await instance.post(`/skill`, project);
   return res.data;
 };
 
 // update projects with the axios configuration
 
 export const updateSkill = async ({id, ...project}) => {
-  const res = await axios.patch(`${url}/${id}`, project);
+  const res = await instance.patch(`/skill/${id}`, project);
   return res.data;
 }
 
 // delete projects with the axios configuration
 
 export const deleteSkill = async (id) => {
-  const res = await axios.delete(`${url}/${id}`);
+  const res = await instance.delete(`/skill/${id}`);
   return res.data;
 };

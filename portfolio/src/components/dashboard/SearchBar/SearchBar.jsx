@@ -1,5 +1,13 @@
-// eslint-disable-next-line react/prop-types
-export const SearchBar = ({title}) => {
+/* eslint-disable react/prop-types */
+export const SearchBar = ({ title, data }) => {
+  // make a function to search for a specific item in the data array
+  const search = (e) => {
+    console.log(e.target.value);
+    data.map((item) => {
+      console.log(item.title);
+    })
+  };
+
   return (
     <div className="pb-4 bg-transparent dark:bg-gray-900">
       <label htmlFor="table-search" className="sr-only">
@@ -25,6 +33,7 @@ export const SearchBar = ({title}) => {
         </div>
         <input
           type="text"
+          onChange={search}
           id="table-search"
           className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={`Search for a ${title} in the table`}

@@ -4,7 +4,7 @@ import axios from "axios";
 // const url = "http://localhost:9000/api/v1/user";
 
 // production url
-const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1/user"
+const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1/"
 const token = localStorage.getItem("token");
 
 // axios configuration
@@ -24,7 +24,7 @@ axios.interceptors.request.use(
 // get profile with the axios configuration
 
 export const getProfile = async () => {
-  const res = await axios.get(url);
+  const res = await axios.get('/user');
   return res.data.data[0];
 }
 
@@ -32,7 +32,7 @@ export const getProfile = async () => {
 // update profile with the axios configuration
 
 export const updateProfile = async ({id, ...profile}) => {
-  const res = await axios.patch(`${url}/${id}`, profile);
+  const res = await axios.patch(`/user/${id}`, profile);
   return res.data;
 }
 

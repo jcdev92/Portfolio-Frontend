@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Button, Spinner, TextInput } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 import axios from "axios";
 import { ErrorAlert } from "./dashboard/Alerts/ErrorAlert";
 import { FaM } from "react-icons/fa6";
@@ -30,7 +30,7 @@ export const Login = () => {
       })
       .catch((err) => {
         // detail me the error
-        console.log(err.response.data);
+        console.log(err.response.data);  
         // set the error
         err.response.status === 401 && setErr(err.response.status);
       });
