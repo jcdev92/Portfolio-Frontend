@@ -15,7 +15,6 @@ export const SidebarComponent = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    // remove the profile data from the store
     navigate("/login");
   };
 
@@ -115,8 +114,8 @@ export const SidebarComponent = () => {
                 to="/login"
                 className={
                   window.location.pathname === "/login"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg dark:text-white dark:hover:bg-gray-700"
-                    : "flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-700"
+                    ? "flex items-center p-2 mt-2 text-yellow-300 text-sm rounded-lg dark:text-white dark:hover:bg-gray-700"
+                    : "flex items-center p-2 mt-2 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-700"
                 }
                 onClick={handleLogout}
               >

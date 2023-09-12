@@ -14,6 +14,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
     },
     onError: () => {
       setIsAllowed(false);
+      localStorage.removeItem("token");
     },
     staleTime: 18000000,
   });
