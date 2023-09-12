@@ -16,7 +16,6 @@ export const SidebarComponent = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     // remove the profile data from the store
-    useProfileStore.getState().clearProfile();
     navigate("/login");
   };
 
