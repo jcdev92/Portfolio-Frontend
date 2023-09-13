@@ -28,7 +28,6 @@ export const SkillsTable = () => {
   const [editMode, setEditMode] = useState("table");
   const [selectedId, setSelectedId] = useState("");
   const [word, setWord] = useState("");
-  console.log(word);
 
   const handleId = (id) => {
     setSelectedId(id);
