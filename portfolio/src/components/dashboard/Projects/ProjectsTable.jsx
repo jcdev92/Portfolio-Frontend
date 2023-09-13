@@ -44,7 +44,7 @@ export const ProjectsTable = () => {
           <BsDatabaseFillAdd />
         </button>
       </div>
-      <div className="relative overflow-auto backdrop-blur-sm bg-white/30 w-full h-5/6 rounded-md shadow-md">
+      <div className="relative overflow-auto backdrop-blur-md border w-full h-5/6 rounded-md shadow-md">
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
             <Spinner size="xl" />

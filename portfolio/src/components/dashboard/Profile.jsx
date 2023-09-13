@@ -50,7 +50,7 @@ export const Profile = () => {
 
   return (
     <div className="flex flex-col w-full bg-transparent font-sans h-screen overflow-y-auto">
-      <Card className="backdrop-blur-sm bg-white/30 rounded-xl p-8 m-8 md:w-8/12 md:ml-32">
+      <Card className="backdrop-blur-md bg-transparent rounded-xl p-8 m-8 md:w-8/12 md:ml-32">
         {isFetching || isLoading ? (
           <Loading />
         ) : (

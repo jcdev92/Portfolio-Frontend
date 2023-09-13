@@ -16,11 +16,13 @@ export const Dashboard = () => {
     h-screen
     w-screen
     items-center
-    bg-gradient-to-r
-    from-blue-900
-    to-blue-800
-    dark:from-gray-800
-    dark:to-gray-900
+    bg-milky-way
+    bg-cover
+    bg-center
+    bg-no-repeat
+    md:bg-fixed
+    md:bg-left-top
+    md:bg-no-repeat
     "
     >
       <SidebarComponent />

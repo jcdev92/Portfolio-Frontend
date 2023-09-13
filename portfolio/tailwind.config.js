@@ -6,7 +6,11 @@ export default {
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "milky-way" : "url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg')"
+      }
+    },
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
