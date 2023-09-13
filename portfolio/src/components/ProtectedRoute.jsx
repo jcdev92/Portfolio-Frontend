@@ -1,21 +1,30 @@
 /* eslint-disable react/prop-types */
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { getProfile } from "../hooks/useProfile";
 
 export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
-  const token = localStorage.getItem("token");
   const [isAllowed, setIsAllowed] = useState(true);
 
-  // check every 5 hours if the token is valid or not
+  // check if the token is expired or not
+  useEffect(() => {
+    getProfile()
+      .then((res) => {
+        if (res.data) {
+          setIsAllowed(true);
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          setIsAllowed(false);
+        }
+      });
+  }, []);
+
+  // check every 5 hours, if the token is expired or not
   useEffect(() => {
     const interval = setInterval(() => {
-      axios
-        .get("https://portfolio-backend-3jrx-dev.fl0.io/api/v1/user/me", {
-          headers: {
-            Authorization: `jwt ${token}`,
-          },
-        })
+      getProfile()
         .then((res) => {
           if (res.data) {
             setIsAllowed(true);
@@ -26,9 +35,9 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
             setIsAllowed(false);
           }
         });
-    }, 18000000);
+    }, 1000 * 60 * 60 * 5);
     return () => clearInterval(interval);
-  }, [token]);
+  }, []);
 
   // validate if the token is expired or not
   if (!isAllowed) {
