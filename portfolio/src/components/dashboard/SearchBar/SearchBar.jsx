@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
-export const SearchBar = ({ title, data }) => {
+export const SearchBar = ({ title, setWord }) => {
   // make a function to search for a specific item in the data array
   const search = (e) => {
-    console.log(e.target.value);
-    data.map((item) => {
-      console.log(item.title);
-    })
+    setWord(e.target.value);
   };
 
   return (

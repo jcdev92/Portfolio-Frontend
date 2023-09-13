@@ -27,6 +27,8 @@ export const SkillsTable = () => {
 
   const [editMode, setEditMode] = useState("table");
   const [selectedId, setSelectedId] = useState("");
+  const [word, setWord] = useState("");
+  console.log(word);
 
   const handleId = (id) => {
     setSelectedId(id);
@@ -35,7 +37,7 @@ export const SkillsTable = () => {
   return editMode === "table" ? (
     <div className="w-5/6 h-5/6">
       <div className="flex justify-between">
-        <SearchBar title={"skill"} data={data}/>
+        <SearchBar title={"skill"} word={word} setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => setEditMode("add")}
@@ -70,39 +72,78 @@ export const SkillsTable = () => {
               </tr>
             </thead>
             <tbody className="w-full h-full">
-              {data?.map(({ id, title, icon }) => (
-                <tr key={id} className="w-auto h-auto">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium whitespace-nowrap"
-                  >
-                    {title}
-                  </th>
-                  <td className="px-6 py-4">
-                    <img src={icon} alt={title} height={30} width={30} />
-                  </td>
-                  <td className="flex px-6 py-4 gap-5">
-                    <button
-                      className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
-                      onClick={() => {
-                        handleId(id);
-                        setEditMode("edit");
-                      }}
-                    >
-                      <TbDatabaseEdit />
-                    </button>
-                    <button
-                      className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
-                      onClick={() => {
-                        handleId(id);
-                        setEditMode("delete");
-                      }}
-                    >
-                      <TbDatabaseMinus />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {}
+              {word.length > 0
+                ? data
+                    ?.filter(({ title }) => {
+                      return title.toLowerCase().includes(word.toLowerCase());
+                    })
+                    .map(({ id, title, icon }) => (
+                      <tr key={id} className="w-auto h-auto">
+                        <th
+                          scope="row"
+                          className="px-6 py-4 font-medium whitespace-nowrap"
+                        >
+                          {title}
+                        </th>
+                        <td className="px-6 py-4">
+                          <img src={icon} alt={title} height={30} width={30} />
+                        </td>
+                        <td className="flex px-6 py-4 gap-5">
+                          <button
+                            className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
+                            onClick={() => {
+                              handleId(id);
+                              setEditMode("edit");
+                            }}
+                          >
+                            <TbDatabaseEdit />
+                          </button>
+                          <button
+                            className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
+                            onClick={() => {
+                              handleId(id);
+                              setEditMode("delete");
+                            }}
+                          >
+                            <TbDatabaseMinus />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                : data?.map(({ id, title, icon }) => (
+                    <tr key={id} className="w-auto h-auto">
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium whitespace-nowrap"
+                      >
+                        {title}
+                      </th>
+                      <td className="px-6 py-4">
+                        <img src={icon} alt={title} height={30} width={30} />
+                      </td>
+                      <td className="flex px-6 py-4 gap-5">
+                        <button
+                          className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
+                          onClick={() => {
+                            handleId(id);
+                            setEditMode("edit");
+                          }}
+                        >
+                          <TbDatabaseEdit />
+                        </button>
+                        <button
+                          className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
+                          onClick={() => {
+                            handleId(id);
+                            setEditMode("delete");
+                          }}
+                        >
+                          <TbDatabaseMinus />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </table>
         )}
