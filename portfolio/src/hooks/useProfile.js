@@ -23,7 +23,7 @@ instance.interceptors.request.use(config => {
 // get profile with the axios configuration
 
 export const getProfile = async () => {
-  const res = await axios.get('/user');
+  const res = await instance.get('/user');
   return res.data.data[0];
 }
 
@@ -31,7 +31,7 @@ export const getProfile = async () => {
 // update profile with the axios configuration
 
 export const updateProfile = async ({id, ...profile}) => {
-  const res = await axios.patch(`/user/${id}`, profile);
+  const res = await instance.patch(`/user/${id}`, profile);
   return res.data;
 }
 
