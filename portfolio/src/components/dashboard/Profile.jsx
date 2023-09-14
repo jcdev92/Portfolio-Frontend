@@ -50,7 +50,7 @@ export const Profile = () => {
 
   return (
     <div className="flex flex-col h-screen bg-transparent font-sans z-30">
-      <Card className="backdrop-blur-sm h-5/6 bg-transparent rounded-xl  m-8 md:w-10/12 md:ml-32">
+      <Card className="backdrop-blur-sm h-5/6 bg-transparent rounded-xl m-8 md:w-10/12 md:ml-32">
         {isFetching || isLoading ? (
           <Loading />
         ) : (
@@ -69,7 +69,7 @@ export const Profile = () => {
                     id="firstName"
                     placeholder={data?.firstName}
                     type="text"
-                    className="pb-4"
+                    className="pb-4 text-xs"
                     {...register("firstName")}
                   />
                   <div className="mb-2 block">
@@ -82,28 +82,37 @@ export const Profile = () => {
                     id="lastName"
                     placeholder={data?.lastName}
                     type="text"
+                    className="text-xs"
                     {...register("lastName")}
                   />
                 </div>
                 <div className="gap-4">
                   <div className="mb-2 block">
-                    <Label value="Email" className="text-white drop-shadow-md" />
+                    <Label
+                      value="Email"
+                      className="text-white drop-shadow-md"
+                    />
                   </div>
                   <TextInput
                     id="email"
                     placeholder={data?.email}
                     type="email"
+                    className="text-xs"
                     {...register("email")}
                   />
                 </div>
                 <div className="gap-4">
                   <div className="mb-2 block">
-                    <Label value="Phone" className="text-white drop-shadow-md" />
+                    <Label
+                      value="Phone"
+                      className="text-white drop-shadow-md"
+                    />
                   </div>
                   <TextInput
                     id="phone"
                     placeholder={data?.phone}
                     type="text"
+                    className="text-xs"
                     {...register("phone")}
                   />
                 </div>
@@ -118,6 +127,7 @@ export const Profile = () => {
                     id="profileImg"
                     placeholder={data?.profileImg}
                     type="text"
+                    className="text-xs"
                     {...register("profileImg")}
                   />
                 </div>
@@ -132,6 +142,7 @@ export const Profile = () => {
                     id="bioImage"
                     placeholder={data?.bioImage}
                     type="text"
+                    className="text-xs"
                     {...register("bioImage")}
                   />
                 </div>
@@ -147,15 +158,19 @@ export const Profile = () => {
                   id="jobTitle"
                   placeholder={data?.jobTitle}
                   type="text"
+                  className="text-xs"
                   {...register("jobTitle")}
                 />
               </div>
               <div className="pb-4">
                 <div className="mb-2 block">
-                  <Label value="About Me" className="text-white drop-shadow-md" />
+                  <Label
+                    value="About Me"
+                    className="text-white drop-shadow-md"
+                  />
                 </div>
                 <Textarea
-                  className="overflow-y-auto"
+                  className="overflow-y-auto text-xs"
                   id="aboutMe"
                   placeholder={data?.aboutMe}
                   rows={4}
@@ -170,6 +185,7 @@ export const Profile = () => {
                   />
                 </div>
                 <Textarea
+                  className="overflow-y-auto text-xs"
                   id="biography"
                   placeholder={data?.biography}
                   rows={4}

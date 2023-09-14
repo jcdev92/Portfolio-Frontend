@@ -1,25 +1,24 @@
 import axios from "axios";
 
-// devlopment url
-// const url = "http://localhost:9000/api/v1/user";
-
 // production url
-const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1/"
-const token = localStorage.getItem("token");
+const url = "https://portfolio-backend-3jrx-dev.fl0.io/api/v1"
 
-// axios configuration
+// axios configuration 
+const instance = axios.create({
+  baseURL: url,
+});
 
-axios.defaults.baseURL = url;
-
-axios.interceptors.request.use(
-  (config) => {
-    config.headers.Authorization = `jwt ${token}`;
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+// Añadir un interceptor de petición que añada el token en los headers
+instance.interceptors.request.use(config => {
+  // Obtener el token del localStorage o donde se guarde
+  const token = localStorage.getItem('token');
+  // Si hay token, añadirlo al header de autorización
+  if (token) {
+    config.headers['Authorization'] = 'jwt ' + token;
   }
-);
+  // Devolver la configuración modificada
+  return config;
+});
 
 // get profile with the axios configuration
 

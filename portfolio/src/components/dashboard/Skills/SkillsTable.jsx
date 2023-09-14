@@ -55,7 +55,7 @@ export const SkillsTable = () => {
             </h1>
           </div>
         ) : (
-          <table className="w-full sm:rounded-lg text-sm text-left text-white">
+          <table className="w-full h-full sm:rounded-lg text-sm text-left text-white">
             <thead className="text-xs text-white uppercase">
               <tr className="sticky z-10 top-0 backdrop-blur-sm bg-white/10">
                 <th scope="col" className="px-6 py-3">
@@ -70,7 +70,6 @@ export const SkillsTable = () => {
               </tr>
             </thead>
             <tbody className="w-full h-full">
-              {}
               {word.length > 0
                 ? data
                     ?.filter(({ title }) => {

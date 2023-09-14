@@ -105,7 +105,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
       watchDescription.length === 0);
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto rounded-md shadow-md">
+    <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent rounded-md shadow-md">
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">
           Updating... <span className="text-yellow-300">{title}</span> - Project
