@@ -11,6 +11,21 @@ export default {
         "milky-way" : "url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg')"
       }
     },
+    animation: {
+      'gradient-x': 'gradient-x 15s ease infinite',
+    },
+    keyframes: {
+      'gradient-x': {
+        '0%, 100%': {
+          'background-size': '200% 200%',
+          'background-position': 'left center',
+        },
+        '50%': {
+          'background-size': '200% 200%',
+          'background-position': 'right center',
+        },
+      },
+    },
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],

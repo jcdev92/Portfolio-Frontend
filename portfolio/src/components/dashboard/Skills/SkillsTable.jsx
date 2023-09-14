@@ -34,7 +34,7 @@ export const SkillsTable = () => {
   };
 
   return editMode === "table" ? (
-    <div className="w-5/6 h-5/6">
+    <div className="w-5/6 h-5/6 z-10">
       <div className="flex justify-between">
         <SearchBar title={"skill"} word={word} setWord={setWord} />
         <button
