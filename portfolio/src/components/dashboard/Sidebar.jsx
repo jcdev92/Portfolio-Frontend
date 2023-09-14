@@ -24,10 +24,10 @@ export const Sidebar = () => {
     <>
       <aside
         id="default-sidebar"
-        className="lg:h-5/6 xl:h-4/6 bg-transparent w-1/5 dark:bg-gray-800"
+        className="lg:h-5/6 xl:h-4/6 bg-transparent w-1/5 dark:bg-gray-800 z-30"
         aria-label="Sidebar"
       >
-        <div className="h-full ml-3 px-4 py-4 overflow-y-auto backdrop-blur-md border dark:bg-gray-800 rounded-md">
+        <div className="h-full ml-3 px-4 py-4 overflow-y-auto backdrop-blur-sm border dark:bg-gray-800 rounded-md">
           <div className="flex flex-col justify-center items-center my-4 lg:p-2 xl:p-4 border-b-2">
             <img
               className="w-10 h-10 rounded-full border-2 border-double"
@@ -47,7 +47,7 @@ export const Sidebar = () => {
                 to="/dashboard"
                 className={
                   window.location.pathname === "/dashboard"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
+                    ? "flex items-center p-2 text-sky-300 text-sm rounded-lg"
                     : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
                 }
               >
@@ -60,7 +60,7 @@ export const Sidebar = () => {
                 to="/dashboard/skills"
                 className={
                   window.location.pathname === "/dashboard/skills"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
+                    ? "flex items-center p-2 text-sky-300 text-sm rounded-lg"
                     : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
                 }
               >
@@ -73,7 +73,7 @@ export const Sidebar = () => {
                 to="/dashboard/projects"
                 className={
                   window.location.pathname === "/dashboard/projects"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
+                    ? "flex items-center p-2 text-sky-300 text-sm rounded-lg"
                     : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
                 }
               >
@@ -86,7 +86,7 @@ export const Sidebar = () => {
                 to="/dashboard/social-media"
                 className={
                   window.location.pathname === "/dashboard/social-media"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
+                    ? "flex items-center p-2 text-sky-300 text-sm rounded-lg"
                     : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
                 }
               >
@@ -101,7 +101,7 @@ export const Sidebar = () => {
                 to="/dashboard/blog-dashboard"
                 className={
                   window.location.pathname === "/dashboard/blog"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
+                    ? "flex items-center p-2 text-sky-300 text-sm rounded-lg"
                     : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
                 }
               >
@@ -114,7 +114,7 @@ export const Sidebar = () => {
                 to="/login"
                 className={
                   window.location.pathname === "/login"
-                    ? "flex items-center p-2 mt-2 text-yellow-300 text-sm rounded-lg"
+                    ? "flex items-center p-2 mt-2 text-sky-300 text-sm rounded-lg"
                     : "flex items-center p-2 mt-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
                 }
                 onClick={handleLogout}

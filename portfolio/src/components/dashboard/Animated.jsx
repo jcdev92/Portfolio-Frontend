@@ -5,7 +5,7 @@ export const Animated = ({ children }) => {
   const animations = {
     initial: {
       opacity: 0,
-      x: 100,
+      x: -100,
     },
     animate: {
       opacity: 1,
@@ -13,7 +13,7 @@ export const Animated = ({ children }) => {
     },
     exit: {
       opacity: 0,
-      x: -100,
+      x: 100,
     },
   };
   return (
@@ -23,7 +23,7 @@ export const Animated = ({ children }) => {
       animate="animate"
       exit="exit"
       transition={{
-        duration: 1,
+        duration: 0.5,
       }}
     >
       {children}
