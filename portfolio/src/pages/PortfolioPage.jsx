@@ -1,3 +1,3 @@
-export const Portfolio = () => {
+export const PortfolioPage = () => {
   return <div>Portfolio</div>;
 };

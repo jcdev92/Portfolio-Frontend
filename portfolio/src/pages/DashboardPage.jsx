@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { Profile } from "../components/dashboard/Profile";
 import { Skills } from "../components/dashboard/Skills/Skills";
-import { SidebarComponent } from "../components/dashboard/SidebarComponent";
+import { Sidebar } from "../components/dashboard/Sidebar";
 import { Projects } from "../components/dashboard/Projects/Projects";
 import { SocialMedia } from "../components/dashboard/SocialMedia/SocialMedia";
 import { BlogDashboard } from "../components/dashboard/BlogDashboard/BlogDashboard";
+import { Animated } from "../components/dashboard/Animated";
 
-export const Dashboard = () => {
+export const DashboardPage = () => {
   return (
     <div
       className="
@@ -27,28 +28,58 @@ export const Dashboard = () => {
     "
     >
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-indigo-950 to-blue-600 opacity-50 animate-gradient-x"></div>
-      <SidebarComponent />
+      <Sidebar />
       <Outlet />
     </div>
   );
 };
 
 export const DashboardProfile = () => {
-  return <Profile />;
+  return (
+    <div className="w-full h-full">
+      <Animated>
+        <Profile />
+      </Animated>
+    </div>
+  );
 };
 
 export const DashboardSkills = () => {
-  return <Skills />;
+  return (
+    <div className="w-full h-full">
+      <Animated>
+        <Skills />
+      </Animated>
+    </div>
+  );
 };
 
 export const DashboardProjects = () => {
-  return <Projects />;
+  return (
+    <div className="w-full h-full">
+      <Animated>
+        <Projects />
+      </Animated>
+    </div>
+  );
 };
 
 export const DashboardSocialMedia = () => {
-  return <SocialMedia />;
+  return (
+    <div className="w-full h-full">
+      <Animated>
+        <SocialMedia />
+      </Animated>
+    </div>
+  );
 };
 
 export const DashboardBlog = () => {
-  return <BlogDashboard />;
+  return (
+    <div className="w-full h-full">
+      <Animated>
+        <BlogDashboard />
+      </Animated>
+    </div>
+  );
 };
