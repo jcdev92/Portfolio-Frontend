@@ -1,5 +1,3 @@
-import { Spinner } from "flowbite-react";
-
 export const Loading = () => {
   return (
     <div
@@ -11,7 +9,9 @@ export const Loading = () => {
     justify-center
     "
     >
-      <Spinner size="xl" />
+      <div className="loader"></div>
     </div>
   );
 };
+
+/* HTML: <div class="loader"></div> */

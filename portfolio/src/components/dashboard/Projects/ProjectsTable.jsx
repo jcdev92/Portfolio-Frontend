@@ -10,7 +10,6 @@ import useProjectsStore from "../../../store/useProjectsStore";
 import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { ErrorPage } from "../../ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
-import { Spinner } from "flowbite-react";
 
 export const ProjectsTable = () => {
   const keyword = "projects";
@@ -47,7 +46,7 @@ export const ProjectsTable = () => {
       <div className="relative overflow-auto backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md">
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
-            <Spinner size="xl" />
+            <div className="loader"></div>
           </div>
         ) : isError ? (
           <div className="w-full h-full flex justify-center items-center">
