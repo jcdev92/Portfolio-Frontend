@@ -16,7 +16,7 @@ export const DeleteAlert = ({ selectedId, setEditMode, deleteFn, keyword }) => {
     mutate(selectedId);
   };
   return (
-    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow ">
+    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow z-20">
       <div className="px-4 py-4 w-full text-center">
         <h5 className="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
           Are you sure you want to delete {`ID:  ${selectedId}`} ?
