@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -8,7 +9,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "milky-way" : "url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg')"
+        "milky-way" : "url('../public/img/pexels-photo-924824.webp')"
       }
     },
     animation: {
