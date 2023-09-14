@@ -43,7 +43,13 @@ export const SkillsTable = () => {
           <BsDatabaseFillAdd />
         </button>
       </div>
-      <div className="relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md">
+      <div
+        className={
+          word.length > 0
+            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-auto rounded-md shadow-md"
+            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md"
+        }
+      >
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
             <div className="loader"></div>
@@ -76,17 +82,14 @@ export const SkillsTable = () => {
                       return title.toLowerCase().includes(word.toLowerCase());
                     })
                     .map(({ id, title, icon }) => (
-                      <tr key={id} className="w-auto h-auto">
-                        <th
-                          scope="row"
-                          className="px-6 py-4 font-medium whitespace-nowrap"
-                        >
+                      <tr key={id} className="h-auyo">
+                        <th scope="row" className="px-6 py-4 font-medium">
                           {title}
                         </th>
                         <td className="px-6 py-4">
                           <img src={icon} alt={title} height={30} width={30} />
                         </td>
-                        <td className="flex px-6 py-4 gap-5">
+                        <td className="px-6 py-4 gap-5">
                           <button
                             className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
                             onClick={() => {
