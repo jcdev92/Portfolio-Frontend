@@ -58,7 +58,10 @@ export const Profile = () => {
             className="flex flex-col h-full"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="h-4/5 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent p-4 rounded-lg">
+            <span className="h-1/6 w-full flex justify-center">
+              <h1 className="font-bebas font-light text-4xl text-sky-200">Profile</h1>
+            </span>
+            <div className="h-4/6 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent p-4 rounded-lg">
               <div id="info" className="lg:grid gap-4 grid-cols-2">
                 <Avatar size="xl" img={data?.profileImg} bordered />
                 <div className="flex flex-col pb-4">
@@ -193,7 +196,7 @@ export const Profile = () => {
                 />
               </div>
             </div>
-            <div className="h-1/5 flex flex-row justify-center">
+            <div className="h-1/6 flex flex-row justify-center">
               <div className="mb-2 block">
                 <button
                   type="submit"
