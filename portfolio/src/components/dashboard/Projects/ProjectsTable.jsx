@@ -43,7 +43,7 @@ export const ProjectsTable = () => {
           <BsDatabaseFillAdd />
         </button>
       </div>
-      <div className="relative overflow-auto backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md">
+      <div className="relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md">
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
             <div className="loader"></div>
@@ -136,7 +136,7 @@ export const ProjectsTable = () => {
                       </td>
                       <td className="flex px-6 py-4 gap-5">
                         <button
-                          className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
+                          className="text-xl hover:text-yellow-300 hover:scale-150 transition-all ease-in-out duration-75"
                           onClick={() => {
                             handleId(id);
                             setEditMode("edit");
@@ -145,7 +145,7 @@ export const ProjectsTable = () => {
                           <TbDatabaseEdit />
                         </button>
                         <button
-                          className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
+                          className="text-xl hover:text-yellow-300 hover:scale-150 transition-all ease-in-out duration-75"
                           onClick={() => {
                             handleId(id);
                             setEditMode("delete");

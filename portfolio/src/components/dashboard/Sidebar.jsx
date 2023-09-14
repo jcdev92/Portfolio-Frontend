@@ -27,7 +27,7 @@ export const Sidebar = () => {
         className="lg:h-5/6 xl:h-4/6 bg-transparent w-1/5 dark:bg-gray-800 z-30"
         aria-label="Sidebar"
       >
-        <div className="h-full ml-3 px-4 py-4 overflow-y-auto backdrop-blur-sm border dark:bg-gray-800 rounded-md">
+        <div className="h-full ml-3 px-4 py-4 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border dark:bg-gray-800 rounded-md">
           <div className="flex flex-col justify-center items-center my-4 lg:p-2 xl:p-4 border-b-2">
             <img
               className="w-10 h-10 rounded-full border-2 border-double"
