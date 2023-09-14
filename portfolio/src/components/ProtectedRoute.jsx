@@ -1,30 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getProfile } from "../hooks/useProfile";
+import { getSkills } from "../hooks/useSkills";
 
 export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   const [isAllowed, setIsAllowed] = useState(true);
 
-  // check if the token is expired or not
-  useEffect(() => {
-    getProfile()
-      .then((res) => {
-        if (res.data) {
-          setIsAllowed(true);
-        }
-      })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          setIsAllowed(false);
-        }
-      });
-  }, []);
-
   // check every 5 hours, if the token is expired or not
   useEffect(() => {
     const interval = setInterval(() => {
-      getProfile()
+      getSkills()
         .then((res) => {
           if (res.data) {
             setIsAllowed(true);
@@ -35,7 +20,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
             setIsAllowed(false);
           }
         });
-    }, 1000 * 60 * 60 * 5);
+    }, 20000);
     return () => clearInterval(interval);
   }, []);
 
