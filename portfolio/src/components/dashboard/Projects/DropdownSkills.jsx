@@ -36,13 +36,13 @@ export const DropdownSkills = ({ project, mutateSkills }) => {
       <Dropdown
         inline
         label="Add Skill"
-        placement="right-start"
-        className="backdrop-blur-sm bg-white/30"
+        placement="right-end"
+        className="bg-indigo-950 opacity-90 border-none z-40"
       >
         {skills?.map(({ id, title, icon }) => (
           <Dropdown.Item
             key={id}
-            className="flex bg-transparent hover:text-yellow-300 hover:scale-90 hover:bg-transparent transition-all ease-in-out duration-150"
+            className="flex text-white bg-transparent hover:text-yellow-300 hover:scale-90 hover:bg-transparent transition-all ease-in-out duration-150"
           >
             <button
               type="button"

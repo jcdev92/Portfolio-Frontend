@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { Spinner } from "flowbite-react";
 import { AiOutlineClose } from "react-icons/ai";
 
 const SkillsContainer = ({
@@ -25,12 +24,18 @@ const SkillsContainer = ({
 
   return isLoadingSkills || isLoadingDeleteSkillFromProject ? (
     <div className="w-full mb-6 flex items-center justify-center">
-      <Spinner size="xl" />
+      <div className="loader"></div>
     </div>
   ) : (
     <div className="relative z-0 w-full mb-6 group">
       <h5 className="font-bebas pt-4 text-2xl">Project Skills</h5>
       <div className="rounded-md w-full flex justify-around items-center p-4 flex-wrap gap-4">
+        {isLoadingSkills ||
+          (isLoadingDeleteSkillFromProject && (
+            <div className="w-full mb-6 flex items-center justify-center">
+              <div className="loader"></div>
+            </div>
+          ))}
         {ProjectsSkills.map(({ Skill }) => (
           <div
             key={Skill.id}

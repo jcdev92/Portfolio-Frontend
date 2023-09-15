@@ -3,7 +3,7 @@ export const ErrorAlert = ({ error }) => {
   return (
     <div
       id="alert-2"
-      className="flex items-center p-4 my-4 text-red-600 rounded-lg backdrop-blur-sm bg-red/30 "
+      className="flex items-center p-4 my-4 text-white rounded-lg bg-red-500 opacity-50 "
       role="alert"
     >
       <svg

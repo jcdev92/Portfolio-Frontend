@@ -27,7 +27,7 @@ export const AddProject = ({ setEditMode }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 rounded-md shadow-md overflow-y-auto">
+    <div className="w-5/6 h-5/6 backdrop-blur-sm p-12 rounded-md shadow-md overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent">
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">Add Project</h1>
         <button
