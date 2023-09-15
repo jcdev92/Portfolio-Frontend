@@ -59,8 +59,7 @@ export const EditSocialMedia = ({ setEditMode, selectedId, keyword }) => {
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto rounded-md shadow-md">
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">
-          Updating... <span className="text-yellow-300">{title}</span> - Social
-          Media
+          Updating... <span className="text-yellow-300">{title}</span>
         </h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"

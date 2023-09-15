@@ -108,7 +108,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent rounded-md shadow-md">
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">
-          Updating... <span className="text-yellow-300">{title}</span> - Project
+          Updating... <span className="text-yellow-300">{title}</span>
         </h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
@@ -135,7 +135,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
         isLoadingSkills={isLoadingSkills}
         isLoadingDeleteSkillFromProject={isLoadingDeleteSkillFromProject}
       />
-      <h6 className="text-2xl py-4 uppercase">{title} update data form</h6>
+      <h6 className="text-2xl py-4 uppercase font-bebas"> data form </h6>
       <form className="pr-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="relative z-0 w-full mb-6 group">
           <input

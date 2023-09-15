@@ -29,7 +29,7 @@ export const AddSkill = ({ setEditMode }) => {
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 rounded-md shadow-md overflow-y-auto">
       <div className="flex w-full justify-between mb-8">
-        <h1 className="font-bebas">Add a Skill</h1>
+        <h1 className="font-bebas">Add Skill</h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
           onClick={() => setEditMode("table")}
