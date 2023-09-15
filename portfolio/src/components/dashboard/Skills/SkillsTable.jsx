@@ -35,7 +35,7 @@ export const SkillsTable = () => {
   return editMode === "table" ? (
     <div className={word.length > 0 ? "w-5/6 h-5/6 z-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent" : "w-5/6 h-5/6 z-10"}>
       <div className="flex justify-between">
-        <SearchBar title={"skill"} word={word} setWord={setWord} />
+        <SearchBar setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => setEditMode("add")}
@@ -46,8 +46,8 @@ export const SkillsTable = () => {
       <div
         className={
           word.length > 0
-            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-auto rounded-md shadow-md"
-            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md"
+            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-lg w-full h-auto rounded-md shadow-md"
+            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-lg w-full h-5/6 rounded-md shadow-md"
         }
       >
         {isFetching ? (

@@ -38,7 +38,7 @@ export const SocialMediaTable = () => {
   return editMode === "table" ? (
     <div className="w-5/6 h-5/6 z-10">
       <div className="flex justify-between">
-        <SearchBar title={"social media"} word={word} setWord={setWord} />
+        <SearchBar setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => setEditMode("add")}
@@ -46,7 +46,7 @@ export const SocialMediaTable = () => {
           <BsDatabaseFillAdd />
         </button>
       </div>
-      <div className="relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm border w-full h-5/6 rounded-md shadow-md">
+      <div className="relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-sm w-full h-5/6 rounded-md shadow-lg">
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
             <div className="loader"></div>

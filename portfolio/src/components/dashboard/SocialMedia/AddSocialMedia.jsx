@@ -27,7 +27,7 @@ export const AddSocialMedia = ({ setEditMode }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 rounded-md shadow-md overflow-y-auto">
+    <div className="w-5/6 h-5/6 backdrop-blur-sm p-12 rounded-md shadow-lg overflow-y-auto">
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">Add Social Network</h1>
         <button
