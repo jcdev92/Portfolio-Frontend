@@ -122,7 +122,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
                 type="submit"
                 className={
                   isCleanOrEmptyInput
-                    ? "text-gray-400 bg-transparent text-5xl rounded-full scale-75"
+                    ? "text-gray-400 bg-transparent text-5xl rounded-full scale-75 transition-all ease-in-out duration-200"
                     : "text-white bg-transparent text-5xl rounded-full hover:text-yellow-300 hover:rotate-180 hover:scale-125  transition-all ease-in-out duration-200 sm:w-auto text-center"
                 }
                 disabled={isCleanOrEmptyInput}
