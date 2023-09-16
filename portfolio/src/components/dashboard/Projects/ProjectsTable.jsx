@@ -35,11 +35,11 @@ export const ProjectsTable = () => {
 
   return editMode === "table" ? (
     <motion.div
-      key="back"
+      key="front"
       layoutId="card"
-      initial={{ rotateY: 180 }}
-      animate={{ rotateY: 0 }}
-      exit={{ rotateY: -180 }}
+      initial={{ rotateY: 0 }}
+      animate={{ rotateY: 360 }}
+      exit={{ rotateY: 180 }}
       transition={{
         type: "spring",
         stiffness: 200,

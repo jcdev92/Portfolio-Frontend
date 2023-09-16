@@ -16,7 +16,7 @@ export const Animated = ({ children }) => {
     exit: {
       opacity: 0,
       x: -400,
-      scale: 0.2
+      scale: 0.2,
     },
   };
   return (

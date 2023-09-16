@@ -29,11 +29,11 @@ export const AddSocialMedia = ({ setEditMode }) => {
 
   return (
     <motion.div
-      key="front"
+      key="back"
       layoutId="card"
       initial={{ rotateY: 180 }}
-      animate={{ rotateY: 360 }}
-      exit={{ rotateY: 180 }}
+      animate={{ rotateY: 0 }}
+      exit={{ rotateY: -180 }}
       transition={{
         type: "spring",
         stiffness: 200,
