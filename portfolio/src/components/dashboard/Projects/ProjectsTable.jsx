@@ -10,6 +10,7 @@ import useProjectsStore from "../../../store/useProjectsStore";
 import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { ErrorPage } from "../../ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { motion } from "framer-motion";
 
 export const ProjectsTable = () => {
   const keyword = "projects";
@@ -33,15 +34,28 @@ export const ProjectsTable = () => {
   };
 
   return editMode === "table" ? (
-    <div className="w-5/6 h-5/6 z-10">
+    <motion.div
+      key="back"
+      layoutId="card"
+      initial={{ rotateY: 180 }}
+      animate={{ rotateY: 0 }}
+      exit={{ rotateY: -180 }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 1,
+      }}
+      className="w-5/6 h-5/6 z-10"
+    >
       <div className="flex justify-between">
         <SearchBar word={word} setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
-        onClick={() => {
-          setEditMode("add")
-          setWord("")
-        }}
+          onClick={() => {
+            setEditMode("add");
+            setWord("");
+          }}
         >
           <BsDatabaseFillAdd />
         </button>
@@ -105,7 +119,7 @@ export const ProjectsTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("edit");
-                              setWord("")
+                              setWord("");
                             }}
                           >
                             <TbDatabaseEdit />
@@ -115,7 +129,7 @@ export const ProjectsTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("delete");
-                              setWord("")
+                              setWord("");
                             }}
                           >
                             <TbDatabaseMinus />
@@ -145,7 +159,7 @@ export const ProjectsTable = () => {
                           onClick={() => {
                             handleId(id);
                             setEditMode("edit");
-                            setWord("")
+                            setWord("");
                           }}
                         >
                           <TbDatabaseEdit />
@@ -155,7 +169,7 @@ export const ProjectsTable = () => {
                           onClick={() => {
                             handleId(id);
                             setEditMode("delete");
-                            setWord("")
+                            setWord("");
                           }}
                         >
                           <TbDatabaseMinus />
@@ -167,7 +181,7 @@ export const ProjectsTable = () => {
           </table>
         )}
       </div>
-    </div>
+    </motion.div>
   ) : editMode === "edit" ? (
     <EditProject
       setEditMode={setEditMode}

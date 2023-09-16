@@ -14,6 +14,7 @@ import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
 import { DropdownSkills } from "./DropdownSkills";
 import SkillsContainer from "./SkillsContainer";
+import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({ setEditMode, selectedId, keyword }) => {
@@ -107,7 +108,20 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
       watchDescription.length === 0);
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-md shadow-md">
+    <motion.div
+      key="front"
+      layoutId="card"
+      initial={{ rotateY: 180 }}
+      animate={{ rotateY: 360 }}
+      exit={{ rotateY: 180 }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 1,
+      }}
+      className="w-5/6 h-5/6 backdrop-blur-md shadow-md"
+    >
       <form className="pr-2 w-full h-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="p-6 h-1/6 w-full flex rounded-md flex-col sticky inset-0 z-30">
           <div className="p-3 flex w-full justify-between items-start">
@@ -257,7 +271,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
           )}
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 
   // This function is used to watch the inputs and return the values of the inputs

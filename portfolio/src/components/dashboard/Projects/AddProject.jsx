@@ -7,6 +7,7 @@ import { addProject } from "../../../hooks/useProjects";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
+import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
 export const AddProject = ({ setEditMode }) => {
@@ -27,7 +28,19 @@ export const AddProject = ({ setEditMode }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-sm p-6 rounded-md shadow-md">
+    <motion.div
+    key="front"
+      layoutId="card"
+      initial={{ rotateY: 180 }}
+      animate={{ rotateY: 360 }}
+      exit={{ rotateY: 180 }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 1,
+      }} 
+    className="w-5/6 h-5/6 backdrop-blur-sm p-6 rounded-md shadow-md">
       {isLoading ? (
         <Loading />
       ) : isError ? (
@@ -144,6 +157,6 @@ export const AddProject = ({ setEditMode }) => {
           ></textarea>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };

@@ -7,6 +7,7 @@ import { addSocialMedia } from "../../../hooks/useSocialMedia";
 import { ErrorAlert } from "../Alerts/ErrorAlert";
 import { SuccessAlert } from "../Alerts/SuccessAlert";
 import { Loading } from "../../Loading";
+import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
 export const AddSocialMedia = ({ setEditMode }) => {
@@ -27,7 +28,20 @@ export const AddSocialMedia = ({ setEditMode }) => {
   };
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-sm p-12 rounded-md shadow-lg overflow-y-auto font-exo">
+    <motion.div
+      key="front"
+      layoutId="card"
+      initial={{ rotateY: 180 }}
+      animate={{ rotateY: 360 }}
+      exit={{ rotateY: 180 }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 1,
+      }}
+      className="w-5/6 h-5/6 backdrop-blur-sm p-12 rounded-md shadow-lg overflow-y-auto font-exo"
+    >
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">Add Social Network</h1>
         <button
@@ -108,6 +122,6 @@ export const AddSocialMedia = ({ setEditMode }) => {
           </button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };

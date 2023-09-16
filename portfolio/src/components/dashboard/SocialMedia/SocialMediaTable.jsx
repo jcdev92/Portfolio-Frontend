@@ -13,6 +13,7 @@ import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { ErrorPage } from "../../ErrorPage";
 import useSocialStore from "../../../store/useSocialStore";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { motion } from "framer-motion";
 
 export const SocialMediaTable = () => {
   const keyword = "social";
@@ -36,15 +37,28 @@ export const SocialMediaTable = () => {
   };
 
   return editMode === "table" ? (
-    <div className="w-5/6 h-5/6 z-10 font-exo">
+    <motion.div
+      key="back"
+      layoutId="card"
+      initial={{ rotateY: 180 }}
+      animate={{ rotateY: 0 }}
+      exit={{ rotateY: -180 }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 1,
+      }}
+      className="w-5/6 h-5/6 z-10 font-exo"
+    >
       <div className="flex justify-between">
         <SearchBar setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => {
-            setEditMode("add")
-            setWord("")
-        }}
+            setEditMode("add");
+            setWord("");
+          }}
         >
           <BsDatabaseFillAdd />
         </button>
@@ -114,7 +128,7 @@ export const SocialMediaTable = () => {
                               onClick={() => {
                                 handleId(id);
                                 setEditMode("edit");
-                                setWord("")
+                                setWord("");
                               }}
                             >
                               <TbDatabaseEdit />
@@ -124,7 +138,7 @@ export const SocialMediaTable = () => {
                               onClick={() => {
                                 handleId(id);
                                 setEditMode("delete");
-                                setWord("")
+                                setWord("");
                               }}
                             >
                               <TbDatabaseMinus />
@@ -154,7 +168,7 @@ export const SocialMediaTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("edit");
-                              setWord("")
+                              setWord("");
                             }}
                           >
                             <TbDatabaseEdit />
@@ -164,7 +178,7 @@ export const SocialMediaTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("delete");
-                              setWord("")
+                              setWord("");
                             }}
                           >
                             <TbDatabaseMinus />
@@ -177,7 +191,7 @@ export const SocialMediaTable = () => {
           </table>
         )}
       </div>
-    </div>
+    </motion.div>
   ) : editMode === "edit" ? (
     <EditSocialMedia
       setEditMode={setEditMode}
