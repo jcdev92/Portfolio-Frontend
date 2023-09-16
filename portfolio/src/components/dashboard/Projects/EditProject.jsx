@@ -109,15 +109,15 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
   return (
     <div className="w-5/6 h-5/6 backdrop-blur-md shadow-md">
       <form className="pr-2 w-full h-full" onSubmit={handleSubmit(onSubmit)}>
-        <div className="p-6 h-1/6 pb-1 w-full flex rounded-md flex-col sticky inset-0 z-30">
-          <div className="p-3 flex w-full justify-between">
+        <div className="p-6 h-1/6 w-full flex rounded-md flex-col sticky inset-0 z-30">
+          <div className="p-3 flex w-full justify-between items-start">
             <div className="flex w-5/6 items-center">
               <h1 className="font-bebas w-full">
                 Updating... <span className="text-yellow-300">{title}</span> -
                 Project
               </h1>
             </div>
-            <div className="p-3 flex w-1/6 h-fit justify-between">
+            <div className="flex w-1/6 justify-between">
               <button
                 type="submit"
                 className={

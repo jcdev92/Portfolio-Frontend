@@ -51,7 +51,7 @@ export const EditSkill = ({ setEditMode, selectedId, keyword }) => {
     !isDirty || (watchTitle.length === 0 && watchIcon.length === 0);
 
   return (
-    <div className="w-5/6 h-5/6 backdrop-blur-sm bg-white/30 p-12 overflow-y-auto rounded-md shadow-md">
+    <div className="w-5/6 h-5/6 backdrop-blur-sm p-12 overflow-y-auto rounded-md shadow-md">
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">
           Updating... <span className="text-yellow-300">{title}</span>
