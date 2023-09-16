@@ -47,8 +47,8 @@ export const Sidebar = () => {
                 to="/dashboard"
                 className={
                   window.location.pathname === "/dashboard"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
-                    : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
+                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg transition-all ease-in-out duration-200"
+                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                 }
               >
                 <HiUser />
@@ -60,8 +60,8 @@ export const Sidebar = () => {
                 to="/dashboard/skills"
                 className={
                   window.location.pathname === "/dashboard/skills"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
-                    : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
+                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg transition-all ease-in-out duration-200"
+                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                 }
               >
                 <HiTerminal />
@@ -73,8 +73,8 @@ export const Sidebar = () => {
                 to="/dashboard/projects"
                 className={
                   window.location.pathname === "/dashboard/projects"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
-                    : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
+                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg transition-all ease-in-out duration-200"
+                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                 }
               >
                 <HiOutlineBriefcase />
@@ -86,12 +86,12 @@ export const Sidebar = () => {
                 to="/dashboard/social-media"
                 className={
                   window.location.pathname === "/dashboard/social-media"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
-                    : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
+                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg transition-all ease-in-out duration-200"
+                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                 }
               >
                 <HiOutlineGlobe />
-                <span className="flex-1 ml-3 whitespace-nowrap ">
+                <span className="flex-1 ml-3 whitespace-nowrap">
                   Social Media
                 </span>
               </Link>
@@ -101,8 +101,8 @@ export const Sidebar = () => {
                 to="/dashboard/blog-dashboard"
                 className={
                   window.location.pathname === "/dashboard/blog-dashboard"
-                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg"
-                    : "flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
+                    ? "flex items-center p-2 text-yellow-300 text-sm rounded-lg transition-all ease-in-out duration-200"
+                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                 }
               >
                 <HiOutlineNewspaper />
@@ -114,8 +114,8 @@ export const Sidebar = () => {
                 to="/login"
                 className={
                   window.location.pathname === "/login"
-                    ? "flex items-center p-2 mt-2 text-yellow-300 text-sm rounded-lg"
-                    : "flex items-center p-2 mt-2 text-white rounded-lg hover:bg-gray-100 hover:text-indigo-700"
+                    ? "flex items-center p-2 mt-2 text-yellow-300 text-sm rounded-lg transition-all ease-in-out duration-200"
+                    : "flex items-center p-2 mt-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                 }
                 onClick={handleLogout}
               >
