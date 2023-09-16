@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
 import { RxUpdate } from "react-icons/rx";
 import useProjectsStore from "../../../store/useProjectsStore";
@@ -17,7 +18,12 @@ import SkillsContainer from "./SkillsContainer";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const EditProject = ({ setEditMode, selectedId, keyword }) => {
+export const EditProject = ({
+  setEditMode,
+  selectedId,
+  keyword,
+  setClicked,
+}) => {
   const projects = useProjectsStore((state) => state.projects);
   const project = projects.find((project) => project.id === selectedId);
   const { title, description, url, github, image } = project;
@@ -145,7 +151,10 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
               </button>
               <button
                 className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg sm:w-auto"
-                onClick={() => setEditMode("table")}
+                onClick={() => {
+                  setEditMode("table");
+                  setClicked("f");
+                }}
               >
                 <AiOutlineClose />
               </button>

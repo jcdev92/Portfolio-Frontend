@@ -10,7 +10,7 @@ import { Loading } from "../../Loading";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const AddSocialMedia = ({ setEditMode }) => {
+export const AddSocialMedia = ({ setEditMode, editMode, setClicked }) => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -29,7 +29,7 @@ export const AddSocialMedia = ({ setEditMode }) => {
 
   return (
     <motion.div
-      key="back"
+      key={editMode}
       layoutId="card"
       initial={{ rotateY: 180 }}
       animate={{ rotateY: 0 }}
@@ -46,7 +46,10 @@ export const AddSocialMedia = ({ setEditMode }) => {
         <h1 className="font-bebas">Add Social Network</h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
-          onClick={() => setEditMode("table")}
+          onClick={() => {
+            setEditMode("table");
+            setClicked("a");
+          }}
         >
           <AiOutlineClose className="h-full w-full" />
         </button>

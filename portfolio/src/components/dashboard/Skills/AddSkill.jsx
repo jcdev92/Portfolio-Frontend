@@ -10,7 +10,7 @@ import { addSkill } from "../../../hooks/useSkills";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const AddSkill = ({ setEditMode }) => {
+export const AddSkill = ({ setEditMode, setClicked }) => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -46,7 +46,10 @@ export const AddSkill = ({ setEditMode }) => {
         <h1 className="font-bebas">Add Skill</h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
-          onClick={() => setEditMode("table")}
+          onClick={() => {
+            setEditMode("table");
+            setClicked("c");
+        }}
         >
           <AiOutlineClose className="h-full w-full" />
         </button>

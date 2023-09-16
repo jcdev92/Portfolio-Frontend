@@ -27,6 +27,7 @@ export const ProjectsTable = () => {
 
   const [editMode, setEditMode] = useState("table");
   const [selectedId, setSelectedId] = useState("");
+  const [clicked, setClicked] = useState(null);
   const [word, setWord] = useState("");
 
   const handleId = (id) => {
@@ -37,7 +38,7 @@ export const ProjectsTable = () => {
     <motion.div
       key="front"
       layoutId="card"
-      initial={{ rotateY: 0 }}
+      initial={clicked !== null && {rotateY: 180}}
       animate={{ rotateY: 360 }}
       exit={{ rotateY: 180 }}
       transition={{
@@ -187,9 +188,10 @@ export const ProjectsTable = () => {
       setEditMode={setEditMode}
       selectedId={selectedId}
       keyword={keyword}
+      setClicked={setClicked}
     />
   ) : editMode === "add" ? (
-    <AddProject setEditMode={setEditMode} />
+    <AddProject setEditMode={setEditMode} setClicked={setClicked}/>
   ) : editMode === "delete" ? (
     <DeleteAlert
       setEditMode={setEditMode}

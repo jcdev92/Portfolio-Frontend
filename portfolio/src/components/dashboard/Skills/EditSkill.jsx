@@ -11,7 +11,7 @@ import useSkillsStore from "../../../store/useSkillsStore";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const EditSkill = ({ setEditMode, selectedId, keyword }) => {
+export const EditSkill = ({ setEditMode, selectedId, keyword, setClicked }) => {
   const skills = useSkillsStore((state) => state.skills);
   const skill = skills.find((skill) => skill.id === selectedId);
   const { title, icon } = skill;
@@ -72,7 +72,10 @@ export const EditSkill = ({ setEditMode, selectedId, keyword }) => {
         </h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
-          onClick={() => setEditMode("table")}
+          onClick={() => {
+            setEditMode("table");
+            setClicked("d");
+          }}
         >
           <AiOutlineClose className="w-full h-full" />
         </button>

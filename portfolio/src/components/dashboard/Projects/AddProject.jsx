@@ -10,7 +10,7 @@ import { Loading } from "../../Loading";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const AddProject = ({ setEditMode }) => {
+export const AddProject = ({ setEditMode, setClicked }) => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -62,7 +62,10 @@ export const AddProject = ({ setEditMode }) => {
             </button>
             <button
               className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
-              onClick={() => setEditMode("table")}
+              onClick={() => {
+                setEditMode("table");
+                setClicked("e");
+              }}
             >
               <AiOutlineClose className="h-full w-full" />
             </button>

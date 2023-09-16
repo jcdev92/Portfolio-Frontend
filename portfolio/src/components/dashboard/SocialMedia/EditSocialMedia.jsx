@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
 import { RxUpdate } from "react-icons/rx";
 import useSocialStore from "../../../store/useSocialStore";
@@ -11,7 +12,13 @@ import { Loading } from "../../Loading";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const EditSocialMedia = ({ setEditMode, selectedId, keyword }) => {
+export const EditSocialMedia = ({
+  setEditMode,
+  editMode,
+  selectedId,
+  keyword,
+  setClicked,
+}) => {
   const socials = useSocialStore.getState().socials;
   const socialMedia = socials.find(
     (socialMedia) => socialMedia.id === selectedId
@@ -58,7 +65,7 @@ export const EditSocialMedia = ({ setEditMode, selectedId, keyword }) => {
 
   return (
     <motion.div
-      key="back"
+      key={editMode}
       layoutId="card"
       initial={{ rotateY: 180 }}
       animate={{ rotateY: 0 }}
@@ -77,7 +84,10 @@ export const EditSocialMedia = ({ setEditMode, selectedId, keyword }) => {
         </h1>
         <button
           className="text-white hover:bg-transparent hover:scale-75 transition-all ease-in-out duration-200 hover:text-yellow-300 rounded-lg text-4xl sm:w-auto text-center"
-          onClick={() => setEditMode("table")}
+          onClick={() => {
+            setEditMode("table");
+            setClicked("a");
+          }}
         >
           <AiOutlineClose className="w-full h-full" />
         </button>

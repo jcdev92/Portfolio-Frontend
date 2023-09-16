@@ -29,6 +29,7 @@ export const SocialMediaTable = () => {
   });
 
   const [editMode, setEditMode] = useState("table");
+  const [clicked, setClicked] = useState(null);
   const [selectedId, setSelectedId] = useState("");
   const [word, setWord] = useState("");
 
@@ -38,9 +39,9 @@ export const SocialMediaTable = () => {
 
   return editMode === "table" ? (
     <motion.div
-      key="front"
+      key={editMode}
       layoutId="card"
-      initial={{ rotateY: 0 }}
+      initial={clicked !== null && { rotateY: 180 }}
       animate={{ rotateY: 360 }}
       exit={{ rotateY: 180 }}
       transition={{
@@ -194,12 +195,14 @@ export const SocialMediaTable = () => {
     </motion.div>
   ) : editMode === "edit" ? (
     <EditSocialMedia
+      editMode={editMode}
+      setClicked={setClicked}
       setEditMode={setEditMode}
       selectedId={selectedId}
       keyword={keyword}
     />
   ) : editMode === "add" ? (
-    <AddSocialMedia setEditMode={setEditMode} />
+    <AddSocialMedia setEditMode={setEditMode} editMode={editMode} setClicked={setClicked}/>
   ) : editMode === "delete" ? (
     <DeleteAlert
       setEditMode={setEditMode}
