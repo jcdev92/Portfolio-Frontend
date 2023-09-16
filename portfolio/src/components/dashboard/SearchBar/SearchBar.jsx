@@ -32,7 +32,7 @@ export const SearchBar = ({ setWord }) => {
           type="text"
           onChange={search}
           id="table-search"
-          className="block bg-transparent text-white p-2 pl-10 text-sm text-gray-900 border border-sky-400/50  rounded-lg w-80 bg-gray-50 placeholder-sky-400/50 focus:ring-blue-500 focus:border-blue-500 font-exo"
+          className="block bg-transparent text-white p-2 pl-10 text-sm text-gray-900 rounded-lg w-80 bg-gray-50 placeholder-sky-400/50 focus:ring-blue-500 focus:border-blue-500 font-exo shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600 transition-all ease-in-out duration-200 hover:shadow-sm focus:shadow-sky-600"
           placeholder="Search"
         />
       </div>

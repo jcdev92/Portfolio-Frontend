@@ -68,8 +68,8 @@ export const SkillsTable = () => {
       <div
         className={
           word.length > 0
-            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md w-full h-auto rounded-md shadow-md"
-            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md w-full h-5/6 rounded-md shadow-md"
+            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md w-full h-auto rounded-md shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600  transition-all ease-in-out duration-200"
+            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md w-full h-5/6 rounded-md shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600  transition-all ease-in-out duration-200"
         }
       >
         {isFetching ? (
@@ -85,7 +85,7 @@ export const SkillsTable = () => {
         ) : (
           <table className="w-full h-full sm:rounded-lg text-sm text-left text-white">
             <thead className="text-xs text-white uppercase">
-              <tr className="sticky z-10 top-0 backdrop-blur-sm bg-white/10">
+              <tr className="sticky z-10 top-0 backdrop-blur-md bg-indigo-900/80">
                 <th scope="col" className="px-6 py-3">
                   <h1 className="font-bebas font-light text-lg">title</h1>
                 </th>

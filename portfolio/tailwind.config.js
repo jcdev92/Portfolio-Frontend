@@ -10,6 +10,9 @@ export default {
     extend: {
       backgroundImage: {
         "milky-way" : "url('../public/img/pexels-photo-924824.webp')"
+      },
+      scale: {
+        '98' : '0.98',
       }
     },
     animation: {
