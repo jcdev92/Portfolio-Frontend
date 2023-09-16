@@ -32,6 +32,7 @@ export default {
       serif: ["ui-serif", "Georgia"],
       mono: ["ui-monospace", "SFMono-Regular"],
       bebas: ["Bebas Neue", "sans-serif"],
+      exo: ['"Exo 2"', "sans-serif"],
     },
   },
   plugins: [require("flowbite/plugin"), require('tailwind-scrollbar')({ nocompatible: true })],

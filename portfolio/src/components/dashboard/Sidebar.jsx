@@ -41,7 +41,7 @@ export const Sidebar = () => {
               </div>
             </div>
           </div>
-          <ul className="space-y-2 font-medium">
+          <ul className="space-y-2 font-exo">
             <li>
               <Link
                 to="/dashboard"
@@ -52,7 +52,7 @@ export const Sidebar = () => {
                 }
               >
                 <HiUser />
-                <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
+                <span className="flex-1 ml-3 whitespace-nowrap uppercase">profile</span>
               </Link>
             </li>
             <li>
@@ -65,7 +65,7 @@ export const Sidebar = () => {
                 }
               >
                 <HiTerminal />
-                <span className="flex-1 ml-3 whitespace-nowrap">Skills</span>
+                <span className="flex-1 ml-3 whitespace-nowrap uppercase">skills</span>
               </Link>
             </li>
             <li>
@@ -78,7 +78,7 @@ export const Sidebar = () => {
                 }
               >
                 <HiOutlineBriefcase />
-                <span className="flex-1 ml-3 whitespace-nowrap">Projects</span>
+                <span className="flex-1 ml-3 whitespace-nowrap uppercase">projects</span>
               </Link>
             </li>
             <li>
@@ -91,8 +91,8 @@ export const Sidebar = () => {
                 }
               >
                 <HiOutlineGlobe />
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Social Media
+                <span className="flex-1 ml-3 whitespace-nowrap uppercase">
+                  social media
                 </span>
               </Link>
             </li>
@@ -106,7 +106,7 @@ export const Sidebar = () => {
                 }
               >
                 <HiOutlineNewspaper />
-                <span className="flex-1 ml-3 whitespace-nowrap">Blog</span>
+                <span className="flex-1 ml-3 whitespace-nowrap uppercase">Blog</span>
               </Link>
             </li>
             <li className="border-t border-sky-500/20 xl:py-4">
@@ -120,7 +120,7 @@ export const Sidebar = () => {
                 onClick={handleLogout}
               >
                 <HiOutlineLogout />
-                <span className="flex-1 ml-3 whitespace-nowrap">Log Out</span>
+                <span className="flex-1 ml-3 whitespace-nowrap uppercase">Log Out</span>
               </Link>
             </li>
           </ul>
