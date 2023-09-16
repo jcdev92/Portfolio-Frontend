@@ -147,7 +147,7 @@ export const EditProject = ({ setEditMode, selectedId, keyword }) => {
             <SuccessAlert status={status} />
           ) : null}
         </div>
-        <div className="p-6 pt-0 h-4/5">
+        <div className="p-6 pt-0 h-4/5 font-exo">
           {isLoading ? (
             <Loading />
           ) : (

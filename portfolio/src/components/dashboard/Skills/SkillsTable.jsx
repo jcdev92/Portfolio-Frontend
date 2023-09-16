@@ -86,7 +86,7 @@ export const SkillsTable = () => {
                     })
                     .map(({ id, title, icon }) => (
                       <tr key={id} className="h-auyo">
-                        <th scope="row" className="px-6 py-4 font-medium">
+                        <th scope="row" className="px-6 py-4 font-exo">
                           {title}
                         </th>
                         <td className="px-6 py-4">
@@ -120,7 +120,7 @@ export const SkillsTable = () => {
                     <tr key={id} className="w-auto h-auto">
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium whitespace-nowrap"
+                        className="px-6 py-4 font-exo whitespace-nowrap"
                       >
                         {title}
                       </th>

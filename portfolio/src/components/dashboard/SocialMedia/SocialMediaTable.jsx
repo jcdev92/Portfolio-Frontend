@@ -36,7 +36,7 @@ export const SocialMediaTable = () => {
   };
 
   return editMode === "table" ? (
-    <div className="w-5/6 h-5/6 z-10">
+    <div className="w-5/6 h-5/6 z-10 font-exo">
       <div className="flex justify-between">
         <SearchBar setWord={setWord} />
         <button

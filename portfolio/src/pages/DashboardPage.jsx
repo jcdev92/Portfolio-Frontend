@@ -4,7 +4,6 @@ import { Skills } from "../components/dashboard/Skills/Skills";
 import { Sidebar } from "../components/dashboard/Sidebar";
 import { Projects } from "../components/dashboard/Projects/Projects";
 import { SocialMedia } from "../components/dashboard/SocialMedia/SocialMedia";
-import { BlogDashboard } from "../components/dashboard/BlogDashboard/BlogDashboard";
 import { Animated } from "../components/dashboard/Animated";
 
 export const DashboardPage = () => {
@@ -74,12 +73,3 @@ export const DashboardSocialMedia = () => {
   );
 };
 
-export const DashboardBlog = () => {
-  return (
-    <div className="w-full h-full">
-      <Animated>
-        <BlogDashboard />
-      </Animated>
-    </div>
-  );
-};

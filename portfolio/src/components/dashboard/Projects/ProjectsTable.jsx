@@ -75,7 +75,7 @@ export const ProjectsTable = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="w-full h-full">
+            <tbody className="w-full h-full font-exo">
               {word.length > 0
                 ? data
                     ?.filter(({ title }) => {
@@ -85,7 +85,7 @@ export const ProjectsTable = () => {
                       <tr key={id} className="w-auto h-auto">
                         <th
                           scope="row"
-                          className="px-6 py-4 font-medium whitespace-nowrap"
+                          className="px-6 py-4 font-exos whitespace-nowrap"
                         >
                           {title}
                         </th>
@@ -127,7 +127,7 @@ export const ProjectsTable = () => {
                     <tr key={id} className="w-auto h-auto">
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium whitespace-nowrap"
+                        className="px-6 py-4 font-exos whitespace-nowrap"
                       >
                         {title}
                       </th>
