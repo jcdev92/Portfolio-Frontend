@@ -38,7 +38,10 @@ export const SkillsTable = () => {
         <SearchBar setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
-          onClick={() => setEditMode("add")}
+          onClick={() => {
+            setEditMode("add")
+            setWord("")
+          }}
         >
           <BsDatabaseFillAdd />
         </button>
@@ -95,6 +98,7 @@ export const SkillsTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("edit");
+                              setWord("")
                             }}
                           >
                             <TbDatabaseEdit />
@@ -104,6 +108,7 @@ export const SkillsTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("delete");
+                              setWord("")
                             }}
                           >
                             <TbDatabaseMinus />
@@ -128,6 +133,7 @@ export const SkillsTable = () => {
                           onClick={() => {
                             handleId(id);
                             setEditMode("edit");
+                            setWord("")
                           }}
                         >
                           <TbDatabaseEdit />
@@ -137,6 +143,7 @@ export const SkillsTable = () => {
                           onClick={() => {
                             handleId(id);
                             setEditMode("delete");
+                            setWord("")
                           }}
                         >
                           <TbDatabaseMinus />
