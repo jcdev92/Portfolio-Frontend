@@ -1,6 +1,5 @@
 "use client";
 import {
-  HiOutlineNewspaper,
   HiTerminal,
   HiOutlineLogout,
   HiUser,
@@ -34,7 +33,7 @@ export const Sidebar = () => {
               src={profile?.profileImg}
               alt=""
             />
-            <div className="font-bebas my-2 text-yellow-300 text-center">
+            <div className="font-bebas my-2 text-sky-300 text-center">
               <div>{profile?.firstName}</div>
               <div className="text-sm dark:text-gray-400">
                 {profile?.jobTitle}
@@ -52,8 +51,8 @@ export const Sidebar = () => {
                 }
               >
                 <HiUser />
-                <span className="flex-1 ml-3 whitespace-nowrap uppercase">
-                  profile
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Profile
                 </span>
               </Link>
             </li>
@@ -67,8 +66,8 @@ export const Sidebar = () => {
                 }
               >
                 <HiTerminal />
-                <span className="flex-1 ml-3 whitespace-nowrap uppercase">
-                  skills
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Skills
                 </span>
               </Link>
             </li>
@@ -82,8 +81,8 @@ export const Sidebar = () => {
                 }
               >
                 <HiOutlineBriefcase />
-                <span className="flex-1 ml-3 whitespace-nowrap uppercase">
-                  projects
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Projects
                 </span>
               </Link>
             </li>
@@ -97,8 +96,8 @@ export const Sidebar = () => {
                 }
               >
                 <HiOutlineGlobe />
-                <span className="flex-1 ml-3 whitespace-nowrap uppercase">
-                  social media
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Social media
                 </span>
               </Link>
             </li>
@@ -113,7 +112,7 @@ export const Sidebar = () => {
                 onClick={handleLogout}
               >
                 <HiOutlineLogout />
-                <span className="flex-1 ml-3 whitespace-nowrap uppercase">
+                <span className="flex-1 ml-3 whitespace-nowrap">
                   Log Out
                 </span>
               </Link>

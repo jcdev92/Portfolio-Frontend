@@ -10,6 +10,7 @@ import { DeleteAlert } from "../Alerts/DeleteAlert";
 import { deleteSkill, getSkills } from "../../../hooks/useSkills";
 import { ErrorPage } from "../../ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { motion } from "framer-motion";
 
 export const SkillsTable = () => {
   const keyword = "skills";
@@ -33,14 +34,31 @@ export const SkillsTable = () => {
   };
 
   return editMode === "table" ? (
-    <div className={word.length > 0 ? "w-5/6 h-5/6 z-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent" : "w-5/6 h-5/6 z-10"}>
+    <motion.div
+      key="back"
+      layoutId="card"
+      initial={{ rotateY: 180 }}
+      animate={{ rotateY: 0 }}
+      exit={{ rotateY: -180 }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        duration: 1,
+      }}
+      className={
+        word.length > 0
+          ? "w-5/6 h-5/6 z-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent"
+          : "w-5/6 h-5/6 z-10"
+      }
+    >
       <div className="flex justify-between">
         <SearchBar setWord={setWord} />
         <button
           className="rounded-full h-1/5 hover:text-yellow-300 hover:scale-110 transition-all ease-in-out delay-100"
           onClick={() => {
-            setEditMode("add")
-            setWord("")
+            setEditMode("add");
+            setWord("");
           }}
         >
           <BsDatabaseFillAdd />
@@ -98,7 +116,7 @@ export const SkillsTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("edit");
-                              setWord("")
+                              setWord("");
                             }}
                           >
                             <TbDatabaseEdit />
@@ -108,7 +126,7 @@ export const SkillsTable = () => {
                             onClick={() => {
                               handleId(id);
                               setEditMode("delete");
-                              setWord("")
+                              setWord("");
                             }}
                           >
                             <TbDatabaseMinus />
@@ -133,7 +151,7 @@ export const SkillsTable = () => {
                           onClick={() => {
                             handleId(id);
                             setEditMode("edit");
-                            setWord("")
+                            setWord("");
                           }}
                         >
                           <TbDatabaseEdit />
@@ -143,7 +161,7 @@ export const SkillsTable = () => {
                           onClick={() => {
                             handleId(id);
                             setEditMode("delete");
-                            setWord("")
+                            setWord("");
                           }}
                         >
                           <TbDatabaseMinus />
@@ -155,7 +173,7 @@ export const SkillsTable = () => {
           </table>
         )}
       </div>
-    </div>
+    </motion.div>
   ) : editMode === "edit" ? (
     <EditSkill setEditMode={setEditMode} selectedId={selectedId} />
   ) : editMode === "add" ? (
