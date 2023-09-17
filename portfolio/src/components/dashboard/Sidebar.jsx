@@ -26,8 +26,8 @@ export const Sidebar = () => {
         className="lg:h-5/6 xl:h-4/6 bg-transparent w-1/5 dark:bg-gray-800 z-30"
         aria-label="Sidebar"
       >
-        <div className="h-full ml-3 px-4 py-4 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md rounded-md shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600  transition-all ease-in-out duration-200">
-          <div className="flex flex-col justify-center items-center my-4 lg:p-2 xl:p-4 border-b border-sky-500/20">
+        <div className="h-full flex flex-col justify-around ml-3 px-4 py-4 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md rounded-md shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600  transition-all ease-in-out duration-200">
+          <div className="flex flex-col justify-center items-center lg:p-2 xl:p-4 border-b border-sky-500/20">
             <img
               className="w-10 h-10 rounded-full border-2 border-double"
               src={profile?.profileImg}
@@ -40,76 +40,84 @@ export const Sidebar = () => {
               </div>
             </div>
           </div>
-          <ul className="space-y-2 font-exo">
-            <li>
-              <Link
-                to="/dashboard"
-                className={
-                  window.location.pathname === "/dashboard"
-                    ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
-                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
-                }
-              >
-                <HiUser />
-                <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/skills"
-                className={
-                  window.location.pathname === "/dashboard/skills"
-                    ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
-                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
-                }
-              >
-                <HiTerminal />
-                <span className="flex-1 ml-3 whitespace-nowrap">Skills</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/projects"
-                className={
-                  window.location.pathname === "/dashboard/projects"
-                    ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
-                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
-                }
-              >
-                <HiOutlineBriefcase />
-                <span className="flex-1 ml-3 whitespace-nowrap">Projects</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/dashboard/social-media"
-                className={
-                  window.location.pathname === "/dashboard/social-media"
-                    ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
-                    : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
-                }
-              >
-                <HiOutlineGlobe />
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Social media
-                </span>
-              </Link>
-            </li>
-            <li className="border-t border-sky-500/20 xl:py-4">
-              <Link
-                to="/login"
-                className={
-                  window.location.pathname === "/login"
-                    ? "flex items-center p-2 mt-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
-                    : "flex items-center p-2 mt-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
-                }
-                onClick={handleLogout}
-              >
-                <HiOutlineLogout />
-                <span className="flex-1 ml-3 whitespace-nowrap">Log Out</span>
-              </Link>
-            </li>
-          </ul>
+          <div className="flex flex-col justify-center">
+            <ul className="space-y-2 font-exo h-full">
+              <li>
+                <Link
+                  to="/dashboard"
+                  className={
+                    window.location.pathname === "/dashboard"
+                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
+                  }
+                >
+                  <HiUser />
+                  <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/skills"
+                  className={
+                    window.location.pathname === "/dashboard/skills"
+                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
+                  }
+                >
+                  <HiTerminal />
+                  <span className="flex-1 ml-3 whitespace-nowrap">Skills</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/projects"
+                  className={
+                    window.location.pathname === "/dashboard/projects"
+                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
+                  }
+                >
+                  <HiOutlineBriefcase />
+                  <span className="flex-1 ml-3 whitespace-nowrap">
+                    Projects
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/social-media"
+                  className={
+                    window.location.pathname === "/dashboard/social-media"
+                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
+                  }
+                >
+                  <HiOutlineGlobe />
+                  <span className="flex-1 ml-3 whitespace-nowrap">
+                    Social media
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li className="border-t border-sky-500/20 xl:py-4">
+                <Link
+                  to="/login"
+                  className={
+                    window.location.pathname === "/login"
+                      ? "flex items-center p-2 mt-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      : "flex items-center p-2 mt-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
+                  }
+                  onClick={handleLogout}
+                >
+                  <HiOutlineLogout />
+                  <span className="flex-1 ml-3 whitespace-nowrap">Log Out</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </aside>
     </>

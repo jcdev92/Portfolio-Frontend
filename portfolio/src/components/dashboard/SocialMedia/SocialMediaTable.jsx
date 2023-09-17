@@ -29,6 +29,7 @@ export const SocialMediaTable = () => {
   });
 
   const [editMode, setEditMode] = useState("table");
+  const [deleteMode, setDeleteMode] = useState("");
   const [clicked, setClicked] = useState(null);
   const [selectedId, setSelectedId] = useState("");
   const [word, setWord] = useState("");
@@ -138,7 +139,7 @@ export const SocialMediaTable = () => {
                               className="text-xl hover:text-yellow-300 hover:scale-150 transition-all ease-in-out duration-75"
                               onClick={() => {
                                 handleId(id);
-                                setEditMode("delete");
+                                setDeleteMode("delete");
                                 setWord("");
                               }}
                             >
@@ -178,7 +179,7 @@ export const SocialMediaTable = () => {
                             className="text-xl hover:text-yellow-300 hover:scale-150 transition-all ease-in-out duration-75"
                             onClick={() => {
                               handleId(id);
-                              setEditMode("delete");
+                              setDeleteMode("delete");
                               setWord("");
                             }}
                           >
@@ -192,6 +193,16 @@ export const SocialMediaTable = () => {
           </table>
         )}
       </div>
+      {deleteMode === "delete" && (
+        <div className="backdrop-blur-sm rounded-md backdrop-filter absolute top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+          <DeleteAlert
+            setDeleteMode={setDeleteMode}
+            selectedId={selectedId}
+            deleteFn={deleteSocialMedia}
+            keyword={keyword}
+          />
+        </div>
+      )}
     </motion.div>
   ) : editMode === "edit" ? (
     <EditSocialMedia
@@ -202,13 +213,10 @@ export const SocialMediaTable = () => {
       keyword={keyword}
     />
   ) : editMode === "add" ? (
-    <AddSocialMedia setEditMode={setEditMode} editMode={editMode} setClicked={setClicked}/>
-  ) : editMode === "delete" ? (
-    <DeleteAlert
+    <AddSocialMedia
       setEditMode={setEditMode}
-      selectedId={selectedId}
-      deleteFn={deleteSocialMedia}
-      keyword={keyword}
+      editMode={editMode}
+      setClicked={setClicked}
     />
   ) : editMode === "table" && isLoading ? (
     <Loading />

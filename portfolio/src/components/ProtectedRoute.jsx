@@ -6,6 +6,21 @@ import { getSkills } from "../hooks/useSkills";
 export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   const [isAllowed, setIsAllowed] = useState(true);
 
+  // check if the token is expired or not
+  useEffect(() => {
+    getSkills()
+      .then((res) => {
+        if (res.data) {
+          setIsAllowed(true);
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          setIsAllowed(false);
+        }
+      });
+  }, []);
+
   // check every 5 hours, if the token is expired or not
   useEffect(() => {
     const interval = setInterval(() => {

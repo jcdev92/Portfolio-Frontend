@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* eslint-disable react/prop-types */
-export const DeleteAlert = ({ selectedId, setEditMode, deleteFn, keyword }) => {
+export const DeleteAlert = ({ selectedId, setDeleteMode, deleteFn, keyword }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -16,7 +16,7 @@ export const DeleteAlert = ({ selectedId, setEditMode, deleteFn, keyword }) => {
     mutate(selectedId);
   };
   return (
-    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow z-20">
+    <div className="w-2/4 h-3/5 flex flex-col justify-center p-6 bg-white border border-gray-200 rounded-lg shadow z-50 relative inset-0">
       <div className="px-4 py-4 w-full text-center">
         <h5 className="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
           Are you sure you want to delete {`ID:  ${selectedId}`} ?
@@ -26,14 +26,14 @@ export const DeleteAlert = ({ selectedId, setEditMode, deleteFn, keyword }) => {
         <button
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
           onClick={() => {
-            handelDelete(), setEditMode("table");
+            handelDelete(), setDeleteMode("");
           }}
         >
           YES
         </button>
         <button
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-          onClick={() => setEditMode("table")}
+          onClick={() => setDeleteMode("")}
         >
           NO
         </button>

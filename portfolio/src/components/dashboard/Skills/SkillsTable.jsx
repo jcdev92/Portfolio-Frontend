@@ -26,6 +26,7 @@ export const SkillsTable = () => {
   });
 
   const [editMode, setEditMode] = useState("table");
+  const [deleteMode, setDeleteMode] = useState("");
   const [selectedId, setSelectedId] = useState("");
   const [clicked, setClicked] = useState(null);
   const [word, setWord] = useState("");
@@ -126,7 +127,7 @@ export const SkillsTable = () => {
                             className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
                             onClick={() => {
                               handleId(id);
-                              setEditMode("delete");
+                              setDeleteMode("delete");
                               setWord("");
                             }}
                           >
@@ -161,7 +162,7 @@ export const SkillsTable = () => {
                           className="text-xl hover:text-yellow-300 hover:scale-150 transition-all ease-in-out duration-75"
                           onClick={() => {
                             handleId(id);
-                            setEditMode("delete");
+                            setDeleteMode("delete");
                             setWord("");
                           }}
                         >
@@ -174,18 +175,25 @@ export const SkillsTable = () => {
           </table>
         )}
       </div>
+      {deleteMode === "delete" && (
+        <div className="backdrop-blur-sm rounded-md backdrop-filter absolute top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+          <DeleteAlert
+            setDeleteMode={setDeleteMode}
+            selectedId={selectedId}
+            deleteFn={deleteSkill}
+            keyword={keyword}
+          />
+        </div>
+      )}
     </motion.div>
   ) : editMode === "edit" ? (
-    <EditSkill setEditMode={setEditMode} selectedId={selectedId} setClicked={setClicked} />
-  ) : editMode === "add" ? (
-    <AddSkill setEditMode={setEditMode} setClicked={setClicked} />
-  ) : editMode === "delete" ? (
-    <DeleteAlert
+    <EditSkill
       setEditMode={setEditMode}
       selectedId={selectedId}
-      deleteFn={deleteSkill}
-      keyword={keyword}
+      setClicked={setClicked}
     />
+  ) : editMode === "add" ? (
+    <AddSkill setEditMode={setEditMode} setClicked={setClicked} />
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (

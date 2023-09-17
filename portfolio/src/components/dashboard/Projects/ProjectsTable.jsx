@@ -26,6 +26,7 @@ export const ProjectsTable = () => {
   });
 
   const [editMode, setEditMode] = useState("table");
+  const [deleteMode, setDeleteMode] = useState("");
   const [selectedId, setSelectedId] = useState("");
   const [clicked, setClicked] = useState(null);
   const [word, setWord] = useState("");
@@ -129,7 +130,7 @@ export const ProjectsTable = () => {
                             className="text-xl hover:text-yellow-100 hover:scale-150 transition-all ease-in-out duration-75"
                             onClick={() => {
                               handleId(id);
-                              setEditMode("delete");
+                              setDeleteMode("delete");
                               setWord("");
                             }}
                           >
@@ -169,7 +170,7 @@ export const ProjectsTable = () => {
                           className="text-xl hover:text-yellow-300 hover:scale-150 transition-all ease-in-out duration-75"
                           onClick={() => {
                             handleId(id);
-                            setEditMode("delete");
+                            setDeleteMode("delete");
                             setWord("");
                           }}
                         >
@@ -182,6 +183,16 @@ export const ProjectsTable = () => {
           </table>
         )}
       </div>
+      {deleteMode === "delete" && (
+        <div className="backdrop-blur-sm rounded-md backdrop-filter absolute top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+          <DeleteAlert
+            setDeleteMode={setDeleteMode}
+            selectedId={selectedId}
+            deleteFn={deleteProject}
+            keyword={keyword}
+          />
+        </div>
+      )}
     </motion.div>
   ) : editMode === "edit" ? (
     <EditProject
@@ -192,13 +203,6 @@ export const ProjectsTable = () => {
     />
   ) : editMode === "add" ? (
     <AddProject setEditMode={setEditMode} setClicked={setClicked}/>
-  ) : editMode === "delete" ? (
-    <DeleteAlert
-      setEditMode={setEditMode}
-      selectedId={selectedId}
-      deleteFn={deleteProject}
-      keyword={keyword}
-    />
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (
