@@ -16,7 +16,10 @@ export default {
       }
     },
     colors: {
-      'odp-bg': '#1E2127'
+      'odp-bg': '#1E2127',
+      'odp-text': '#ABB2BF',
+      'odp-pink-light': '#e06c75',
+      'odp-foreground' : '#282c34',
     },
     animation: {
       'gradient-x': 'gradient-x 15s ease infinite',
@@ -36,7 +39,7 @@ export default {
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["ui-monospace", "SFMono-Regular"],
+      mono: ['"JetBrains Mono"', 'ui-monospace'],
       bebas: ["Bebas Neue", "sans-serif"],
       exo: ['"Exo 2"', "sans-serif"],
     },

@@ -29,7 +29,7 @@ const NumbersCol = () => {
     numbers.push(i + 1);
   }
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col pl-2">
       {numbers.map((number) => (
         <div key={number}>{number}</div>
       ))}
