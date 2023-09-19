@@ -15,6 +15,9 @@ export default {
         '98' : '0.98',
       }
     },
+    colors: {
+      'odp-bg': '#1E2127'
+    },
     animation: {
       'gradient-x': 'gradient-x 15s ease infinite',
     },

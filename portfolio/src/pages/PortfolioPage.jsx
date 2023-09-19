@@ -1,3 +1,5 @@
+import { Layout } from "../components/portfolio/Layout";
+
 export const PortfolioPage = () => {
-  return <div>Portfolio</div>;
+  return <Layout />;
 };
