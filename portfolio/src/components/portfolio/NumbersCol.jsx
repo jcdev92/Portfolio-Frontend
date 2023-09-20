@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const NumbersCol = () => {
   // Crear una variable de estado para guardar el alto de la pantalla
-  const [height, setHeight] = useState(window.innerHeight*0.95);
+  const [height, setHeight] = useState(window.innerHeight*0.97);
 
   // Crear una función para manejar el evento resize
   function handleResize() {
