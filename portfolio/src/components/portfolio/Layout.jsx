@@ -3,7 +3,7 @@ import NumbersCol from "./NumbersCol";
 import Tabbar from "./Tabbar";
 
 export const Layout = () => {
-  const [section, setSection] = useState("");
+  const [section, setSection] = useState("intro");
   return (
     <div className="flex flex-col h-screen text-odp-text font-mono">
       <div className="h-[5%]">
