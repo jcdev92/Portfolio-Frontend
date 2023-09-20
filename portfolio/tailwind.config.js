@@ -18,6 +18,7 @@ export default {
     colors: {
       'odp-bg': '#1E2127',
       'odp-text': '#ABB2BF',
+      'odp-text-light':'#282c38',
       'odp-pink-light': '#e06c75',
       'odp-foreground' : '#282c34',
     },
