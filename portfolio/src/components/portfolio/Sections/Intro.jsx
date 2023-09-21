@@ -7,6 +7,8 @@ export const Intro = () => {
     data: profile,
     isLoading,
     isError,
+    isSuccess,
+    error,
   } = useQuery({
     queryKey: ["profile"],
     queryFn: getProfile,
@@ -22,7 +24,7 @@ export const Intro = () => {
     <div className="flex h-full w-full items-center justify-center">
       <div className="loader"></div>
     </div>
-  ) : (
+  ) : isSuccess ? (
     <div className="flex h-full text-odp-text font-mono">
       <div className="border">
         <img
@@ -39,5 +41,11 @@ export const Intro = () => {
       </div>
       <p>{profile?.aboutMe}</p>
     </div>
+  ) : (
+    isError && (
+      <div className="flex h-full w-full items-center justify-center">
+        <span className="text-4xl text-red-700 font-bebas">{error}</span>
+      </div>
+    )
   );
 };
