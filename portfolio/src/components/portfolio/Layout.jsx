@@ -1,6 +1,11 @@
 import { useState } from "react";
 import NumbersCol from "./NumbersCol";
 import Tabbar from "./Tabbar";
+import { Intro } from "./Secctions/Intro";
+import { AboutMe } from "./Secctions/AboutMe";
+import { Skills } from "./Secctions/Skills";
+import { Projects } from "./Secctions/Projects";
+import { ContactMe } from "./Secctions/ContactMe";
 
 export const Layout = () => {
   const sections = [
@@ -27,9 +32,18 @@ export const Layout = () => {
         <div className="w-[3%] text-odp-pink-light">
           <NumbersCol />
         </div>
-        <div className="w-[97%]"></div>
+        <div className="w-[97%]">
+          {
+            {
+              intro: <Intro />,
+              AboutMe: <AboutMe />,
+              skills: <Skills />,
+              projects: <Projects />,
+              contactMe: <ContactMe />,
+            }[whichSelected]
+          }
+        </div>
       </div>
     </div>
   );
 };
-
