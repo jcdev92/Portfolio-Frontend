@@ -35,7 +35,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
             setIsAllowed(false);
           }
         });
-    }, 20000);
+    }, 1000 * 60 * 60 * 5);
     return () => clearInterval(interval);
   }, []);
 
