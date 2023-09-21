@@ -7,7 +7,7 @@ const NumbersCol = () => {
   // Crear una función para manejar el evento resize
   function handleResize() {
     // Actualizar el valor del alto de la pantalla
-    setHeight(window.innerHeight*0.95);
+    setHeight(window.innerHeight*0.93);
   }
 
   // Usar el hook useEffect para agregar y eliminar el listener del evento resize
@@ -21,7 +21,7 @@ const NumbersCol = () => {
     };
   }, []);
 
-  let numSize = Math.floor(height/25);
+  let numSize = Math.floor(height/26);
 
 
   const numbers = [];
