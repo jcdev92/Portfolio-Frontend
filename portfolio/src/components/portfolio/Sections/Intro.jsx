@@ -1,30 +1,43 @@
 import useProfileStore from "../../../store/useProfileStore";
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "../../../hooks/useProfile";
+
 export const Intro = () => {
-  const profile = useProfileStore((state) => state.profile);
   const {
-    firstName,
-    lastName,
-    aboutMe,
-    country,
-    profileImg,
-    jobTitle,
-  } = profile;
-  return (
+    data: profile,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getProfile,
+    onSuccess: (data) => {
+      useProfileStore.getState().setProfile(data);
+    },
+    staleTime: 1000 * 60 * 60 * 24,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  });
+
+  return isLoading ? (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="loader"></div>
+    </div>
+  ) : (
     <div className="flex h-full text-odp-text font-mono">
       <div className="border">
         <img
           className="w-[10%]"
           style={{ borderRadius: "50%" }}
-          src={profileImg}
+          src={profile?.profileImg}
           alt="profileImg"
         />
         <h1>
-          {firstName} {lastName}
+          {profile?.firstName} {profile?.lastName}
         </h1>
-        <p>{jobTitle}</p>
-        <p>{country}</p>
+        <p>{profile?.jobTitle}</p>
+        <p>{profile?.country}</p>
       </div>
-      <p>{aboutMe}</p>
+      <p>{profile?.aboutMe}</p>
     </div>
   );
 };

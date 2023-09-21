@@ -11,9 +11,6 @@ import { SiCsswizardry } from "react-icons/si";
 import { BiLogoReact } from "react-icons/bi";
 import { FaMarkdown } from "react-icons/fa";
 import { DiJavascript1 } from "react-icons/di";
-import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../../../hooks/useProfile";
-import useProfileStore from "../../../store/useProfileStore";
 
 export const Layout = () => {
   const sections = [
@@ -47,16 +44,7 @@ export const Layout = () => {
   const [whichSelected, setWichSelected] = useState(sections[0].tag);
 
   // getting the profile data and keeping it in localStorage to usea it globally then.
-  useQuery({
-    queryKey: ["profile"],
-    queryFn: getProfile,
-    onSuccess: (data) => {
-      useProfileStore.getState().setProfile(data);
-    },
-    staleTime: 1000 * 60 * 60 * 24,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  });
+
 
   return (
     <div className="flex flex-col h-screen text-odp-text font-mono">
