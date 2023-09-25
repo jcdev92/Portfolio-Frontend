@@ -63,6 +63,7 @@ export const Intro = () => {
           options={{
             strings: profile?.aboutMe,
             autoStart: true,
+            delay: 50,
           }}
           />
         </span>
