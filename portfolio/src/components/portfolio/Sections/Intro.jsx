@@ -23,7 +23,7 @@ export const Intro = () => {
 
   return isLoading ? (
     <div className="flex h-full w-full items-center justify-center">
-      <div className="loader"></div>
+      <div className="loader2"></div>
     </div>
   ) : isSuccess ? (
     <div className="flex h-full w-full text-odp-text font-mono">
@@ -31,7 +31,7 @@ export const Intro = () => {
         <div className="flex items-center justify-center w-full h-2/6">
           <div className="flex w-1/4 justify-center items-center p-2">
             <img
-              className=""
+              className="shadow-md border-4 border-double hover:scale-90 hover:shadow-none tansition-all ease-in-out duration-200 hover:cursor-pointer shadow-gray-700"
               style={{ borderRadius: "50%" }}
               src={profile?.profileImg}
               alt="profileImg"
@@ -58,7 +58,14 @@ export const Intro = () => {
         </div>
       </div>
       <div className="flex w-[50%] items-center justify-center">
-        <span className="flex w-2/3">{profile?.aboutMe}</span>
+        <span className="flex w-2/3">
+          <Typewriter
+          options={{
+            strings: profile?.aboutMe,
+            autoStart: true,
+          }}
+          />
+        </span>
       </div>
     </div>
   ) : (
