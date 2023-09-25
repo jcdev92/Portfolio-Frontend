@@ -40,7 +40,7 @@ export const AddSocialMedia = ({ setEditMode, editMode, setClicked }) => {
         damping: 20,
         duration: 1,
       }}
-      className="w-5/6 h-5/6 backdrop-blur-sm p-12 rounded-md shadow-lg overflow-y-auto font-exo"
+      className="w-5/6 h-5/6 backdrop-blur-sm p-12 rounded-md shadow-md overflow-y-auto font-exo shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200"
     >
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">Add Social Network</h1>

@@ -64,7 +64,7 @@ export const EditSkill = ({ setEditMode, selectedId, keyword, setClicked }) => {
         damping: 20,
         duration: 1,
       }}
-      className="w-5/6 h-5/6 backdrop-blur-sm p-12 overflow-y-auto rounded-md shadow-md"
+      className="w-5/6 h-5/6 backdrop-blur-sm p-12 overflow-y-auto rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200"
     >
       <div className="flex w-full justify-between mb-8">
         <h1 className="font-bebas">

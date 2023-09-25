@@ -69,8 +69,8 @@ export const SkillsTable = () => {
       <div
         className={
           word.length > 0
-            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-auto rounded-md shadow-md shadow-blue-800 hover:scale-98 hover:shadow-sm hover:shadow-blue-600  transition-all ease-in-out duration-200"
-            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-5/6 rounded-md shadow-md shadow-blue-800 hover:scale-98 hover:shadow-sm hover:shadow-blue-600  transition-all ease-in-out duration-200"
+            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-auto rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200"
+            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-5/6 rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200"
         }
       >
         {isFetching ? (
