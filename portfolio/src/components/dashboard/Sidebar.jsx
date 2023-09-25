@@ -26,14 +26,14 @@ export const Sidebar = () => {
         className="lg:h-5/6 xl:h-4/6 bg-transparent w-1/5 dark:bg-gray-800 z-30"
         aria-label="Sidebar"
       >
-        <div className="h-full flex flex-col justify-around ml-3 px-4 py-4 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent backdrop-blur-md rounded-md shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600  transition-all ease-in-out duration-200">
-          <div className="flex flex-col justify-center items-center lg:p-2 xl:p-4 border-b border-sky-500/20">
+        <div className="h-full flex flex-col justify-around ml-3 px-4 py-4 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md rounded-md shadow-md shadow-blue-800 hover:scale-98 hover:shadow-sm hover:shadow-blue-600  transition-all ease-in-out duration-200">
+          <div className="flex flex-col justify-center items-center lg:p-2 xl:p-4 border-b border-blue-500/20">
             <img
               className="w-10 h-10 rounded-full border-2 border-double"
               src={profile?.profileImg}
               alt=""
             />
-            <div className="font-bebas my-2 text-sky-300 text-center">
+            <div className="font-bebas my-2 text-blue-300 text-center">
               <div>{profile?.firstName}</div>
               <div className="text-sm dark:text-gray-400">
                 {profile?.jobTitle}
@@ -47,7 +47,7 @@ export const Sidebar = () => {
                   to="/dashboard"
                   className={
                     window.location.pathname === "/dashboard"
-                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      ? "flex items-center p-2 text-blue-400 text-sm rounded-lg transition-all ease-in-out duration-200"
                       : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                   }
                 >
@@ -60,7 +60,7 @@ export const Sidebar = () => {
                   to="/dashboard/skills"
                   className={
                     window.location.pathname === "/dashboard/skills"
-                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      ? "flex items-center p-2 text-blue-400 text-sm rounded-lg transition-all ease-in-out duration-200"
                       : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                   }
                 >
@@ -73,7 +73,7 @@ export const Sidebar = () => {
                   to="/dashboard/projects"
                   className={
                     window.location.pathname === "/dashboard/projects"
-                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      ? "flex items-center p-2 text-blue-400 text-sm rounded-lg transition-all ease-in-out duration-200"
                       : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                   }
                 >
@@ -88,7 +88,7 @@ export const Sidebar = () => {
                   to="/dashboard/social-media"
                   className={
                     window.location.pathname === "/dashboard/social-media"
-                      ? "flex items-center p-2 text-indigo-500 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      ? "flex items-center p-2 text-blue-400 text-sm rounded-lg transition-all ease-in-out duration-200"
                       : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
                   }
                 >
@@ -102,7 +102,7 @@ export const Sidebar = () => {
           </div>
           <div>
             <ul>
-              <li className="border-t border-sky-500/20 xl:py-4">
+              <li className="border-t border-blue-500/20 xl:py-4">
                 <Link
                   to="/login"
                   className={

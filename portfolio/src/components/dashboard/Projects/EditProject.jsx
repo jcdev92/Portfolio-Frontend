@@ -174,7 +174,7 @@ export const EditProject = ({
           {isLoading ? (
             <Loading />
           ) : (
-            <div className="p-6 pt-1 h-5/6 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent rounded-md">
+            <div className="p-6 pt-1 h-5/6 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent rounded-md">
               <h6 className="text-2xl py-4 uppercase">update - data form</h6>
               <div className="pr-6">
                 <div className="p-6">

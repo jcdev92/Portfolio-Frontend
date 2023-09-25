@@ -71,7 +71,7 @@ export const AddProject = ({ setEditMode, setClicked }) => {
             </button>
           </div>
         </div>
-        <div className="h-3/4 w-full overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent p-4 rounded-lg">
+        <div className="h-3/4 w-full overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent p-4 rounded-lg">
           <div className="relative z-0 w-11/12 mb-6 group p-1">
             <input
               type="text"

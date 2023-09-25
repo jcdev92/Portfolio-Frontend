@@ -50,7 +50,7 @@ export const Profile = () => {
 
   return (
     <div className="flex flex-col h-screen bg-transparent font-exo z-30">
-      <Card className="backdrop-blur-md h-5/6 bg-transparent rounded-lg m-8 md:w-10/12 md:ml-32 border-none shadow-md shadow-sky-800 hover:scale-98 hover:shadow-sm hover:shadow-sky-600  transition-all ease-in-out duration-200">
+      <Card className="backdrop-blur-md h-5/6 bg-transparent rounded-lg m-8 md:w-10/12 md:ml-32 border-none shadow-md shadow-blue-800 hover:scale-98 hover:shadow-sm hover:shadow-blue-600  transition-all ease-in-out duration-200">
         {isFetching || isLoading ? (
           <Loading />
         ) : (
@@ -59,9 +59,9 @@ export const Profile = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <span className="h-1/6 w-full flex justify-center">
-              <h1 className="font-bebas font-light text-4xl text-sky-200">Profile</h1>
+              <h1 className="font-bebas font-light text-4xl text-blue-200">Profile</h1>
             </span>
-            <div className="h-4/6 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-sky-600 scrollbar-track-transparent p-4 rounded-lg">
+            <div className="h-4/6 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent p-4 rounded-lg">
               <div id="info" className="lg:grid gap-4 grid-cols-2">
                 <Avatar size="xl" img={data?.profileImg} bordered />
                 <div className="flex flex-col pb-4">
