@@ -28,14 +28,17 @@ export const Intro = () => {
   ) : isSuccess ? (
     <div className="flex h-full w-full text-odp-text font-mono">
       <div className="flex flex-col w-[50%] items-center justify-center gap-4">
-        <div className="flex items-center justify-center w-full h-2/6">
+        <div className="flex gap-4 items-center justify-center w-full h-2/6">
           <div className="relative flex w-1/4 h-5/6 justify-center items-center p-2 hover:scale-90 hover:rotateX-180 shadow-md hover:shadow-none tansition-all ease-in-out duration-200 hover:cursor-pointer shadow-gray-700 rounded-full">
             <img
               className="absolute border-4 border-double rounded-full z-10 hover:z-0 h-full"
               src={profile?.profileImg}
               alt="profileImg"
             />
-            <div className="absolute flex border-4 border-double h-full w-full items-center justify-center rounded-full bg-red-600 text-white z-0 hover:z-10" href="#">
+            <div
+              className="absolute flex border-4 border-double h-full w-full items-center justify-center rounded-full bg-red-600 text-white z-0 hover:z-10"
+              href="#"
+            >
               <span className="text-2xl uppercase">resume</span>
             </div>
           </div>
@@ -62,11 +65,11 @@ export const Intro = () => {
       <div className="flex w-[50%] items-center justify-center">
         <span className="flex w-2/3">
           <Typewriter
-          options={{
-            strings: profile?.aboutMe,
-            autoStart: true,
-            delay: 50,
-          }}
+            options={{
+              strings: profile?.aboutMe,
+              autoStart: true,
+              delay: 50,
+            }}
           />
         </span>
       </div>
