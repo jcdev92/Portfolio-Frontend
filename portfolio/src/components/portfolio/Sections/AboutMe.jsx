@@ -7,8 +7,8 @@ export const AboutMe = () => {
         <img src={profile?.bioImage} alt="bioImage" />
       </div>
       <div className="flex flex-col items-center justify-center h-full rounded-lg lg:col-span-2 p-2 gap-2">
-          <span className="font-bold">Biography: </span> {profile?.bio}
-        <p className="w-3/4 overflow-y-auto text-sm">{profile?.biography}</p>
+          <span className="font-bold text-yellow-300">Biography: </span> {profile?.bio}
+        <p className="w-3/4 overflow-y-auto text-sm text-gray-400">{profile?.biography}</p>
       </div>
     </div>
   );
