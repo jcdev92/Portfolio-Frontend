@@ -40,13 +40,13 @@ export const Intro = () => {
               href="#"
             >
               <span className="text-2xl uppercase">
-                <link
+                <a
                   href="https://drive.google.com/file/d/1q74NsAiPiDPK-1AMqZlqVXJxyLWfPCS1/view?usp=drive_link"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <a>Resume</a>
-                </link>
+                  Resume
+                </a>
               </span>
             </div>
           </div>
