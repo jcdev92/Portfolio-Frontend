@@ -39,7 +39,11 @@ export const Intro = () => {
               className="absolute flex border-4 border-double h-full w-full items-center justify-center rounded-full bg-red-600 text-white z-0 hover:z-10"
               href="#"
             >
-              <span className="text-2xl uppercase">resume</span>
+              <span className="text-2xl uppercase">
+                <a href="https://drive.google.com/file/d/1q74NsAiPiDPK-1AMqZlqVXJxyLWfPCS1/view?usp=drive_link">
+                  Resume
+                </a>
+              </span>
             </div>
           </div>
           <div className="flex h-full text-2xl justify-center flex-col p-2 text-yellow-300">
