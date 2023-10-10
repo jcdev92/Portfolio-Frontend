@@ -10,10 +10,11 @@ export const DashboardPage = () => {
   return (
     <div
       className="
+      hidden
     md:flex-row
     h-screen
     w-screen
-    flex
+    lg:flex
     flex-col
     items-center
     bg-milky-way
@@ -26,7 +27,7 @@ export const DashboardPage = () => {
     relative
     "
     >
-      <div className="absolute inset-0 z-0 bg-gradient-to-r from-indigo-950 to-purple-900 opacity-80 animate-gradient-x"></div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-tr from-indigo-800 to-blue-900 opacity-80 animate-gradient-x"></div>
       <Sidebar />
       <Outlet />
     </div>
