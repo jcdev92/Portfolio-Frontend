@@ -15,11 +15,12 @@ export const ContactMe = () => {
             className="absolute flex border-4 border-double items-center justify-center rounded-full bg-red-600 text-white z-0 hover:z-10 h-3/4 w-5/12"
             href="#"
           >
-            <span className="uppercase text-sm">
+            <span className="uppercase text-sm w-full h-full flex justify-center items-center">
               <a
                 href="https://drive.google.com/file/d/1q74NsAiPiDPK-1AMqZlqVXJxyLWfPCS1/view?usp=drive_link"
                 target="_blank"
                 rel="noreferrer"
+                className="w-full h-full flex justify-center items-center"
               >
                 Resume
               </a>

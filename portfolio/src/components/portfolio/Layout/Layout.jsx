@@ -2,13 +2,11 @@ import { useState } from "react";
 import NumbersCol from "./NumbersCol";
 import TabBar from "./TabBar";
 import { Intro } from "../Sections/Intro";
-import { AboutMe } from "../Sections/AboutMe";
 import { Skills } from "../Sections/Skills";
 import { Projects } from "../Sections/Projects";
 import { ContactMe } from "../Sections/ContactMe";
 import { AiFillHtml5 } from "react-icons/ai";
 import { SiCsswizardry } from "react-icons/si";
-import { BiLogoReact } from "react-icons/bi";
 import { FaMarkdown } from "react-icons/fa";
 import { DiJavascript1 } from "react-icons/di";
 
@@ -18,11 +16,6 @@ export const Layout = () => {
       tag: "intro",
       fileName: "intro.html",
       intro: <AiFillHtml5 className="text-orange-500" />,
-    },
-    {
-      tag: "AboutMe",
-      fileName: "AboutMe.jsx",
-      AboutMe: <BiLogoReact className="text-purple-500" />,
     },
     {
       tag: "skills",
@@ -44,7 +37,6 @@ export const Layout = () => {
   const [whichSelected, setWichSelected] = useState(sections[0].tag);
 
   // getting the profile data and keeping it in localStorage to usea it globally then.
-
 
   return (
     <div className="flex flex-col h-screen text-odp-text font-mono">
@@ -68,7 +60,6 @@ export const Layout = () => {
           {
             {
               intro: <Intro />,
-              AboutMe: <AboutMe />,
               skills: <Skills />,
               projects: <Projects />,
               contactMe: <ContactMe />,

@@ -26,55 +26,54 @@ export const Intro = () => {
       <div className="loader2"></div>
     </div>
   ) : isSuccess ? (
-    <div className="flex flex-col h-full w-full justify-center text-odp-text font-mono">
-      <div className="flex text-2xl justify-center items-center flex-col p-2 text-yellow-300">
-        <Typewriter
-          options={{
-            strings: profile?.firstName,
-            autoStart: true,
-            delay: 80,
-          }}
-        />
-        <Typewriter
-          options={{
-            strings: profile?.lastName,
-            autoStart: true,
-            delay: 160,
-          }}
-        />
+    <div className="flex flex-col overflow-y-auto md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 md:h-full p-2">
+      <div className="order-2 md:order-1 md:flex md:flex-col items-center justify-center h-full rounded-lg p-2">
+        <img src={profile?.bioImage} alt="bioImage" />
       </div>
-      <div className="flex flex-col justify-center items-center p-2 text-blue-500">
-        <Typewriter
-          options={{
-            strings: [
-              profile?.jobTitle,
-              "Front-End Developer",
-              "Back-End Developer",
-            ],
-            autoStart: true,
-            loop: true,
-          }}
-        />
-        <p className="text-red-500">
+      <div className="flex flex-col items-center justify-center h-full rounded-lg lg:col-span-2 p-2 gap-2">
+        <span className="font-bold text-yellow-300">
           <Typewriter
             options={{
-              strings: profile?.country,
+              strings: `Welcome to my Portfolio! my name is ${profile?.firstName} ${profile?.lastName}.`,
               autoStart: true,
-              delay: 200,
+              loop: false,
+              delay: 40,
             }}
           />
-        </p>
-      </div>
-      <div className="flex w-full justify-center items-center">
-        <span className="w-2/3">
+        </span>{" "}
+        <br />
+        <p className="w-3/4 overflow-y-auto text-sm text-gray-400">
           <Typewriter
             options={{
               strings: profile?.aboutMe,
               autoStart: true,
-              delay: 40,
+              loop: false,
+              delay: 20,
             }}
           />
-        </span>
+        </p>
+        <br />
+        <span className="font-bold text-yellow-300">
+          <Typewriter
+            options={{
+              strings: `Biography:`,
+              autoStart: true,
+              loop: false,
+              delay: 40,
+            }}
+          />{" "}
+        </span>{" "}
+        <br />
+        <p className="w-3/4 overflow-y-auto text-sm text-gray-400">
+          <Typewriter
+            options={{
+              strings: profile?.biography,
+              autoStart: true,
+              loop: false,
+              delay: 20,
+            }}
+          />
+        </p>
       </div>
     </div>
   ) : (
