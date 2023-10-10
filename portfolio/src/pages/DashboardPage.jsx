@@ -27,7 +27,7 @@ export const DashboardPage = () => {
     relative
     "
     >
-      <div className="absolute inset-0 z-0 bg-gradient-to-tr from-indigo-800 to-blue-900 opacity-80 animate-gradient-x"></div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-tr from-black to-blue-700 opacity-80 animate-gradient-x"></div>
       <Sidebar />
       <Outlet />
     </div>
