@@ -26,57 +26,52 @@ export const Intro = () => {
       <div className="loader2"></div>
     </div>
   ) : isSuccess ? (
-    <div className="flex h-full w-full text-odp-text font-mono">
-      <div className="flex flex-col w-[50%] items-center justify-center gap-4">
-        <div className="flex gap-4 items-center justify-center w-full h-2/6">
-          <div className="relative flex w-1/4 h-5/6 justify-center items-center p-2 hover:scale-90 hover:rotateX-180 shadow-md hover:shadow-none tansition-all ease-in-out duration-200 hover:cursor-pointer shadow-gray-700 rounded-full">
-            <img
-              className="absolute border-4 border-double rounded-full z-10 hover:z-0 h-full"
-              src={profile?.profileImg}
-              alt="profileImg"
-            />
-            <div
-              className="absolute flex border-4 border-double h-full w-full items-center justify-center rounded-full bg-red-600 text-white z-0 hover:z-10"
-              href="#"
-            >
-              <span className="text-2xl uppercase">
-                <a
-                  href="https://drive.google.com/file/d/1q74NsAiPiDPK-1AMqZlqVXJxyLWfPCS1/view?usp=drive_link"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Resume
-                </a>
-              </span>
-            </div>
-          </div>
-          <div className="flex h-full text-2xl justify-center flex-col p-2 text-yellow-300">
-            <h1>{profile?.firstName}</h1>
-            <h1>{profile?.lastName}</h1>
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-center p-2 text-blue-500">
+    <div className="flex flex-col h-full w-full justify-center text-odp-text font-mono">
+      <div className="flex text-2xl justify-center items-center flex-col p-2 text-yellow-300">
+        <Typewriter
+          options={{
+            strings: profile?.firstName,
+            autoStart: true,
+            delay: 80,
+          }}
+        />
+        <Typewriter
+          options={{
+            strings: profile?.lastName,
+            autoStart: true,
+            delay: 160,
+          }}
+        />
+      </div>
+      <div className="flex flex-col justify-center items-center p-2 text-blue-500">
+        <Typewriter
+          options={{
+            strings: [
+              profile?.jobTitle,
+              "Front-End Developer",
+              "Back-End Developer",
+            ],
+            autoStart: true,
+            loop: true,
+          }}
+        />
+        <p className="text-red-500">
           <Typewriter
             options={{
-              strings: [
-                profile?.jobTitle,
-                "Front-End Developer",
-                "Back-End Developer",
-              ],
+              strings: profile?.country,
               autoStart: true,
-              loop: true,
+              delay: 200,
             }}
           />
-          <p className="text-red-500">{profile?.country}</p>
-        </div>
+        </p>
       </div>
-      <div className="flex w-[50%] items-center justify-center">
-        <span className="flex w-2/3">
+      <div className="flex w-full justify-center items-center">
+        <span className="w-2/3">
           <Typewriter
             options={{
               strings: profile?.aboutMe,
               autoStart: true,
-              delay: 50,
+              delay: 40,
             }}
           />
         </span>
