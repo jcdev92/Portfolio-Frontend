@@ -9,7 +9,7 @@ const TabBar = ({ sections, setWichSelected, whichSelected }) => {
   };
 
   return (
-    <div className="flex w-full h-full">
+    <div className="sm:flex sm:flex-col md:flex-row md:w-full md:h-full">
       {sections.map((section, index) => (
         <button
           onClick={() => compareTags(section.tag)}

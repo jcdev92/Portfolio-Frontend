@@ -39,32 +39,34 @@ export const Layout = () => {
   // getting the profile data and keeping it in localStorage to usea it globally then.
 
   return (
-    <div className="flex flex-col h-screen text-odp-text font-mono">
-      <div className="h-[5%] bg-odp-bg">
+    <div className="flex md:flex-col h-screen text-odp-text font-mono">
+      <div className="sm:h-full md:h-[5%] bg-odp-bg">
         <TabBar
           sections={sections}
           setWichSelected={setWichSelected}
           whichSelected={whichSelected}
         />
       </div>
-      <div className="h-[4%] bg-odp-foreground p-1 text-xs">
-        {`portfolio > ${
-          sections.find((section) => section.tag === whichSelected).fileName
-        }`}
-      </div>
-      <div className="flex h-[91%] w-full bg-odp-foreground">
-        <div className="w-[3%] text-odp-pink-light">
-          <NumbersCol />
+      <div className="w-full h-full bg-odp-foreground">
+        <div className="md:h-[4%] bg-odp-foreground p-1 text-xs">
+          {`portfolio > ${
+            sections.find((section) => section.tag === whichSelected).fileName
+          }`}
         </div>
-        <div className="w-[97%]">
-          {
+        <div className="flex h-[91%] w-full bg-odp-foreground">
+          <div className="w-[3%] text-odp-pink-light">
+            <NumbersCol />
+          </div>
+          <div className="w-[97%]">
             {
-              intro: <Intro />,
-              skills: <Skills />,
-              projects: <Projects />,
-              contactMe: <ContactMe />,
-            }[whichSelected]
-          }
+              {
+                intro: <Intro />,
+                skills: <Skills />,
+                projects: <Projects />,
+                contactMe: <ContactMe />,
+              }[whichSelected]
+            }
+          </div>
         </div>
       </div>
     </div>
