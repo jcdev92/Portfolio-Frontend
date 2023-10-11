@@ -26,12 +26,12 @@ export const Intro = () => {
       <div className="loader2"></div>
     </div>
   ) : isSuccess ? (
-    <div className="flex flex-col overflow-y-auto md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 md:h-full p-2">
-      <div className="order-2 md:order-1 md:flex md:flex-col items-center justify-center h-full rounded-lg p-2">
+    <div className="flex flex-col h-screen md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 md:h-full p-2">
+      <div className="order-2 md:order-1 md:flex md:flex-col md:items-center md:justify-center md:h-full rounded-lg p-2">
         <img src={profile?.bioImage} alt="bioImage" />
       </div>
-      <div className="flex flex-col items-center justify-center h-full rounded-lg lg:col-span-2 p-2 gap-2">
-        <span className="font-bold text-yellow-300">
+      <div className="flex flex-col items-center justify-center rounded-lg lg:col-span-2 p-2 gap-2  md:overflow-hidden">
+        <span className="font-bold text-center text-yellow-300">
           <Typewriter
             options={{
               strings: `Welcome to my Portfolio! my name is ${profile?.firstName} ${profile?.lastName}.`,
@@ -53,7 +53,7 @@ export const Intro = () => {
           />
         </p>
         <br />
-        <span className="font-bold text-yellow-300">
+        <span className="hidden md:flex font-bold text-center text-yellow-300">
           <Typewriter
             options={{
               strings: `Biography:`,
@@ -64,7 +64,7 @@ export const Intro = () => {
           />{" "}
         </span>{" "}
         <br />
-        <p className="w-3/4 overflow-y-auto text-sm text-gray-400">
+        <p className="hidden md:flex w-3/4 text-sm text-gray-400">
           <Typewriter
             options={{
               strings: profile?.biography,

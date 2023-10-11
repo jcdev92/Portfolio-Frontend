@@ -1,5 +1,3 @@
 export const Skills = () => {
-  return (
-    <div>Skills</div>
-  )
-}
+  return <div className="h-screen md:h-full">Skills</div>;
+};

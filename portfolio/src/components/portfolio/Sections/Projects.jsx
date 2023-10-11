@@ -1,5 +1,5 @@
 export const Projects = () => {
   return (
-    <div>Projects</div>
+    <div className="h-screen md:h-full">Projects</div>
   )
 }

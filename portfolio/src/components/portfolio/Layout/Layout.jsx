@@ -39,8 +39,8 @@ export const Layout = () => {
   // getting the profile data and keeping it in localStorage to usea it globally then.
 
   return (
-    <div className="flex md:flex-col h-screen text-odp-text font-mono">
-      <div className="sm:h-full md:h-[5%] bg-odp-bg">
+    <div className="relative flex md:flex-col min-h-screen md:h-screen text-odp-text font-mono">
+      <div className="fixed inset-0 z-10 w-1/2 md:w-full md:static md:h-[5%] bg-odp-bg">
         <TabBar
           sections={sections}
           setWichSelected={setWichSelected}
@@ -53,11 +53,11 @@ export const Layout = () => {
             sections.find((section) => section.tag === whichSelected).fileName
           }`}
         </div>
-        <div className="flex h-[91%] w-full bg-odp-foreground">
-          <div className="w-[3%] text-odp-pink-light">
+        <div className="flex md:h-[91%] md:w-full bg-odp-foreground">
+          <div className="md:w-[3%] text-odp-pink-light">
             <NumbersCol />
           </div>
-          <div className="w-[97%]">
+          <div className="md:w-[97%]">
             {
               {
                 intro: <Intro />,
