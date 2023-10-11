@@ -15,15 +15,18 @@ const TabBar = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row md:w-full md:h-full">
+    <div className="flex flex-col h-1/3 justify-between md:justify-start md:flex-row md:w-full md:h-full">
       {sections.map((section, index) => (
         <button
-          onClick={() => compareTags(section.tag)}
+          onClick={() => {
+            compareTags(section.tag);
+            setShowNavbar(false);
+          }}
           key={index} // Asegúrate de agregar una clave única para cada elemento en el array
           className={
             whichSelected === section.tag
-              ? "bg-odp-foreground border-b flex items-center gap-2 h-full px-4 hover:bg-odp-text-light"
-              : "bg-odp-bg flex items-center gap-2 h-full px-4 hover:bg-odp-text-light"
+              ? "bg-odp-foreground border-b flex items-center gap-2 md:h-full px-4 py-2 md:py-0 hover:bg-odp-text-light"
+              : "bg-odp-bg flex items-center gap-2 md:h-full px-4 py-2 md:py-0 hover:bg-odp-text-light"
           }
         >
           {
@@ -35,10 +38,10 @@ const TabBar = ({
       ))}
       <button
         onClick={() => setShowNavbar(false)}
-        className="md:hidden bg-odp-foreground border-b flex items-center gap-2 h-full px-4 hover:bg-odp-text-light"
+        className="md:hidden flex items-center gap-2 md:h-full px-4 py-2 hover:bg-odp-text-light"
         style={{ width: "fit-content" }}
       >
-        <AiOutlineArrowLeft />
+        <AiOutlineArrowLeft className="text-2xl text-white" />
       </button>
     </div>
   );

@@ -77,7 +77,7 @@ export const Layout = () => {
         />
       </div>
       <div className="w-full h-full bg-odp-foreground">
-        <div className="md:h-[4%] bg-odp-foreground p-1 text-xs">
+        <div className="md:h-[4%] bg-odp-bg p-3 md:bg-odp-foreground md:p-1 text-xs">
           {`portfolio > ${
             sections.find((section) => section.tag === whichSelected).fileName
           }`}
