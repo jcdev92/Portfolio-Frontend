@@ -22,11 +22,11 @@ export const Intro = () => {
   });
 
   return isLoading ? (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex h-screen w-screen items-center justify-center md:h-full md:w-full">
       <div className="loader2"></div>
     </div>
   ) : isSuccess ? (
-    <div className="flex flex-col h-screen md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 md:h-full p-2">
+    <div className="flex flex-col h-full min-h-screen md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 md:h-full p-2">
       <div className="order-2 md:order-1 md:flex md:flex-col md:items-center md:justify-center md:h-full rounded-lg p-2">
         <img src={profile?.bioImage} alt="bioImage" />
       </div>
@@ -41,7 +41,6 @@ export const Intro = () => {
             }}
           />
         </span>{" "}
-        <br />
         <p className="w-3/4 overflow-y-auto text-sm text-gray-400">
           <Typewriter
             options={{
@@ -63,8 +62,7 @@ export const Intro = () => {
             }}
           />{" "}
         </span>{" "}
-        <br />
-        <p className="hidden md:flex w-3/4 text-sm text-gray-400">
+        <p className="hidden overflow-y-auto md:flex w-3/4 text-sm text-gray-400">
           <Typewriter
             options={{
               strings: profile?.biography,

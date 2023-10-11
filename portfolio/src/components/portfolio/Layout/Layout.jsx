@@ -36,11 +36,39 @@ export const Layout = () => {
 
   const [whichSelected, setWichSelected] = useState(sections[0].tag);
 
-  // getting the profile data and keeping it in localStorage to usea it globally then.
+  const [showNavbar, setShowNavbar] = useState(false);
 
   return (
-    <div className="relative flex md:flex-col min-h-screen md:h-screen text-odp-text font-mono">
-      <div className="fixed inset-0 z-10 w-1/2 md:w-full md:static md:h-[5%] bg-odp-bg">
+    <div className="relative flex h-full md:flex-col md:h-screen text-odp-text font-mono">
+      {!showNavbar && (
+        <button
+          type="button"
+          className="fixed h-[5%] w-[10%] px-4 py-3 bg-transparent rounded-md text-white outline-none transform active:scale-75 transition-transform right-[1%] md:hidden"
+          onClick={() => setShowNavbar(true)}
+        >
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      )}
+
+      <div
+        className={
+          showNavbar
+            ? "fixed inset-0 z-10 w-1/2 h-full md:w-full md:static md:h-[5%] bg-odp-bg"
+            : "hidden md:w-full md:static md:flex md:bg-odp-bg"
+        }
+      >
         <TabBar
           sections={sections}
           setWichSelected={setWichSelected}
