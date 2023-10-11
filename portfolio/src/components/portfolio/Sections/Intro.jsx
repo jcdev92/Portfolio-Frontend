@@ -43,32 +43,31 @@ export const Intro = () => {
         </span>{" "}
         <p className="w-3/4 overflow-y-auto text-sm text-gray-400">
           <Typewriter
-            options={{
-              strings: profile?.aboutMe,
-              autoStart: true,
-              loop: false,
-              delay: 20,
+            onInit={(typewriter) => {
+              // define a time sleep until star
+              typewriter.pauseFor(4000).start();
+              typewriter.changeDelay(20).start();
+              typewriter.typeString(profile?.aboutMe).start();
             }}
           />
         </p>
         <br />
         <span className="hidden md:flex font-bold text-center text-yellow-300">
           <Typewriter
-            options={{
-              strings: `Biography:`,
-              autoStart: true,
-              loop: false,
-              delay: 40,
-            }}
+          onInit={(typewriter) => {
+            typewriter.pauseFor(14000).start();
+            typewriter.changeDelay(40).start();
+            typewriter.typeString("Byography: ").start();
+          }}
           />{" "}
         </span>{" "}
         <p className="hidden overflow-y-auto md:flex w-3/4 text-sm text-gray-400">
-          <Typewriter
-            options={{
-              strings: profile?.biography,
-              autoStart: true,
-              loop: false,
-              delay: 20,
+        <Typewriter
+            onInit={(typewriter) => {
+              // define a time sleep until star
+              typewriter.pauseFor(22000).start();
+              typewriter.changeDelay(20).start();
+              typewriter.typeString(profile?.biography).start();
             }}
           />
         </p>
