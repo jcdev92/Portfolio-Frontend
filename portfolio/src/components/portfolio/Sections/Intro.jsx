@@ -26,7 +26,7 @@ export const Intro = () => {
       <div className="loader2"></div>
     </div>
   ) : isSuccess ? (
-    <div className="flex flex-col h-full min-h-screen md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 md:h-full p-2">
+    <div className="flex flex-col h-full min-h-screen md:min-h-full md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 p-2">
       <div className="order-2 md:order-1 md:flex md:flex-col md:items-center md:justify-center md:h-full rounded-lg p-2">
         <img src={profile?.bioImage} alt="bioImage" />
       </div>
