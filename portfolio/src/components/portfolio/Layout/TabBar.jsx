@@ -1,5 +1,11 @@
+import { AiOutlineArrowLeft } from "react-icons/ai";
 /* eslint-disable react/prop-types */
-const TabBar = ({ sections, setWichSelected, whichSelected }) => {
+const TabBar = ({
+  sections,
+  setWichSelected,
+  whichSelected,
+  setShowNavbar,
+}) => {
   // copy the tags of each section into an array
   const arrayTags = [...sections.map((section) => section.tag)];
 
@@ -27,6 +33,13 @@ const TabBar = ({ sections, setWichSelected, whichSelected }) => {
           <span className="text-white">{section.fileName}</span>
         </button>
       ))}
+      <button
+        onClick={() => setShowNavbar(false)}
+        className="md:hidden bg-odp-foreground border-b flex items-center gap-2 h-full px-4 hover:bg-odp-text-light"
+        style={{ width: "fit-content" }}
+      >
+        <AiOutlineArrowLeft />
+      </button>
     </div>
   );
 };

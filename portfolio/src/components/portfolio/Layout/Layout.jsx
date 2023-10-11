@@ -73,6 +73,7 @@ export const Layout = () => {
           sections={sections}
           setWichSelected={setWichSelected}
           whichSelected={whichSelected}
+          setShowNavbar={setShowNavbar}
         />
       </div>
       <div className="w-full h-full bg-odp-foreground">
