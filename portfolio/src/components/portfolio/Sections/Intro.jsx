@@ -2,6 +2,7 @@ import useProfileStore from "../../../store/useProfileStore";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../../../hooks/useProfile";
 import Typewriter from "typewriter-effect";
+import { motion } from "framer-motion";
 
 export const Intro = () => {
   const {
@@ -27,9 +28,14 @@ export const Intro = () => {
     </div>
   ) : isSuccess ? (
     <div className="flex flex-col h-full min-h-screen md:min-h-full md:grid md:grid-cols-1 md:gap-4 lg:grid-cols-3 lg:gap-8 p-2">
-      <div className="order-2 md:order-1 md:flex md:flex-col md:items-center md:justify-center md:h-full rounded-lg p-2">
+      <motion.div
+        className="order-2 md:order-1 md:flex md:flex-col md:items-center md:justify-center md:h-full rounded-lg p-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 10 }}
+      >
         <img src={profile?.bioImage} alt="bioImage" />
-      </div>
+      </motion.div>
       <div className="flex flex-col items-center justify-center rounded-lg lg:col-span-2 p-2 gap-2  md:overflow-hidden">
         <span className="font-bold text-center text-yellow-300">
           <Typewriter
@@ -54,15 +60,15 @@ export const Intro = () => {
         <br />
         <span className="hidden md:flex font-bold text-center text-yellow-300">
           <Typewriter
-          onInit={(typewriter) => {
-            typewriter.pauseFor(14000).start();
-            typewriter.changeDelay(40).start();
-            typewriter.typeString("Byography: ").start();
-          }}
+            onInit={(typewriter) => {
+              typewriter.pauseFor(14000).start();
+              typewriter.changeDelay(40).start();
+              typewriter.typeString("Byography: ").start();
+            }}
           />{" "}
         </span>{" "}
         <p className="hidden overflow-y-auto md:flex w-3/4 text-sm text-gray-400">
-        <Typewriter
+          <Typewriter
             onInit={(typewriter) => {
               // define a time sleep until star
               typewriter.pauseFor(22000).start();

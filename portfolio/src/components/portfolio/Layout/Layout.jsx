@@ -86,7 +86,7 @@ export const Layout = () => {
           <div className="md:w-[3%] text-odp-pink-light">
             <NumbersCol />
           </div>
-          <div className="md:w-[97%]">
+          <div className="w-full md:w-[97%]">
             {
               {
                 intro: <Intro />,

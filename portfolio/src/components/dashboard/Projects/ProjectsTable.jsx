@@ -62,7 +62,7 @@ export const ProjectsTable = () => {
           <BsDatabaseFillAdd />
         </button>
       </div>
-      <div className="relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-sm w-full h-5/6 shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200 rounded-md">
+      <div className="relative overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-sm w-full h-5/6 shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200 rounded-md">
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
             <div className="loader"></div>
