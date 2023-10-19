@@ -39,7 +39,7 @@ export const Layout = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
   return (
-    <div className="relative flex h-full md:flex-col md:h-screen text-odp-text font-mono">
+    <div className="relative flex h-full md:flex-col md:h-full md:min-h-screen xl:h-screen text-odp-text font-mono bg-odp-text-light">
       {!showNavbar && (
         <button
           type="button"
@@ -86,7 +86,7 @@ export const Layout = () => {
           <div className="md:w-[3%] text-odp-pink-light">
             <NumbersCol />
           </div>
-          <div className="w-full md:w-[97%]">
+          <div className="w-full md:w-[97%] h-full">
             {
               {
                 intro: <Intro />,

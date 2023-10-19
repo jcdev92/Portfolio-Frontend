@@ -55,6 +55,9 @@ export const Intro = () => {
               typewriter.changeDelay(20).start();
               typewriter.typeString(profile?.aboutMe).start();
             }}
+            options={{
+              cursor: "",
+            }}
           />
         </p>
         <br />
@@ -74,6 +77,9 @@ export const Intro = () => {
               typewriter.pauseFor(22000).start();
               typewriter.changeDelay(20).start();
               typewriter.typeString(profile?.biography).start();
+            }}
+            options={{
+              cursor: "",
             }}
           />
         </p>
