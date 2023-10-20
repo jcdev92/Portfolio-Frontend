@@ -1,6 +1,6 @@
 export const Projects = () => {
   return (
-    <section className="bg-transparent dark:bg-gray-900 h-full">
+    <section className="bg-transparent dark:bg-gray-900 md:h-screen md:overflow-y-auto border">
       <div className="container px-6 py-10 mx-auto animate-pulse h-full">
         <h1 className="w-48 h-2 mx-auto">
           Projects
