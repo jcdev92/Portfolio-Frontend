@@ -3,7 +3,7 @@ export const ContactMe = () => {
   // const profile = useProfileStore((state) => state.profile);
 
   return (
-    <div className="h-screen w-full md:h-full md:w-full flex flex-col md:flex-row items-center justify-center lg:justify-start lg:items-start">
+    <div className="lg:h-screen w-full h-full flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:items-start xl:h-full">
       <div className="flex h-full w-full flex-col justify-center lg:w-1/2">
         <div className="flex flex-col border-2 bg-transparent h-full justify-center">
           <div className="w-full draggable">
@@ -98,13 +98,13 @@ export const ContactMe = () => {
           </div>
         </div>
       </div>
-      <div className="hidden lg:flex flex-col border lg:w-1/2 h-full justify-center items-center">
+      <div className="p-8 w-full lg:flex flex-col border lg:w-1/2 h-full justify-center items-center">
         <form
           action="https://formbold.com/s/FORM_ID"
           method="POST"
-          className="w-2/3"
+          className="p-8 lg:w-2/3 flex flex-col items-center justify-center"
         >
-          <div className="mb-5">
+          <div className="p-4 md:w-full">
             <label
               htmlFor="name"
               className="mb-3 block text-xs font-medium text-[#07074D]"
@@ -119,7 +119,7 @@ export const ContactMe = () => {
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
-          <div className="mb-5">
+          <div className="p-4 md:w-full">
             <label
               htmlFor="email"
               className="mb-3 block text-xs font-medium text-[#07074D]"
@@ -134,7 +134,7 @@ export const ContactMe = () => {
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
-          <div className="mb-5">
+          <div className="p-4 md:w-full">
             <label
               htmlFor="subject"
               className="mb-3 block text-xs font-medium text-[#07074D]"
@@ -149,7 +149,7 @@ export const ContactMe = () => {
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
           </div>
-          <div className="mb-5">
+          <div className="p-4 md:w-full">
             <label
               htmlFor="message"
               className="mb-3 block text-xs font-medium text-[#07074D]"
@@ -164,7 +164,7 @@ export const ContactMe = () => {
               className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             ></textarea>
           </div>
-          <div>
+          <div className="p-4 md:w-full">
             <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-xs font-semibold text-white outline-none">
               Submit
             </button>
