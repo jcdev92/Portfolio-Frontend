@@ -68,6 +68,9 @@ export const Intro = () => {
               typewriter.changeDelay(40).start();
               typewriter.typeString("Byography: ").start();
             }}
+            options={{
+              cursor: "",
+            }}
           />{" "}
         </span>{" "}
         <p className="hidden overflow-y-auto md:flex w-3/4 text-sm text-gray-400">

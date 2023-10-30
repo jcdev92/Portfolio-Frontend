@@ -39,7 +39,7 @@ export const Layout = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
   return (
-    <div className="relative flex h-full md:flex-col md:h-full md:min-h-screen xl:h-screen text-odp-text font-mono bg-odp-text-light">
+    <div className="relative flex h-full md:flex-col md:h-full md:min-h-screen lg:h-screen text-odp-text font-mono bg-odp-text-light overflow-y-auto">
       {!showNavbar && (
         <button
           type="button"
