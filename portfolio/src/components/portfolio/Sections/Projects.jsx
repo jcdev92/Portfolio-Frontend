@@ -1,31 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { getProjects } from "../../../hooks/useProjects";
 import { AiFillGithub } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
+import useProfileStore from "../../../store/useProfileStore";
 
 export const Projects = () => {
-  const {
-    data: projects,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-  } = useQuery({
-    queryKey: ["projects"],
-    queryFn: getProjects,
-    staleTime: 1000 * 60 * 60 * 24,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  });
+  const { Projects: projects } = useProfileStore((state) => state.profile);
 
-  return isLoading ? (
-    <div className="flex h-screen w-screen items-center justify-center md:h-full md:w-full">
-      <div className="loader2"></div>
-    </div>
-  ) : isSuccess ? (
+  return (
     <section className="bg-transparent dark:bg-gray-900 md:h-full">
       <div className="container px-6 py-10 mx-auto animate-pulse h-full">
-        <h1 className="w-2/3 text-center mx-auto">PROJECTS</h1>
+        <h1 className="w-2/3 text-center mx-auto text-2xl text-yellow-300">PROJECTS</h1>
         <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-12 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {projects?.map(({ id, title, description, image, github, url }) => (
             <div key={id} className="w-full flex flex-col justify-around">
@@ -61,11 +44,5 @@ export const Projects = () => {
         </div>
       </div>
     </section>
-  ) : (
-    isError && (
-      <div className="flex h-full w-full items-center justify-center">
-        <span className="text-4xl text-red-700 font-bebas">{error}</span>
-      </div>
-    )
   );
 };
