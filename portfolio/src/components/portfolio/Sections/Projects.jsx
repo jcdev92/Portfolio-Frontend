@@ -11,7 +11,7 @@ export const Projects = () => {
         <h1 className="w-2/3 text-center mx-auto text-2xl text-yellow-300">PROJECTS</h1>
         <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-12 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {projects?.map(({ id, title, description, image, github, url }) => (
-            <div key={id} className="w-full flex flex-col justify-around">
+            <div key={id} className="w-full flex flex-col justify-around shadow-md hover:scale-105 transition-all ease-out duration-200">
               <div className="w-full h-40  rounded-lg dark:bg-gray-600">
                 <img
                   src={image}
