@@ -61,7 +61,6 @@ export const Layout = () => {
           </svg>
         </button>
       )}
-
       <div
         className={
           showNavbar
@@ -76,17 +75,17 @@ export const Layout = () => {
           setShowNavbar={setShowNavbar}
         />
       </div>
-      <div className="w-full h-full bg-odp-foreground">
+      <div className="w-full h-[95%] bg-odp-foreground">
         <div className="md:h-[4%] bg-odp-bg p-3 md:bg-odp-foreground md:p-1 text-xs">
           {`portfolio > ${
             sections.find((section) => section.tag === whichSelected).fileName
           }`}
         </div>
         <div className="flex md:h-[91%] md:w-full bg-odp-foreground">
-          <div className="md:w-[3%] text-odp-pink-light">
+          <div className="lg:w-[3%] text-odp-pink-light">
             <NumbersCol />
           </div>
-          <div className="w-full md:w-[97%] h-full">
+          <div className="w-full lg:w-[97%] h-full lg:overflow-y-auto">
             {
               {
                 intro: <Intro />,
