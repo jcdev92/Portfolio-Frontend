@@ -19,7 +19,7 @@ export const Login = () => {
     const { email, password } = data;
     setLoading(true);
     axios
-      .post("https://portfolio-backend-3jrx-dev.fl0.io/api/v1/auth/login", {
+      .post("https://portfolio-backend-dev-zgzm.2.us-1.fl0.io/api/v1/auth/login", {
         email,
         password,
       })
