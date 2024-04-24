@@ -1,14 +1,14 @@
-// import useProfileStore from "../../../store/useProfileStore";
+import useProfileStore from "../../../store/useProfileStore";
 export const ContactMe = () => {
-  // const profile = useProfileStore((state) => state.profile);
+  const profile = useProfileStore((state) => state.profile);
 
   return (
-    <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:items-start lg:overflow-hidden">
-      <div className="w-full lg:flex lg:flex-col  justify-center items-center lg:gap-4">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:items-start lg:overflow-hidden lg:h-full">
+      <div className="w-full lg:flex lg:flex-col  justify-center items-center lg:h-full">
         <form
           action="https://formbold.com/s/FORM_ID"
           method="POST"
-          className="p-8 lg:w-2/3 flex flex-col items-center justify-center"
+          className="p-8 lg:w-2/3 flex flex-col items-center justify-center lg:h-3/4"
         >
           <div className="p-4 md:w-full">
             <label
@@ -22,7 +22,7 @@ export const ContactMe = () => {
               name="name"
               id="name"
               placeholder="Full Name"
-              className="w-full rounded-md border border-[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              className="w-full rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
             />
           </div>
           <div className="p-4 md:w-full">
@@ -37,7 +37,7 @@ export const ContactMe = () => {
               name="email"
               id="email"
               placeholder="example@domain.com"
-              className="w-full rounded-md border border-[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              className="w-full rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
             />
           </div>
           <div className="p-4 md:w-full">
@@ -52,7 +52,7 @@ export const ContactMe = () => {
               name="subject"
               id="subject"
               placeholder="Enter your subject"
-              className="w-full rounded-md border border-[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              className="w-full rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
             />
           </div>
           <div className="p-4 md:w-full">
@@ -67,17 +67,17 @@ export const ContactMe = () => {
               name="message"
               id="message"
               placeholder="Type your message"
-              className="w-full resize-none rounded-md border border-[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              className="w-full resize-none rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
             ></textarea>
           </div>
           <div className="p-4 md:w-full">
-            <button className="hover:shadow-form hover:text-[#fbff00] rounded-md py-3 px-8 text-xs font-bold text-[#a9adb6] outline-none">
+            <button className="hover:shadow-form hover:text-[#fbff00] hover:transition-all hover:ease-in-out hover:delay-150 hover:text-xs rounded-md py-3 px-8 text-base font-bold text-[#a9adb6] outline-none">
               Submit
             </button>
           </div>
         </form>
-        <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:w-2/3 p-4">
-                <div className="flex flex-col items-center gap-2 p-2 justify-center hover:border hover:border-[#fbff00] hover:cursor-pointer rounded-3xl shadow-main">
+        <div className="grid w-full grid-cols-1 gap-x-5 md:grid-cols-2 lg:grid-cols-3 lg:w-2/3   lg:h-1/4">
+                <div className="flex flex-col items-center gap-4 justify-center rounded-3xl shadow-main lg:h-full">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -95,15 +95,15 @@ export const ContactMe = () => {
                   <p className="text-xs font-extrabold text-dark-grey-900">
                     Email
                   </p>
-                  <p className="text-xs text-dark-grey-600">Contact us at</p>
+                  <p className="text-xs text-dark-grey-600 text-center">You can click on the email address below to email me.</p>
                   <a
-                    className="text-xs font-bold text-purple-blue-500"
-                    href="mailto: hello@loopple.com"
+                    className="text-base font-bold text-purple-blue-500 hover:text-[#fbff00] hover:text-xs hover:transition-all hover:ease-in-out hover:delay-150"
+                    href={`mailto: ${profile?.email}`}
                   >
-                    hello@loopple.com
+                    {profile?.email}
                   </a>
                 </div>
-                <div className="flex flex-col items-center gap-3 p-4 justify-center hover:border hover:border-[#fbff00] hover:cursor-pointer rounded-3xl shadow-main">
+                <div className="flex flex-col items-center gap-3 justify-center rounded-3xl shadow-main  lg:h-full" >
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -122,16 +122,16 @@ export const ContactMe = () => {
                     Phone
                   </p>
                   <p className="text-xs text-dark-grey-600">
-                    Reach out to us by phone
+                    Click below on the phone number to call me.
                   </p>
                   <a
-                    className="text-xs font-bold text-purple-blue-500"
-                    href="tel:+516-486-5135"
+                    className="text-base font-bold text-purple-blue-500 hover:text-xs hover:text-[#fbff00] hover:transition-all hover:ease-in-out hover:delay-150"
+                    href={`tel:${profile?.phone}`}
                   >
-                    +516-486-5135
+                    {profile?.phone}
                   </a>
                 </div>
-                <div className="flex flex-col items-center gap-3 p-4 justify-center hover:border hover:border-[#fbff00] hover:cursor-pointer rounded-3xl shadow-main">
+                <div className="flex flex-col items-center gap-3 justify-center rounded-3xl shadow-main lg:h-full ">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -150,15 +150,15 @@ export const ContactMe = () => {
                     Location
                   </p>
                   <p className="text-xs text-dark-grey-600">
-                    Find us at our office
+                    Find me here.
                   </p>
                   <a
-                    className="text-xs font-bold text-purple-blue-500"
+                    className="text-base font-bold text-purple-blue-500 hover:text-xs hover:text-[#fbff00] hover:transition-all hover:ease-in-out hover:delay-150"
                     target="_blank"
-                    href="https://goo.gl/maps/QcWzYETAh4FS3KTD7"
+                    href="https://maps.app.goo.gl/i8FjYuyWL5AnxYtB9"
                     rel="noreferrer"
                   >
-                    10924 Urna Convallis
+                    Urb. El Parral, Valencia, Venezuela
                   </a>
                 </div>
         </div>
