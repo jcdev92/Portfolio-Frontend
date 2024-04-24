@@ -4,17 +4,85 @@ export const ContactMe = () => {
 
   return (
     <div className="lg:h-screen w-full h-full flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:items-start xl:h-full">
-      <div className="flex h-full w-full flex-col justify-center lg:w-1/2">
-        <div className="flex flex-col border-2 bg-transparent h-full justify-center">
-          <div className="w-full draggable">
-            <div className="flex flex-col items-center gap-16 mx-auto">
-              <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:w-4/5 p-4">
-                <div className="flex flex-col items-center gap-3 p-4 justify-center bg-white rounded-3xl shadow-main">
+      <div className="p-8 w-full lg:flex lg:flex-col border justify-center items-center">
+        <form
+          action="https://formbold.com/s/FORM_ID"
+          method="POST"
+          className="p-8 lg:w-2/3 flex flex-col items-center justify-center border"
+        >
+          <div className="p-4 md:w-full">
+            <label
+              htmlFor="name"
+              className="mb-3 block text-xs font-medium text-[#07074D]"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Full Name"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div className="p-4 md:w-full">
+            <label
+              htmlFor="email"
+              className="mb-3 block text-xs font-medium text-[#07074D]"
+            >
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@domain.com"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div className="p-4 md:w-full">
+            <label
+              htmlFor="subject"
+              className="mb-3 block text-xs font-medium text-[#07074D]"
+            >
+              Subject
+            </label>
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              placeholder="Enter your subject"
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div className="p-4 md:w-full">
+            <label
+              htmlFor="message"
+              className="mb-3 block text-xs font-medium text-[#07074D]"
+            >
+              Message
+            </label>
+            <textarea
+              rows="4"
+              name="message"
+              id="message"
+              placeholder="Type your message"
+              className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            ></textarea>
+          </div>
+          <div className="p-4 md:w-full">
+            <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-xs font-semibold text-white outline-none">
+              Submit
+            </button>
+          </div>
+        </form>
+        <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:w-4/5 p-4 border">
+                <div className="flex flex-col items-center gap-2 p-2 justify-center border rounded-3xl shadow-main">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="38"
-                      height="38"
+                      width="24"
+                      height="24"
                       viewBox="0 0 38 38"
                       fill="none"
                     >
@@ -24,7 +92,7 @@ export const ContactMe = () => {
                       />
                     </svg>
                   </span>
-                  <p className="text-sm font-extrabold text-dark-grey-900">
+                  <p className="text-xs font-extrabold text-dark-grey-900">
                     Email
                   </p>
                   <p className="text-xs text-dark-grey-600">Contact us at</p>
@@ -93,83 +161,7 @@ export const ContactMe = () => {
                     10924 Urna Convallis
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div className="p-8 w-full lg:flex flex-col border lg:w-1/2 h-full justify-center items-center">
-        <form
-          action="https://formbold.com/s/FORM_ID"
-          method="POST"
-          className="p-8 lg:w-2/3 flex flex-col items-center justify-center"
-        >
-          <div className="p-4 md:w-full">
-            <label
-              htmlFor="name"
-              className="mb-3 block text-xs font-medium text-[#07074D]"
-            >
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Full Name"
-              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-          <div className="p-4 md:w-full">
-            <label
-              htmlFor="email"
-              className="mb-3 block text-xs font-medium text-[#07074D]"
-            >
-              Email Address
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@domain.com"
-              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-          <div className="p-4 md:w-full">
-            <label
-              htmlFor="subject"
-              className="mb-3 block text-xs font-medium text-[#07074D]"
-            >
-              Subject
-            </label>
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              placeholder="Enter your subject"
-              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-          <div className="p-4 md:w-full">
-            <label
-              htmlFor="message"
-              className="mb-3 block text-xs font-medium text-[#07074D]"
-            >
-              Message
-            </label>
-            <textarea
-              rows="4"
-              name="message"
-              id="message"
-              placeholder="Type your message"
-              className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            ></textarea>
-          </div>
-          <div className="p-4 md:w-full">
-            <button className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-xs font-semibold text-white outline-none">
-              Submit
-            </button>
-          </div>
-        </form>
       </div>
     </div>
   );
