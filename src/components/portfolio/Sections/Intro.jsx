@@ -66,7 +66,7 @@ export const Intro = () => {
             onInit={(typewriter) => {
               typewriter.pauseFor(14000).start();
               typewriter.changeDelay(40).start();
-              typewriter.typeString("Byography: ").start();
+              typewriter.typeString("Biography: ").start();
             }}
             options={{
               cursor: "",

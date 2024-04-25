@@ -37,7 +37,7 @@ export const Login = () => {
   };
 
   return (
-    <div className=" flex flex-col justify-center items-center h-screen bg-gradient-to-r from-blue-800 to-indigo-950 text-white font-mono">
+    <div className=" flex flex-col justify-center items-center h-screen bg-gradient-to-r from-blue-800 to-indigo-900 text-white font-mono">
       {loading ? (
         <Loading />
       ) : (

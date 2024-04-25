@@ -1,15 +1,20 @@
 import useProfileStore from "../../../store/useProfileStore";
+import { FaEnvelope  } from "react-icons/fa";
 export const ContactMe = () => {
   const profile = useProfileStore((state) => state.profile);
 
   return (
     <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:items-start lg:overflow-hidden lg:h-full">
-      <div className="w-full lg:flex lg:flex-col  justify-center items-center lg:h-full">
+      <div className="w-full lg:flex lg:flex-col justify-center items-center lg:h-full">
         <form
           action="https://formbold.com/s/FORM_ID"
           method="POST"
           className="p-8 lg:w-2/3 flex flex-col items-center justify-center lg:h-3/4"
         >
+          <div className="w-full flex gap-4 p-2 items-center">
+            <FaEnvelope />
+            <h1>Quick Message</h1>
+          </div>
           <div className="p-4 md:w-full">
             <label
               htmlFor="name"
@@ -76,8 +81,8 @@ export const ContactMe = () => {
             </button>
           </div>
         </form>
-        <div className="grid w-full grid-cols-1 gap-x-5 md:grid-cols-2 lg:grid-cols-3 lg:w-2/3   lg:h-1/4">
-                <div className="flex flex-col items-center gap-4 justify-center rounded-3xl shadow-main lg:h-full">
+        <div className="grid w-full grid-cols-1 p-5 gap-y-8 lg:p-0 lg:gap-x-5 md:grid-cols-2 lg:grid-cols-3 lg:w-2/3 lg:h-1/4">
+                <div className="flex flex-col items-center p-4 gap-4 justify-center rounded-3xl shadow-main lg:p-0 lg:h-full">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +158,7 @@ export const ContactMe = () => {
                     Find me here.
                   </p>
                   <a
-                    className="text-base font-bold text-purple-blue-500 hover:text-xs hover:text-[#fbff00] hover:transition-all hover:ease-in-out hover:delay-150"
+                    className="text-base text-center font-bold text-purple-blue-500 hover:text-xs hover:text-[#fbff00] hover:transition-all hover:ease-in-out hover:delay-150"
                     target="_blank"
                     href="https://maps.app.goo.gl/i8FjYuyWL5AnxYtB9"
                     rel="noreferrer"
