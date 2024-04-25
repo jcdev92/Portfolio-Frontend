@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // production url
-const url = "https://portfolio-backend-dev-zgzm.2.us-1.fl0.io/api/v1"
+const url = "https://portfolio-backend-j1tl.onrender.com/api/v1"
 
 // axios configuration
 const instance = axios.create({
