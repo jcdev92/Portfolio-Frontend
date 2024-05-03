@@ -1,11 +1,12 @@
 import axios from "axios";
+import { api } from './url';
 
 // production url
-const url = "https://portfolio-backend-j1tl.onrender.com/api/v1"
+const url = api
 
 // axios configuration
 const instance = axios.create({
-  baseURL: url,
+  baseURL: `${url}/api/v1`,
 });
 
 // Añadir un interceptor de petición que añada el token en los headers
@@ -21,28 +22,28 @@ instance.interceptors.request.use(config => {
 });
 
 
-// get projects with the axios configuration
+// get socialMedia with the axios configuration
 
 export const getSocialMedia = async () => {
   const res = await instance.get('/social-media');
   return res.data;
 };
 
-// add projects with the axios configuration
+// add socialMedia with the axios configuration
 
-export const addSocialMedia = async (project) => {
-  const res = await instance.post('/social-media', project);
+export const addSocialMedia = async (socialMedia) => {
+  const res = await instance.post('/social-media', socialMedia);
   return res.data;
 };
 
-// update projects with the axios configuration
+// update socialMedia with the axios configuration
 
-export const updateSocialMedia = async ({id, ...project}) => {
-  const res = await instance.patch(`/social-media/${id}`, project);
+export const updateSocialMedia = async ({id, ...socialMedia}) => {
+  const res = await instance.patch(`/social-media/${id}`, socialMedia);
   return res.data;
 }
 
-// delete projects with the axios configuration
+// delete socialMedia with the axios configuration
 
 export const deleteSocialMedia = async (id) => {
   const res = await instance.delete(`/social-media/${id}`);

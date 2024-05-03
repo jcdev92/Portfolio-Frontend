@@ -1,11 +1,11 @@
 import axios from "axios";
+import { api } from './url';
 
-// production url
-const url = "https://portfolio-backend-j1tl.onrender.com/api/v1"
+const url = api
 
 // axios configuration 
 const instance = axios.create({
-  baseURL: url,
+  baseURL: `${url}/api/v1`,
 });
 
 // Añadir un interceptor de petición que añada el token en los headers
@@ -20,27 +20,27 @@ instance.interceptors.request.use(config => {
   return config;
 });
 
-// get projects with the axios configuration
+// get skills with the axios configuration
 export const getSkills = async () => {
   const res = await instance.get(`/skill`);
   return res.data;
 };
 
-// add projects with the axios configuration
+// add skill with the axios configuration
 
-export const addSkill = async (project) => {
-  const res = await instance.post(`/skill`, project);
+export const addSkill = async (skill) => {
+  const res = await instance.post(`/skill`, skill);
   return res.data;
 };
 
-// update projects with the axios configuration
+// update skill with the axios configuration
 
-export const updateSkill = async ({id, ...project}) => {
-  const res = await instance.patch(`/skill/${id}`, project);
+export const updateSkill = async ({id, ...skill}) => {
+  const res = await instance.patch(`/skill/${id}`, skill);
   return res.data;
 }
 
-// delete projects with the axios configuration
+// delete skills with the axios configuration
 
 export const deleteSkill = async (id) => {
   const res = await instance.delete(`/skill/${id}`);

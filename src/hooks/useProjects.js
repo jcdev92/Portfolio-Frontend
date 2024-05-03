@@ -1,11 +1,11 @@
 import axios from "axios";
+import { api } from './url';
 
-// production url
-const url = "https://portfolio-backend-j1tl.onrender.com/api/v1"
+const url = api
 
 // axios configuration
 const instance = axios.create({
-  baseURL: url,
+  baseURL: `${url}/api/v1`,
 });
 
 // Añadir un interceptor de petición que añada el token en los headers
