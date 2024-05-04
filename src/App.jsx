@@ -8,6 +8,7 @@ import {
   DashboardSkills,
   DashboardProjects,
   DashboardSocialMedia,
+  DashboardMessages,
 } from "./pages/DashboardPage.jsx";
 import { ErrorPage } from "./components/ErrorPage.jsx";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
@@ -31,6 +32,7 @@ function App() {
                 <Route path="skills" element={<DashboardSkills />} />
                 <Route path="projects" element={<DashboardProjects />} />
                 <Route path="social-media" element={<DashboardSocialMedia />} />
+                <Route path="messages" element={<DashboardMessages />} />
                 <Route
                   path="*"
                   element={<ErrorPage error="404 - Page Not Found" />}

@@ -97,6 +97,21 @@ export const Sidebar = () => {
                     Social media
                   </span>
                 </Link>
+              </li>              
+              <li>
+                <Link
+                  to="/dashboard/messages"
+                  className={
+                    window.location.pathname === "/dashboard/messages"
+                      ? "flex items-center p-2 text-blue-400 text-sm rounded-lg transition-all ease-in-out duration-200"
+                      : "flex items-center p-2 text-white rounded-lg hover:scale-110 transition-all ease-in-out duration-200 hover:text-indigo-700"
+                  }
+                >
+                  <HiOutlineGlobe />
+                  <span className="flex-1 ml-3 whitespace-nowrap">
+                    Messages
+                  </span>
+                </Link>
               </li>
             </ul>
           </div>

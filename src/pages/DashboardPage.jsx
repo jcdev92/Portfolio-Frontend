@@ -5,6 +5,7 @@ import { Sidebar } from "../components/dashboard/Sidebar";
 import { Projects } from "../components/dashboard/Projects/Projects";
 import { SocialMedia } from "../components/dashboard/SocialMedia/SocialMedia";
 import { Animated } from "../components/dashboard/Animated";
+import Messages from "../components/dashboard/Messages/Messages";
 
 export const DashboardPage = () => {
   return (
@@ -73,4 +74,13 @@ export const DashboardSocialMedia = () => {
     </div>
   );
 };
-
+  
+export const DashboardMessages = () => {
+  return (
+    <div className="w-full h-full">
+      <Animated>
+        <Messages />
+      </Animated>
+    </div>
+  );
+};
