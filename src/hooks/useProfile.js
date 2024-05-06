@@ -5,7 +5,7 @@ const url = api
 
 // axios configuration 
 const instance = axios.create({
-  baseURL: `${url}/api/v1`,
+  baseURL: `${api}/api/v1`,
 });
 
 // Añadir un interceptor de petición que añada el token en los headers
