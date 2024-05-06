@@ -47,7 +47,7 @@ export const Intro = () => {
             }}
           />
         </span>{" "}
-        <p className="w-3/4 overflow-y-auto text-sm text-gray-400">
+        <span className="w-3/4 overflow-y-auto text-sm text-gray-400">
           <Typewriter
             onInit={(typewriter) => {
               // define a time sleep until star
@@ -59,7 +59,7 @@ export const Intro = () => {
               cursor: "",
             }}
           />
-        </p>
+        </span>
         <br />
         <span className="hidden md:flex font-bold text-center text-yellow-300">
           <Typewriter
@@ -73,7 +73,7 @@ export const Intro = () => {
             }}
           />{" "}
         </span>{" "}
-        <p className="hidden overflow-y-auto md:flex w-3/4 text-sm text-gray-400">
+        <span className="hidden overflow-y-auto md:flex w-3/4 text-sm text-gray-400">
           <Typewriter
             onInit={(typewriter) => {
               // define a time sleep until star
@@ -85,7 +85,7 @@ export const Intro = () => {
               cursor: "",
             }}
           />
-        </p>
+        </span>
       </div>
     </div>
   ) : (

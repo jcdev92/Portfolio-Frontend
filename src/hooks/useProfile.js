@@ -1,7 +1,6 @@
 import axios from "axios";
 import { api } from './url';
-
-const url = api
+console.log(api)
 
 // axios configuration 
 const instance = axios.create({
