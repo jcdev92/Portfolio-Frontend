@@ -104,7 +104,7 @@ export const EditProject = ({
   let { watchTitle, watchUrl, watchGithub, watchImage, watchDescription } =
     watchingInputs();
 
-  // is the input empty or not? this condition prevent to send forms whit completly data empty
+  // is the input empty or not? this condition prevent to send forms with completly data empty
   const isCleanOrEmptyInput =
     !isDirty ||
     (watchTitle.length === 0 &&
@@ -161,11 +161,11 @@ export const EditProject = ({
             </div>
           </div>
           {isError ? (
-            <ErrorAlert error={error.response.data.message} />
+            <ErrorAlert error={error.response} />
           ) : isErrorSkills ? (
-            <ErrorAlert error={errorSkills.response.data.message} />
+            <ErrorAlert error={errorSkills.response} />
           ) : isErrorDeleteSkill ? (
-            <ErrorAlert error={errorDeleteSkill.response.data.message} />
+            <ErrorAlert error={errorDeleteSkill.response} />
           ) : isSuccess || isSkillAdded || isSkillDeleted ? (
             <SuccessAlert status={status} />
           ) : null}

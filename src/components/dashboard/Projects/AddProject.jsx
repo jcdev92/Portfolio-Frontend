@@ -44,7 +44,7 @@ export const AddProject = ({ setEditMode, setClicked }) => {
       {isLoading ? (
         <Loading />
       ) : isError ? (
-        <ErrorAlert error={error.response.data.message} />
+        <ErrorAlert error={error.response} />
       ) : isSuccess ? (
         <SuccessAlert status={status} />
       ) : null}
