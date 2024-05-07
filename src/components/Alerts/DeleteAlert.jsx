@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteOne } from "../../hooks/useFetch";
 
 /* eslint-disable react/prop-types */
-export const DeleteAlert = ({ selectedId, setDeleteMode, deleteFn, keyword }) => {
+export const DeleteAlert = ({ selectedId, setDeleteMode, keyword }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: deleteFn,
+    mutationFn: deleteOne(keyword),
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },
@@ -15,6 +16,7 @@ export const DeleteAlert = ({ selectedId, setDeleteMode, deleteFn, keyword }) =>
   const handelDelete = () => {
     mutate(selectedId);
   };
+  
   return (
     <div className="w-2/4 h-3/5 flex flex-col justify-center p-6 bg-white border border-gray-200 rounded-lg shadow z-50 relative inset-0">
       <div className="px-4 py-4 w-full text-center">

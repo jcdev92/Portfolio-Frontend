@@ -1,27 +1,32 @@
+/* eslint-disable no-unused-vars */
 import useProfileStore from "../../../store/useProfileStore";
 import { FaEnvelope  } from "react-icons/fa";
-import { registerMessage } from "../../../hooks/useMessages";
+import { addOne } from "../../../hooks/useFetch";
+import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
 
 export const ContactMe = () => {
   const profile = useProfileStore((state) => state.profile);
+  const keyword = "messages"
+  const { handleSubmit, register, reset } = useForm();
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const name = e.target.name.value;
-      const email = e.target.email.value;
-      const subject = e.target.subject.value;
-      const message = e.target.message.value;
-      const data = {
-        name,
-        email,
-        subject,
-        message,
-      };
-      console.log(data);
-      registerMessage(data);
-      e.target.reset();
-      alert("Message sent successfully");
-    };
+  const mutation = useMutation({
+    mutationFn: addOne(keyword),
+    onSuccess: () => {
+      QueryClient.invalidateQueries("projects");
+    },
+  });
+
+  const { mutate, isError, isSuccess, error, status, isLoading } = mutation;
+
+  const onSubmit = (data) => {
+    const cleanedData = clearEmptyFields(data);
+    mutate(cleanedData);
+    reset();
+  };
+
+
 
   return (
     <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start lg:items-start lg:overflow-hidden lg:h-full">
@@ -30,7 +35,7 @@ export const ContactMe = () => {
           action="https://formbold.com/s/FORM_ID"
           method="POST"
           className="p-8 lg:w-2/3 flex flex-col items-center justify-center lg:h-3/4"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="w-full flex gap-4 p-2 items-center">
             <FaEnvelope />
@@ -49,6 +54,7 @@ export const ContactMe = () => {
               id="name"
               placeholder="Full Name"
               className="w-full rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              {...register("name")}
             />
           </div>
           <div className="p-4 md:w-full">
@@ -64,6 +70,7 @@ export const ContactMe = () => {
               id="email"
               placeholder="example@domain.com"
               className="w-full rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              {...register("email")}
             />
           </div>
           <div className="p-4 md:w-full">
@@ -79,6 +86,7 @@ export const ContactMe = () => {
               id="subject"
               placeholder="Enter your subject"
               className="w-full rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              {...register("subject")}
             />
           </div>
           <div className="p-4 md:w-full">
@@ -94,6 +102,7 @@ export const ContactMe = () => {
               id="message"
               placeholder="Type your message"
               className="w-full resize-none rounded-md  -[#775d5d] bg-transparent py-3 px-6 text-xs font-medium text-[#6B7280] outline-none focus:border-[#fbff00]"
+              {...register("message")}
             ></textarea>
           </div>
           <div className="p-4 md:w-full">

@@ -1,22 +1,22 @@
 import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
-import { deleteProject, getProjects } from "../../../hooks/useProjects";
-import { Loading } from "../../../components/Loading";
+import { Loading } from "../../../components/TransitionPages/Loading";
 import { useState } from "react";
 import { EditProject } from "./EditProject";
 import { AddProject } from "./AddProject";
 import useProjectsStore from "../../../store/useProjectsStore";
-import { DeleteAlert } from "../Alerts/DeleteAlert";
-import { ErrorPage } from "../../ErrorPage";
+import { DeleteAlert } from "../../Alerts/DeleteAlert";
+import { ErrorPage } from "../../TransitionPages/ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { motion } from "framer-motion";
+import { getMany } from "../../../hooks/useFetch";
 
 export const ProjectsTable = () => {
   const keyword = "projects";
   const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
-    queryFn: getProjects,
+    queryFn: getMany(keyword),
     onSuccess: (data) => {
       useProjectsStore.getState().setProjects(data);
     },
@@ -188,7 +188,6 @@ export const ProjectsTable = () => {
           <DeleteAlert
             setDeleteMode={setDeleteMode}
             selectedId={selectedId}
-            deleteFn={deleteProject}
             keyword={keyword}
           />
         </div>
@@ -202,7 +201,7 @@ export const ProjectsTable = () => {
       setClicked={setClicked}
     />
   ) : editMode === "add" ? (
-    <AddProject setEditMode={setEditMode} setClicked={setClicked}/>
+    <AddProject setEditMode={setEditMode} setClicked={setClicked} keyword={keyword}/>
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (

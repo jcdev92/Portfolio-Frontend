@@ -1,32 +1,35 @@
 import { Card, TextInput, Label, Textarea, Avatar } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import useProfileStore from "../../store/useProfileStore";
-import { clearEmptyFields } from "../../utils/utilFunctions";
-import { getProfile, updateProfile } from "../../hooks/useProfile";
-import { Loading } from "../Loading";
+import useProfileStore from "../../../store/useProfileStore";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
+import { getMany, update } from "../../../hooks/useFetch";
+import { Loading } from "../../TransitionPages/Loading";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { RxUpdate } from "react-icons/rx";
 
 export const Profile = () => {
   const { handleSubmit, register, reset } = useForm();
+  const keyword = "user";
 
   const { data, isFetching, isLoading } = useQuery({
-    queryKey: ["profile"],
-    queryFn: getProfile,
+    queryKey: [keyword],
+    queryFn: getMany(keyword),
     onSuccess: (data) => {
-      useProfileStore.getState().setProfile(data);
+      useProfileStore.getState().setProfile(data.data[0]);
     },
     staleTime: 60000,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   });
 
+  const profile = data?.data[0]
+
   // mutation to update the profile
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: updateProfile,
+    mutationFn: update(keyword),
     onSuccess: () => {
-      queryClient.invalidateQueries(["profile"]);
+      queryClient.invalidateQueries([keyword]);
     },
   });
 
@@ -39,7 +42,7 @@ export const Profile = () => {
     const dataCleaned = clearEmptyFields(formData);
     // data to send to the server
     const newData = {
-      id: data?.id,
+      id: profile?.id,
       ...dataCleaned,
     };
     // mutate the data
@@ -63,14 +66,14 @@ export const Profile = () => {
             </span>
             <div className="h-4/6 overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent p-4 rounded-lg">
               <div id="info" className="lg:grid gap-4 grid-cols-2">
-                <Avatar size="xl" img={data?.profileImg} bordered />
+                <Avatar size="xl" img={profile?.profileImg} bordered />
                 <div className="flex flex-col pb-4">
                   <div className="mb-2 block">
                     <Label value="Name" className="text-white drop-shadow-md" />
                   </div>
                   <TextInput
                     id="firstName"
-                    placeholder={data?.firstName}
+                    placeholder={profile?.firstName}
                     type="text"
                     className="pb-4 text-xs"
                     {...register("firstName")}
@@ -83,7 +86,7 @@ export const Profile = () => {
                   </div>
                   <TextInput
                     id="lastName"
-                    placeholder={data?.lastName}
+                    placeholder={profile?.lastName}
                     type="text"
                     className="text-xs"
                     {...register("lastName")}
@@ -98,7 +101,7 @@ export const Profile = () => {
                   </div>
                   <TextInput
                     id="email"
-                    placeholder={data?.email}
+                    placeholder={profile?.email}
                     type="email"
                     className="text-xs"
                     {...register("email")}
@@ -113,7 +116,7 @@ export const Profile = () => {
                   </div>
                   <TextInput
                     id="phone"
-                    placeholder={data?.phone}
+                    placeholder={profile?.phone}
                     type="text"
                     className="text-xs"
                     {...register("phone")}
@@ -128,7 +131,7 @@ export const Profile = () => {
                   </div>
                   <TextInput
                     id="profileImg"
-                    placeholder={data?.profileImg}
+                    placeholder={profile?.profileImg}
                     type="text"
                     className="text-xs"
                     {...register("profileImg")}
@@ -143,7 +146,7 @@ export const Profile = () => {
                   </div>
                   <TextInput
                     id="bioImage"
-                    placeholder={data?.bioImage}
+                    placeholder={profile?.bioImage}
                     type="text"
                     className="text-xs"
                     {...register("bioImage")}
@@ -159,7 +162,7 @@ export const Profile = () => {
                 </div>
                 <TextInput
                   id="jobTitle"
-                  placeholder={data?.jobTitle}
+                  placeholder={profile?.jobTitle}
                   type="text"
                   className="text-xs"
                   {...register("jobTitle")}
@@ -175,7 +178,7 @@ export const Profile = () => {
                 <Textarea
                   className="overflow-y-auto text-xs"
                   id="aboutMe"
-                  placeholder={data?.aboutMe}
+                  placeholder={profile?.aboutMe}
                   rows={4}
                   {...register("aboutMe")}
                 />
@@ -190,7 +193,7 @@ export const Profile = () => {
                 <Textarea
                   className="overflow-y-auto text-xs"
                   id="biography"
-                  placeholder={data?.biography}
+                  placeholder={profile?.biography}
                   rows={4}
                   {...register("biography")}
                 />

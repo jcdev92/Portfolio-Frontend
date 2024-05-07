@@ -10,7 +10,7 @@ import {
   DashboardSocialMedia,
   DashboardMessages,
 } from "./pages/DashboardPage.jsx";
-import { ErrorPage } from "./components/ErrorPage.jsx";
+import { ErrorPage } from "./components/TransitionPages/ErrorPage.jsx";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient();

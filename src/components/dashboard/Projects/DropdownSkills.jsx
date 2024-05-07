@@ -2,14 +2,15 @@
 "use client";
 import useSkillsStore from "../../../store/useSkillsStore";
 import { Dropdown } from "flowbite-react";
-import { getSkills } from "../../../hooks/useSkills";
+import { getMany } from "../../../hooks/useFetch";
 import { useQuery } from "@tanstack/react-query";
 
 export const DropdownSkills = ({ project, mutateSkills }) => {
   // if the skills are not in the store yet, get them from the api
+  const keyword = "skills";
   const { data } = useQuery({
-    queryFn: getSkills,
-    queryKey: ["skills"],
+    queryFn: getMany(keyword),
+    queryKey: [keyword],
   });
 
   let skills;

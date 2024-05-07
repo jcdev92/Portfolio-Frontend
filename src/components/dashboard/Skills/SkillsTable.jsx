@@ -1,22 +1,22 @@
 import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
-import { Loading } from "../../Loading";
+import { Loading } from "../../TransitionPages/Loading";
 import { useState } from "react";
 import { EditSkill } from "./EditSkill";
 import { AddSkill } from "./AddSkill";
 import useSkillsStore from "../../../store/useSkillsStore";
-import { DeleteAlert } from "../Alerts/DeleteAlert";
-import { deleteSkill, getSkills } from "../../../hooks/useSkills";
-import { ErrorPage } from "../../ErrorPage";
+import { DeleteAlert } from "../../Alerts/DeleteAlert";
+import { ErrorPage } from "../../TransitionPages/ErrorPage";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { motion } from "framer-motion";
+import { getMany } from "../../../hooks/useFetch";
 
 export const SkillsTable = () => {
   const keyword = "skills";
   const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
-    queryFn: getSkills,
+    queryFn: getMany(keyword),
     onSuccess: (data) => {
       useSkillsStore.getState().setSkills(data);
     },
@@ -180,7 +180,6 @@ export const SkillsTable = () => {
           <DeleteAlert
             setDeleteMode={setDeleteMode}
             selectedId={selectedId}
-            deleteFn={deleteSkill}
             keyword={keyword}
           />
         </div>
@@ -191,9 +190,14 @@ export const SkillsTable = () => {
       setEditMode={setEditMode}
       selectedId={selectedId}
       setClicked={setClicked}
+      keyword={keyword}
     />
   ) : editMode === "add" ? (
-    <AddSkill setEditMode={setEditMode} setClicked={setClicked} />
+    <AddSkill
+      setEditMode={setEditMode}
+      setClicked={setClicked}
+      keyword={keyword}
+    />
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (

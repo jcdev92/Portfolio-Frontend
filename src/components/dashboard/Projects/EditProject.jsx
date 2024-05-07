@@ -6,13 +6,13 @@ import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  updateProject,
-  skillToProject,
-  deleteSkillToProject,
-} from "../../../hooks/useProjects";
-import { ErrorAlert } from "../Alerts/ErrorAlert";
-import { SuccessAlert } from "../Alerts/SuccessAlert";
-import { Loading } from "../../Loading";
+  update,
+  relateSkillToProject,
+  deleteRelation,
+} from "../../../hooks/useFetch";
+import { ErrorAlert } from "../../Alerts/ErrorAlert";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { Loading } from "../../TransitionPages/Loading";
 import { DropdownSkills } from "./DropdownSkills";
 import SkillsContainer from "./SkillsContainer";
 import { motion } from "framer-motion";
@@ -31,7 +31,7 @@ export const EditProject = ({
 
   // update the data of the selected project
   const mutationForm = useMutation({
-    mutationFn: updateProject,
+    mutationFn: update(keyword),
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },
@@ -70,7 +70,7 @@ export const EditProject = ({
 
   // add a skill to a project and mutate the old stored data
   const mutationSkillsProject = useMutation({
-    mutationFn: skillToProject,
+    mutationFn: relateSkillToProject,
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },
@@ -85,8 +85,8 @@ export const EditProject = ({
   } = mutationSkillsProject;
 
   // delete a skill from the selected project and mutate the old stored data
-  const mutationDeleteSkillProject = useMutation({
-    mutationFn: deleteSkillToProject,
+  const mutationDeleteRelation = useMutation({
+    mutationFn: deleteRelation,
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },
@@ -98,7 +98,7 @@ export const EditProject = ({
     isError: isErrorDeleteSkill,
     error: errorDeleteSkill,
     isLoading: isLoadingDeleteSkillFromProject,
-  } = mutationDeleteSkillProject;
+  } = mutationDeleteRelation;
 
   // watch all the form inputs
   let { watchTitle, watchUrl, watchGithub, watchImage, watchDescription } =

@@ -3,18 +3,18 @@ import { RiUploadCloud2Line } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ErrorAlert } from "../Alerts/ErrorAlert";
-import { SuccessAlert } from "../Alerts/SuccessAlert";
-import { Loading } from "../../Loading";
-import { addSkill } from "../../../hooks/useSkills";
+import { ErrorAlert } from "../../Alerts/ErrorAlert";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { Loading } from "../../TransitionPages/Loading";
+import { addOne } from "../../../hooks/useFetch";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const AddSkill = ({ setEditMode, setClicked }) => {
+export const AddSkill = ({ setEditMode, setClicked, keyword }) => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: addSkill,
+    mutationFn: addOne(keyword),
     onSuccess: () => {
       queryClient.invalidateQueries("skills");
     },
@@ -49,7 +49,7 @@ export const AddSkill = ({ setEditMode, setClicked }) => {
           onClick={() => {
             setEditMode("table");
             setClicked("c");
-        }}
+          }}
         >
           <AiOutlineClose className="h-full w-full" />
         </button>

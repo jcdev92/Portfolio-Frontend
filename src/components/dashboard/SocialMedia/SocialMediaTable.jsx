@@ -2,24 +2,23 @@ import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import {
-  deleteSocialMedia,
-  getSocialMedia,
-} from "../../../hooks/useSocialMedia";
-import { Loading } from "../../../components/Loading";
+  getMany,
+} from "../../../hooks/useFetch";
+import { Loading } from "../../../components/TransitionPages/Loading";
 import { useState } from "react";
 import { EditSocialMedia } from "./EditSocialMedia";
 import { AddSocialMedia } from "./AddSocialMedia";
-import { DeleteAlert } from "../Alerts/DeleteAlert";
-import { ErrorPage } from "../../ErrorPage";
+import { DeleteAlert } from "../../Alerts/DeleteAlert";
+import { ErrorPage } from "../../TransitionPages/ErrorPage";
 import useSocialStore from "../../../store/useSocialStore";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { motion } from "framer-motion";
 
 export const SocialMediaTable = () => {
-  const keyword = "social";
+  const keyword = "social-media";
   const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
-    queryFn: getSocialMedia,
+    queryFn: getMany(keyword),
     onSuccess: (data) => {
       useSocialStore.getState().setSocials(data);
     },
@@ -198,7 +197,6 @@ export const SocialMediaTable = () => {
           <DeleteAlert
             setDeleteMode={setDeleteMode}
             selectedId={selectedId}
-            deleteFn={deleteSocialMedia}
             keyword={keyword}
           />
         </div>
@@ -217,6 +215,7 @@ export const SocialMediaTable = () => {
       setEditMode={setEditMode}
       editMode={editMode}
       setClicked={setClicked}
+      keyword={keyword}
     />
   ) : editMode === "table" && isLoading ? (
     <Loading />

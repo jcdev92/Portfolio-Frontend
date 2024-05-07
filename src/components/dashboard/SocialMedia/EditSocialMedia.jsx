@@ -5,10 +5,10 @@ import useSocialStore from "../../../store/useSocialStore";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateSocialMedia } from "../../../hooks/useSocialMedia";
-import { ErrorAlert } from "../Alerts/ErrorAlert";
-import { SuccessAlert } from "../Alerts/SuccessAlert";
-import { Loading } from "../../Loading";
+import { update } from "../../../hooks/useFetch";
+import { ErrorAlert } from "../../Alerts/ErrorAlert";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { Loading } from "../../TransitionPages/Loading";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
@@ -26,7 +26,7 @@ export const EditSocialMedia = ({
   const { title, url, icon } = socialMedia;
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: updateSocialMedia,
+    mutationFn: update(keyword),
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },

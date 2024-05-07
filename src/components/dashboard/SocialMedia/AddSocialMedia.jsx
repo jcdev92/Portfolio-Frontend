@@ -3,18 +3,18 @@ import { RiUploadCloud2Line } from "react-icons/ri";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addSocialMedia } from "../../../hooks/useSocialMedia";
-import { ErrorAlert } from "../Alerts/ErrorAlert";
-import { SuccessAlert } from "../Alerts/SuccessAlert";
-import { Loading } from "../../Loading";
+import { addOne } from "../../../hooks/useFetch";
+import { ErrorAlert } from "../../Alerts/ErrorAlert";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { Loading } from "../../TransitionPages/Loading";
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export const AddSocialMedia = ({ setEditMode, editMode, setClicked }) => {
+export const AddSocialMedia = ({ setEditMode, editMode, setClicked, keyword }) => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: addSocialMedia,
+    mutationFn: addOne(keyword),
     onSuccess: () => {
       queryClient.invalidateQueries("social");
     },

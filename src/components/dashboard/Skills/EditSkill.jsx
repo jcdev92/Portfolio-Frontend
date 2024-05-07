@@ -3,10 +3,10 @@ import { RxUpdate } from "react-icons/rx";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateSkill } from "../../../hooks/useSkills";
-import { ErrorAlert } from "../Alerts/ErrorAlert";
-import { SuccessAlert } from "../Alerts/SuccessAlert";
-import { Loading } from "../../Loading";
+import { update } from "../../../hooks/useFetch";
+import { ErrorAlert } from "../../Alerts/ErrorAlert";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { Loading } from "../../TransitionPages/Loading";
 import useSkillsStore from "../../../store/useSkillsStore";
 import { motion } from "framer-motion";
 
@@ -17,7 +17,7 @@ export const EditSkill = ({ setEditMode, selectedId, keyword, setClicked }) => {
   const { title, icon } = skill;
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: updateSkill,
+    mutationFn: update(keyword),
     onSuccess: () => {
       queryClient.invalidateQueries(keyword);
     },

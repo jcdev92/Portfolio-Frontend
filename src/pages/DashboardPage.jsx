@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Profile } from "../components/dashboard/Profile";
+import { Profile } from "../components/dashboard/Profile/Profile";
 import { Skills } from "../components/dashboard/Skills/Skills";
 import { Sidebar } from "../components/dashboard/Sidebar";
 import { Projects } from "../components/dashboard/Projects/Projects";

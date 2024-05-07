@@ -1,14 +1,12 @@
 "use client";
-import { api } from "../../../hooks/url"
+import { url_api } from "../../../hooks/useFetch"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-import { Loading } from "../../Loading";
+import { Loading } from "../../TransitionPages/Loading";
 import Form from "./Form";
 
 export const Login = () => {
-  const url = api
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,7 +15,7 @@ export const Login = () => {
     const { email, password } = data;
     setLoading(true);
     axios
-      .post(`${url}/api/v1/auth/login`, {
+      .post(`${url_api}/api/v1/auth/login`, {
         email,
         password,
       })
@@ -28,8 +26,6 @@ export const Login = () => {
       })
       .catch((err) => {
         setLoading(false);
-        // detail me the error
-        console.log(err.response.data);  
         // set the error
         err.response.status === 401 && setError(err.response);
       });

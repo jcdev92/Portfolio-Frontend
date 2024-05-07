@@ -1,26 +1,30 @@
 import useProfileStore from "../../../store/useProfileStore";
 import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../../../hooks/useProfile";
+import { getMany } from "../../../hooks/useFetch";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
 
 export const Intro = () => {
+  const keyword = "user";
   const {
-    data: profile,
+    data,
     isLoading,
     isError,
     isSuccess,
     error,
   } = useQuery({
-    queryKey: ["profile"],
-    queryFn: getProfile,
+    queryKey: [keyword],
+    queryFn: getMany(keyword),
     onSuccess: (data) => {
-      useProfileStore.getState().setProfile(data);
+      const profileData = data.data[0];
+      useProfileStore.getState().setProfile(profileData);
     },
     staleTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   });
+
+  const profile = data?.data[0]
 
   return isLoading ? (
     <div className="flex h-screen w-screen items-center justify-center md:h-full md:w-full">

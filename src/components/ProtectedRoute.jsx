@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getSkills } from "../hooks/useSkills";
+import { checkToken } from "../hooks/useFetch";
 
 export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   const [isAllowed, setIsAllowed] = useState(true);
 
   // check if the token is expired or not
   useEffect(() => {
-    getSkills()
+    checkToken()
       .then((res) => {
         if (res.data) {
           setIsAllowed(true);
@@ -24,7 +24,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   // check every 5 hours, if the token is expired or not
   useEffect(() => {
     const interval = setInterval(() => {
-      getSkills()
+      checkToken()
         .then((res) => {
           if (res.data) {
             setIsAllowed(true);
