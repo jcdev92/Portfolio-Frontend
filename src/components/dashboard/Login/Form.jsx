@@ -42,8 +42,7 @@ const Form = ({data, error}) => {
       />
     </div>
     <Button type="submit">Login</Button>
-    {error && <ErrorAlert error={error} />}
-    {loginState && <ErrorAlert error={loginState} />}
+    {error ? <ErrorAlert error={error} /> : loginState ? <ErrorAlert error={loginState}/> : null}
   </form>
   )
 }

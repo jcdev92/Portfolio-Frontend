@@ -18,7 +18,7 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
       .catch((err) => {
         if (err.response.status === 401) {
           loginStateStore.setState({
-            mesage: err.response
+            message: err.response
           })
           setIsAllowed(false);
         }
