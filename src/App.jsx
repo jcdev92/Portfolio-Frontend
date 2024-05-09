@@ -1,21 +1,15 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
-import { PortfolioPage } from "./pages/PortfolioPage";
-import { LoginPage } from "./pages/LoginPage";
-import {
-  DashboardPage,
-  DashboardProfile,
-  DashboardSkills,
-  DashboardProjects,
-  DashboardSocialMedia,
-  DashboardMessages,
-} from "./pages/DashboardPage.jsx";
-import { ErrorPage } from "./components/TransitionPages/ErrorPage.jsx";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-const queryClient = new QueryClient();
 import "./App.css";
 import { AnimatePresence } from "framer-motion";
+import { DashboardPage, DashboardProfile, DashboardSkills, DashboardProjects, DashboardSocialMedia, DashboardMessages} from "./pages/DashboardPage.jsx";
+import { ErrorPage } from "./components/TransitionPages/ErrorPage.jsx";
+import { LoginPage } from "./pages/LoginPage";
+import { PortfolioPage } from "./pages/PortfolioPage";
+import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Routes, Route, useLocation } from "react-router-dom";
+
+const queryClient = new QueryClient();
 
 function App() {
   const location = useLocation();

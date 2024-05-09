@@ -1,6 +1,6 @@
 import { AiFillGithub } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
-import useProfileStore from "../../../store/useProfileStore";
+import { useProfileStore } from "../../../store/useStore";
 
 export const Projects = () => {
   const { Projects: projects } = useProfileStore((state) => state.profile);

@@ -8,7 +8,7 @@ import {
 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import useProfileStore from "../../store/useProfileStore";
+import { useProfileStore } from "../../store/useStore";
 
 export const Sidebar = () => {
   const navigate = useNavigate();

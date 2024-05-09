@@ -1,4 +1,4 @@
-import useProfileStore from "../../../store/useProfileStore";
+import { useProfileStore } from "../../../store/useStore";
 
 export const Skills = () => {
   const { Skills: skills } = useProfileStore((state) => state.profile);

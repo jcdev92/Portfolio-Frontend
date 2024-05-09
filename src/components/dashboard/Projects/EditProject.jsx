@@ -1,21 +1,17 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
-import { RxUpdate } from "react-icons/rx";
-import useProjectsStore from "../../../store/useProjectsStore";
-import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  update,
-  relateSkillToProject,
-  deleteRelation,
-} from "../../../hooks/useFetch";
-import { ErrorAlert } from "../../Alerts/ErrorAlert";
-import { SuccessAlert } from "../../Alerts/SuccessAlert";
-import { Loading } from "../../TransitionPages/Loading";
 import { DropdownSkills } from "./DropdownSkills";
-import SkillsContainer from "./SkillsContainer";
+import { ErrorAlert } from "../../Alerts/ErrorAlert";
+import { Loading } from "../../TransitionPages/Loading";
 import { motion } from "framer-motion";
+import { RxUpdate } from "react-icons/rx";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useProjectsStore } from "../../../store/useStore";
+import {update, relateSkillToProject, deleteRelation} from "../../../hooks/useFetch";
+import SkillsContainer from "./SkillsContainer";
 
 // eslint-disable-next-line react/prop-types
 export const EditProject = ({
@@ -23,6 +19,7 @@ export const EditProject = ({
   selectedId,
   keyword,
   setClicked,
+  messages
 }) => {
   const projects = useProjectsStore((state) => state.projects);
   const project = projects.find((project) => project.id === selectedId);
@@ -43,7 +40,7 @@ export const EditProject = ({
     error,
     status,
     isLoading,
-    isSuccess,
+    isSuccess: isProjectUpdated,
   } = mutationForm;
 
   const {
@@ -166,9 +163,14 @@ export const EditProject = ({
             <ErrorAlert error={errorSkills.response} />
           ) : isErrorDeleteSkill ? (
             <ErrorAlert error={errorDeleteSkill.response} />
-          ) : isSuccess || isSkillAdded || isSkillDeleted ? (
-            <SuccessAlert status={status} />
-          ) : null}
+          ) : isProjectUpdated ? (
+            <SuccessAlert status={status} message={messages[1]}/>
+          ) : isSkillAdded ? 
+            (<SuccessAlert status={status} message={messages[3]}/>)
+            : isSkillDeleted ? 
+            (<SuccessAlert status={status} message={messages[4]}/>)
+            : null
+          }
         </div>
         <div className="p-6 pt-0 h-4/5 font-exo">
           {isLoading ? (

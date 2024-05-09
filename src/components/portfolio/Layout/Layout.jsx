@@ -1,14 +1,14 @@
+import { AiFillHtml5 } from "react-icons/ai";
+import { ContactMe } from "../Sections/ContactMe";
+import { DiJavascript1 } from "react-icons/di";
+import { FaMarkdown } from "react-icons/fa";
+import { Intro } from "../Sections/Intro";
+import { Projects } from "../Sections/Projects";
+import { SiCsswizardry } from "react-icons/si";
+import { Skills } from "../Sections/Skills";
 import { useState } from "react";
 import NumbersCol from "./NumbersCol";
 import TabBar from "./TabBar";
-import { Intro } from "../Sections/Intro";
-import { Skills } from "../Sections/Skills";
-import { Projects } from "../Sections/Projects";
-import { ContactMe } from "../Sections/ContactMe";
-import { AiFillHtml5 } from "react-icons/ai";
-import { SiCsswizardry } from "react-icons/si";
-import { FaMarkdown } from "react-icons/fa";
-import { DiJavascript1 } from "react-icons/di";
 
 export const Layout = () => {
   const sections = [

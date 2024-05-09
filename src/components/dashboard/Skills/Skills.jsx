@@ -1,5 +1,5 @@
-import { SkillsTable } from "./SkillsTable";
 import { AnimatePresence } from "framer-motion";
+import { SkillsTable } from "./SkillsTable";
 
 export const Skills = () => {
   return (

@@ -1,8 +1,8 @@
-import useProfileStore from "../../../store/useProfileStore";
-import { useQuery } from "@tanstack/react-query";
 import { getMany } from "../../../hooks/useFetch";
-import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import Typewriter from "typewriter-effect";
+import { useProfileStore } from "../../../store/useStore";
 
 export const Intro = () => {
   const keyword = "user";
@@ -16,8 +16,14 @@ export const Intro = () => {
     queryKey: [keyword],
     queryFn: getMany(keyword),
     onSuccess: (data) => {
-      const profileData = data.data[0];
-      useProfileStore.getState().setProfile(profileData);
+      useProfileStore.setState(
+        {
+          profile: data?.data[0],
+        },
+        {
+          persist: true,
+        }
+      )
     },
     staleTime: 1000 * 60 * 60 * 24,
     refetchOnWindowFocus: false,

@@ -1,14 +1,14 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { RxUpdate } from "react-icons/rx";
-import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { update } from "../../../hooks/useFetch";
 import { ErrorAlert } from "../../Alerts/ErrorAlert";
-import { SuccessAlert } from "../../Alerts/SuccessAlert";
 import { Loading } from "../../TransitionPages/Loading";
-import useSkillsStore from "../../../store/useSkillsStore";
 import { motion } from "framer-motion";
+import { RxUpdate } from "react-icons/rx";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { update } from "../../../hooks/useFetch";
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSkillsStore } from "../../../store/useStore";
 
 // eslint-disable-next-line react/prop-types
 export const EditSkill = ({ setEditMode, selectedId, keyword, setClicked }) => {

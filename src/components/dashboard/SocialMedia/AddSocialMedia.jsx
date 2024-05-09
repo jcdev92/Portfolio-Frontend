@@ -1,13 +1,13 @@
-import { AiOutlineClose } from "react-icons/ai";
-import { RiUploadCloud2Line } from "react-icons/ri";
-import { useForm } from "react-hook-form";
-import { clearEmptyFields } from "../../../utils/utilFunctions";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOne } from "../../../hooks/useFetch";
+import { AiOutlineClose } from "react-icons/ai";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { ErrorAlert } from "../../Alerts/ErrorAlert";
-import { SuccessAlert } from "../../Alerts/SuccessAlert";
 import { Loading } from "../../TransitionPages/Loading";
 import { motion } from "framer-motion";
+import { RiUploadCloud2Line } from "react-icons/ri";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // eslint-disable-next-line react/prop-types
 export const AddSocialMedia = ({ setEditMode, editMode, setClicked, keyword }) => {

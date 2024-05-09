@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
+import { checkToken } from "../hooks/useFetch";
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { checkToken } from "../hooks/useFetch";
+import { loginStateStore } from "../store/useStore";
 
 export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
   const [isAllowed, setIsAllowed] = useState(true);
@@ -16,33 +17,21 @@ export const ProtectedRoute = ({ redirectTo = "/login", children }) => {
       })
       .catch((err) => {
         if (err.response.status === 401) {
+          loginStateStore.setState({
+            mesage: err.response
+          })
           setIsAllowed(false);
         }
       });
-  }, []);
-
-  // check every 5 hours, if the token is expired or not
-  useEffect(() => {
-    const interval = setInterval(() => {
-      checkToken()
-        .then((res) => {
-          if (res.data) {
-            setIsAllowed(true);
-          }
-        })
-        .catch((err) => {
-          if (err.response.status === 401) {
-            setIsAllowed(false);
-          }
-        });
-    }, 1000 * 60 * 60 * 5);
-    return () => clearInterval(interval);
   }, []);
 
   // validate if the token is expired or not
   if (!isAllowed) {
     return <Navigate to={redirectTo} />;
   }
+
+  // i want to show the error message in the login component
+
 
   // if arrive one children, return this children, else if arrive a lot of childrens, return <Outlet />
   return children ? children : <Outlet />;

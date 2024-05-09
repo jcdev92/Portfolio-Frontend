@@ -4,9 +4,12 @@ import { FaM } from "react-icons/fa6";
 import { AiFillLock } from "react-icons/ai";
 import { Button, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
+import { loginStateStore } from "../../../store/useStore";
 
 const Form = ({data, error}) => {
     const { register, handleSubmit } = useForm();
+    const loginState = loginStateStore((state) => state.message);
+
   return (
     <form
     className="flex max-w-md flex-col gap-4 lg:w-96 font-sans"
@@ -40,6 +43,7 @@ const Form = ({data, error}) => {
     </div>
     <Button type="submit">Login</Button>
     {error && <ErrorAlert error={error} />}
+    {loginState && <ErrorAlert error={loginState} />}
   </form>
   )
 }

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
 import { RxUpdate } from "react-icons/rx";
-import useSocialStore from "../../../store/useSocialStore";
+import { useSocialStore } from "../../../store/useStore";
 import { useForm } from "react-hook-form";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

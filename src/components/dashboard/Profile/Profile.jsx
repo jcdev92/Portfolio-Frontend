@@ -1,11 +1,11 @@
 import { Card, TextInput, Label, Textarea, Avatar } from "flowbite-react";
-import { useForm } from "react-hook-form";
-import useProfileStore from "../../../store/useProfileStore";
 import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { getMany, update } from "../../../hooks/useFetch";
 import { Loading } from "../../TransitionPages/Loading";
-import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { RxUpdate } from "react-icons/rx";
+import { useForm } from "react-hook-form";
+import { useProfileStore } from "../../../store/useStore";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 
 export const Profile = () => {
   const { handleSubmit, register, reset } = useForm();
@@ -15,7 +15,14 @@ export const Profile = () => {
     queryKey: [keyword],
     queryFn: getMany(keyword),
     onSuccess: (data) => {
-      useProfileStore.getState().setProfile(data.data[0]);
+      useProfileStore.setState(
+        {
+          profile: data?.data[0],
+        },
+        {
+          persist: true,
+        }
+      )
     },
     staleTime: 60000,
     refetchOnWindowFocus: false,

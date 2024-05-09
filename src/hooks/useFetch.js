@@ -81,6 +81,6 @@ export const deleteRelation = async ({id, ...data}) => {
 
 // check if token is expired or not
 export const checkToken = async () => {
-    const res = await instance.get('/user');
+    const res = await instance.post('/auth/checkToken');
     return res.data;
 }

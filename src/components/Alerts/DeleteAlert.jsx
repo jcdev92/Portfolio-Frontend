@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteOne } from "../../hooks/useFetch";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 /* eslint-disable react/prop-types */
-export const DeleteAlert = ({ selectedId, setDeleteMode, keyword }) => {
+export const DeleteAlert = ({ selectedId, setDeleteMode, keyword, setDeleteStatus }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -11,10 +11,12 @@ export const DeleteAlert = ({ selectedId, setDeleteMode, keyword }) => {
       queryClient.invalidateQueries(keyword);
     },
   });
-  const { mutate } = mutation;
+  const { mutate, status } = mutation;
 
   const handelDelete = () => {
     mutate(selectedId);
+    setDeleteMode("")
+    setDeleteStatus(status);
   };
   
   return (

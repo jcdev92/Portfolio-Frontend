@@ -1,24 +1,33 @@
-import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
-import { BsDatabaseFillAdd } from "react-icons/bs";
-import { useQuery } from "@tanstack/react-query";
-import { Loading } from "../../../components/TransitionPages/Loading";
-import { useState } from "react";
-import { EditProject } from "./EditProject";
 import { AddProject } from "./AddProject";
-import useProjectsStore from "../../../store/useProjectsStore";
+import { BsDatabaseFillAdd } from "react-icons/bs";
 import { DeleteAlert } from "../../Alerts/DeleteAlert";
+import { EditProject } from "./EditProject";
 import { ErrorPage } from "../../TransitionPages/ErrorPage";
-import { SearchBar } from "../SearchBar/SearchBar";
-import { motion } from "framer-motion";
 import { getMany } from "../../../hooks/useFetch";
+import { Loading } from "../../../components/TransitionPages/Loading";
+import { motion } from "framer-motion";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
+import { useEffect, useState } from "react";
+import { useProjectsStore } from "../../../store/useStore";
+import { useQuery } from "@tanstack/react-query";
 
 export const ProjectsTable = () => {
   const keyword = "projects";
+  const messages = ["project successfully added", "project successfully updated", "project successfully deleted", "skill added to project", "skill removed from project"];
   const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
     queryFn: getMany(keyword),
     onSuccess: (data) => {
-      useProjectsStore.getState().setProjects(data);
+      useProjectsStore.setState(
+        {
+          projects: data,
+        },
+        {
+          persist: true,
+        }
+      )
     },
     staleTime: 60000,
     refetchOnWindowFocus: false,
@@ -27,9 +36,17 @@ export const ProjectsTable = () => {
 
   const [editMode, setEditMode] = useState("table");
   const [deleteMode, setDeleteMode] = useState("");
+  const [deleteStatus, setDeleteStatus] = useState(null)
   const [selectedId, setSelectedId] = useState("");
   const [clicked, setClicked] = useState(null);
   const [word, setWord] = useState("");
+
+  useEffect(() => {
+    if (editMode === "add" || editMode === "edit") {
+      setDeleteStatus(null)
+    }
+  }, [editMode])
+
 
   const handleId = (id) => {
     setSelectedId(id);
@@ -180,6 +197,9 @@ export const ProjectsTable = () => {
                     </tr>
                   ))}
             </tbody>
+            {
+                    deleteStatus ? <SuccessAlert status={deleteStatus} message={messages[2]}/> : null
+            }
           </table>
         )}
       </div>
@@ -189,6 +209,7 @@ export const ProjectsTable = () => {
             setDeleteMode={setDeleteMode}
             selectedId={selectedId}
             keyword={keyword}
+            setDeleteStatus={setDeleteStatus}
           />
         </div>
       )}
@@ -199,9 +220,10 @@ export const ProjectsTable = () => {
       selectedId={selectedId}
       keyword={keyword}
       setClicked={setClicked}
+      messages={messages}
     />
   ) : editMode === "add" ? (
-    <AddProject setEditMode={setEditMode} setClicked={setClicked} keyword={keyword}/>
+    <AddProject setEditMode={setEditMode} setClicked={setClicked} keyword={keyword} message={messages[0]}/>
   ) : editMode === "table" && isLoading ? (
     <Loading />
   ) : (

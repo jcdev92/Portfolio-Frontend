@@ -1,26 +1,33 @@
-import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
-import { BsDatabaseFillAdd } from "react-icons/bs";
-import { useQuery } from "@tanstack/react-query";
-import {
-  getMany,
-} from "../../../hooks/useFetch";
-import { Loading } from "../../../components/TransitionPages/Loading";
-import { useState } from "react";
-import { EditSocialMedia } from "./EditSocialMedia";
 import { AddSocialMedia } from "./AddSocialMedia";
+import { BsDatabaseFillAdd } from "react-icons/bs";
 import { DeleteAlert } from "../../Alerts/DeleteAlert";
+import { EditSocialMedia } from "./EditSocialMedia";
 import { ErrorPage } from "../../TransitionPages/ErrorPage";
-import useSocialStore from "../../../store/useSocialStore";
-import { SearchBar } from "../SearchBar/SearchBar";
+import { getMany } from "../../../hooks/useFetch";
+import { Loading } from "../../../components/TransitionPages/Loading";
 import { motion } from "framer-motion";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
+import { useQuery } from "@tanstack/react-query";
+import { useSocialStore } from "../../../store/useStore";
+import { useEffect, useState } from "react";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
 
 export const SocialMediaTable = () => {
   const keyword = "social-media";
+  const messages = ["social media successfully added", "social media successfully updated", "social media successfully deleted"];
   const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
     queryFn: getMany(keyword),
     onSuccess: (data) => {
-      useSocialStore.getState().setSocials(data);
+      useSocialStore.setState(
+        {
+          socials: data,
+        },
+        {
+          persist: true,
+        }
+      )
     },
     staleTime: 60000,
     refetchOnWindowFocus: false,
@@ -28,10 +35,17 @@ export const SocialMediaTable = () => {
   });
 
   const [editMode, setEditMode] = useState("table");
+  const [deleteStatus, setDeleteStatus] = useState(null)
   const [deleteMode, setDeleteMode] = useState("");
   const [clicked, setClicked] = useState(null);
   const [selectedId, setSelectedId] = useState("");
   const [word, setWord] = useState("");
+
+  useEffect(() => {
+    if (editMode === "add" || editMode === "edit") {
+      setDeleteStatus(null)
+    }
+  }, [editMode])
 
   const handleId = (id) => {
     setSelectedId(id);
@@ -64,7 +78,7 @@ export const SocialMediaTable = () => {
           <BsDatabaseFillAdd />
         </button>
       </div>
-      <div className="relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-sm w-full h-5/6 rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200">
+      <div className="relative overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-sm w-full h-5/6 rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200">
         {isFetching ? (
           <div className="w-full h-full flex justify-center items-center">
             <div className="loader"></div>
@@ -189,6 +203,9 @@ export const SocialMediaTable = () => {
                     ))
               }
             </tbody>
+            {
+                    deleteStatus ? <SuccessAlert status={deleteStatus} message={messages[2]}/> : null
+            }
           </table>
         )}
       </div>
@@ -198,6 +215,7 @@ export const SocialMediaTable = () => {
             setDeleteMode={setDeleteMode}
             selectedId={selectedId}
             keyword={keyword}
+            setDeleteStatus={setDeleteStatus}
           />
         </div>
       )}
@@ -223,3 +241,4 @@ export const SocialMediaTable = () => {
     <ErrorPage error={error} />
   );
 };
+

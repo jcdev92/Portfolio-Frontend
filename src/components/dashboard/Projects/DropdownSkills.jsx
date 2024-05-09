@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 "use client";
-import useSkillsStore from "../../../store/useSkillsStore";
 import { Dropdown } from "flowbite-react";
 import { getMany } from "../../../hooks/useFetch";
 import { useQuery } from "@tanstack/react-query";
+import { useSkillsStore } from "../../../store/useStore";
 
 export const DropdownSkills = ({ project, mutateSkills }) => {
   // if the skills are not in the store yet, get them from the api

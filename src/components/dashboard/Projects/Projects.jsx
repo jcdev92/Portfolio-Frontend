@@ -1,5 +1,5 @@
-import { ProjectsTable } from "./ProjectsTable";
 import { AnimatePresence } from "framer-motion";
+import { ProjectsTable } from "./ProjectsTable";
 
 export const Projects = () => {
   return (

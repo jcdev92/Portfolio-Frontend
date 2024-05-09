@@ -38,7 +38,6 @@ export const Login = () => {
       ) : (
         <Form data={onSubmit} error={error}/>
       )}  
-      
     </div>
   );
 };

@@ -1,16 +1,16 @@
-import { AiOutlineClose } from "react-icons/ai";
-import { RiUploadCloud2Line } from "react-icons/ri";
-import { useForm } from "react-hook-form";
-import { clearEmptyFields } from "../../../utils/utilFunctions";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addOne } from "../../../hooks/useFetch";
+import { AiOutlineClose } from "react-icons/ai";
+import { clearEmptyFields } from "../../../utils/utilFunctions";
 import { ErrorAlert } from "../../Alerts/ErrorAlert";
-import { SuccessAlert } from "../../Alerts/SuccessAlert";
 import { Loading } from "../../TransitionPages/Loading";
 import { motion } from "framer-motion";
+import { RiUploadCloud2Line } from "react-icons/ri";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // eslint-disable-next-line react/prop-types
-export const AddProject = ({ setEditMode, setClicked, keyword }) => {
+export const AddProject = ({ setEditMode, setClicked, keyword, message }) => {
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -46,7 +46,7 @@ export const AddProject = ({ setEditMode, setClicked, keyword }) => {
       ) : isError ? (
         <ErrorAlert error={error.response} />
       ) : isSuccess ? (
-        <SuccessAlert status={status} />
+        <SuccessAlert status={status} message={message} />
       ) : null}
       <form className="h-full w-full flex flex-col items-center justify-center p-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="p-2 flex h-fit w-full sticky z-0 inset-0">
@@ -71,7 +71,7 @@ export const AddProject = ({ setEditMode, setClicked, keyword }) => {
             </button>
           </div>
         </div>
-        <div className="h-3/4 w-full overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent p-4 rounded-lg">
+        <div className="h-3/4 w-full overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent p-4 rounded-lg">
           <div className="relative z-0 w-11/12 mb-6 group p-1">
             <input
               type="text"
@@ -146,7 +146,7 @@ export const AddProject = ({ setEditMode, setClicked, keyword }) => {
           </div>
           <label
             htmlFor="description"
-            className="block mb-2 font-exo text-sm font-exo text-white dark:text-white p-1"
+            className="block mb-2 font-exo text-sm text-white dark:text-white p-1"
           >
             Description
           </label>

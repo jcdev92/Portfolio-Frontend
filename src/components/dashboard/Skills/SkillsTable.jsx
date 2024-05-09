@@ -1,24 +1,33 @@
-import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
-import { BsDatabaseFillAdd } from "react-icons/bs";
-import { useQuery } from "@tanstack/react-query";
-import { Loading } from "../../TransitionPages/Loading";
-import { useState } from "react";
-import { EditSkill } from "./EditSkill";
 import { AddSkill } from "./AddSkill";
-import useSkillsStore from "../../../store/useSkillsStore";
+import { BsDatabaseFillAdd } from "react-icons/bs";
 import { DeleteAlert } from "../../Alerts/DeleteAlert";
+import { EditSkill } from "./EditSkill";
 import { ErrorPage } from "../../TransitionPages/ErrorPage";
-import { SearchBar } from "../SearchBar/SearchBar";
-import { motion } from "framer-motion";
 import { getMany } from "../../../hooks/useFetch";
+import { Loading } from "../../TransitionPages/Loading";
+import { motion } from "framer-motion";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { TbDatabaseEdit, TbDatabaseMinus } from "react-icons/tb";
+import { useQuery } from "@tanstack/react-query";
+import { useSkillsStore } from "../../../store/useStore";
+import { useEffect, useState } from "react";
+import { SuccessAlert } from "../../Alerts/SuccessAlert";
 
 export const SkillsTable = () => {
   const keyword = "skills";
+  const messages = ["skill successfully added", "skill successfully updated", "skill successfully deleted"];
   const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: [keyword],
     queryFn: getMany(keyword),
     onSuccess: (data) => {
-      useSkillsStore.getState().setSkills(data);
+      useSkillsStore.setState(
+        {
+          skills: data,
+        },
+        {
+          persist: true,
+        }
+      )
     },
     staleTime: 60000,
     refetchOnWindowFocus: false,
@@ -26,10 +35,17 @@ export const SkillsTable = () => {
   });
 
   const [editMode, setEditMode] = useState("table");
+  const [deleteStatus, setDeleteStatus] = useState(null)
   const [deleteMode, setDeleteMode] = useState("");
   const [selectedId, setSelectedId] = useState("");
   const [clicked, setClicked] = useState(null);
   const [word, setWord] = useState("");
+
+  useEffect(() => {
+    if (editMode === "add" || editMode === "edit") {
+      setDeleteStatus(null)
+    }
+  }, [editMode])
 
   const handleId = (id) => {
     setSelectedId(id);
@@ -50,7 +66,7 @@ export const SkillsTable = () => {
       }}
       className={
         word.length > 0
-          ? "w-5/6 h-5/6 z-10 overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent"
+          ? "w-5/6 h-5/6 z-10 overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent"
           : "w-5/6 h-5/6 z-10"
       }
     >
@@ -69,8 +85,8 @@ export const SkillsTable = () => {
       <div
         className={
           word.length > 0
-            ? "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-auto rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200"
-            : "relative overflow-y-auto scrollbar scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-5/6 rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200"
+            ? "relative overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-auto rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200"
+            : "relative overflow-y-auto scrollbar-thin scrollbar-track-rounded-lg scrollbar-thumb-rounded-lg scrollbar-thumb-blue-600 scrollbar-track-transparent backdrop-blur-md w-full h-5/6 rounded-md shadow-md shadow-blue-500 hover:scale-98 hover:shadow-sm hover:shadow-blue-200  transition-all ease-in-out duration-200"
         }
       >
         {isFetching ? (
@@ -172,6 +188,9 @@ export const SkillsTable = () => {
                     </tr>
                   ))}
             </tbody>
+            {
+                    deleteStatus ? <SuccessAlert status={deleteStatus} message={messages[2]}/> : null
+            }
           </table>
         )}
       </div>
@@ -181,6 +200,7 @@ export const SkillsTable = () => {
             setDeleteMode={setDeleteMode}
             selectedId={selectedId}
             keyword={keyword}
+            setDeleteStatus={setDeleteStatus}
           />
         </div>
       )}

@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { loginStateStore } from "../../store/useStore";
+
 export const ErrorAlert = ({ error }) => {
   return (
     <div
@@ -16,13 +18,16 @@ export const ErrorAlert = ({ error }) => {
         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
       </svg>
       <span className="sr-only">Error: </span>
-      <div className="ml-3 text-sm font-medium">{error.status} {error.data.message}</div>
+      <div className="ml-3 text-sm font-medium">{error?.status} {error?.data.message}</div>
       <button
         type="button"
         className="ml-auto -mx-1.5 -my-1.5 bg-transparent text-red-500 rounded-lg p-1.5 hover:scale-50 transition-all ease-out duration-300 hover:text-red-300 inline-flex items-center justify-center h-8 w-8 0"
         data-dismiss-target="#alert-2"
         aria-label="Close"
         onClick={() => {
+          loginStateStore.setState({
+            message: null
+          })
           document.getElementById("alert-2").style.display = "none";
         }}
       >
