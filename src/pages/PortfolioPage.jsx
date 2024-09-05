@@ -1,5 +1,5 @@
-import { Layout } from "../components/portfolio/Layout/Layout";
+import { Message } from "../components/portfolio/Message";
 
 export const PortfolioPage = () => {
-  return <Layout />;
+  return <Message />;
 };
